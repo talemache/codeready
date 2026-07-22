@@ -81,17 +81,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "A free, structured path from CS student to confident software engineer. Technical skills, career skills, and everything in between.",
+          "A free, structured path from CS student to confident software engineer.",
       },
       { name: "author", content: "CodeReady" },
-      { property: "og:title", content: "CodeReady — From CS student to confident engineer" },
+      { property: "og:title", content: "CodeReady — Everything they don't teach you in class" },
       {
         property: "og:description",
         content:
-          "A free, structured learning path covering everything CS classes leave out.",
+          "A free, structured path from CS student to confident software engineer.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "CodeReady — Everything they don't teach you in class" },
+      { name: "twitter:description", content: "A free, structured path from CS student to confident software engineer." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6fe005d6-9afc-4438-8840-1687220be6e0" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6fe005d6-9afc-4438-8840-1687220be6e0" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

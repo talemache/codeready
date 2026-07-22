@@ -8,8 +8,8 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "CodeReady — Everything they don't teach you in class" },
       { name: "description", content: "A free, structured path from CS student to confident software engineer." },
-      { property: "og:title", content: "CodeReady — From CS student to confident engineer" },
-      { property: "og:description", content: "Free learning tracks covering everything CS classes leave out." },
+      { property: "og:title", content: "CodeReady — Everything they don't teach you in class" },
+      { property: "og:description", content: "A free, structured path from CS student to confident software engineer." },
     ],
   }),
   component: Landing,
