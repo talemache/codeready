@@ -52,7 +52,7 @@ function LessonPage() {
         try {
           const parsed = JSON.parse(raw);
           const allDone = track.modules.every(
-            (m) => parsed.modules?.[`${track.id}/${m.id}`] === "complete",
+            (m: { id: string }) => parsed.modules?.[`${track.id}/${m.id}`] === "complete",
           );
           if (allDone && prevPct < 100) {
             confetti({
