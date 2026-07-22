@@ -80,7 +80,7 @@ function TrackPage() {
           <DoodleSquiggle className="absolute -top-6 right-0 w-24 text-[color:var(--coral)]" />
           <h2 className="font-serif text-2xl">Modules</h2>
           <ol className="mt-4 space-y-3">
-            {track.modules.map((m, i) => {
+            {track.modules.map((m: any, i: number) => {
               const key = `${track.id}/${m.id}`;
               const status = hydrated ? state.modules[key] ?? "not-started" : "not-started";
               const done = status === "complete";
