@@ -1,4 +1,5 @@
 import { DoodleStar, DoodleSquiggle } from "@/components/Doodles";
+import { RichText } from "@/components/RichText";
 import type { LessonContent } from "@/lib/content-types";
 
 export function LessonBody({ lesson }: { lesson: LessonContent }) {
@@ -20,7 +21,7 @@ export function LessonBody({ lesson }: { lesson: LessonContent }) {
                 key={i}
                 className="text-[color:var(--forest)]/80 leading-relaxed text-[1.05rem]"
               >
-                {block}
+                <RichText text={block} />
               </p>
             ),
           )}
@@ -35,7 +36,7 @@ export function LessonBody({ lesson }: { lesson: LessonContent }) {
           {lesson.takeaways.map((t, i) => (
             <li key={i} className="flex gap-3 text-[color:var(--forest)]/85">
               <span aria-hidden className="text-[color:var(--coral)]">◆</span>
-              <span>{t}</span>
+              <span><RichText text={t} /></span>
             </li>
           ))}
         </ul>
@@ -67,7 +68,7 @@ export function LessonBody({ lesson }: { lesson: LessonContent }) {
         <div className="text-xs uppercase tracking-widest text-[color:var(--forest)]/60">
           Try This Today
         </div>
-        <p className="mt-2 font-serif text-xl text-[color:var(--forest)]">{lesson.tryThis}</p>
+        <p className="mt-2 font-serif text-xl text-[color:var(--forest)]"><RichText text={lesson.tryThis} /></p>
       </div>
     </article>
   );
