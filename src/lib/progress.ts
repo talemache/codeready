@@ -3,14 +3,18 @@ import { TRACKS, TOTAL_MODULES } from "./tracks";
 
 export type Status = "not-started" | "in-progress" | "complete";
 
+export type QuizResult = { score: number; total: number; passed: boolean; at: number };
+
 type ProgressState = {
   modules: Record<string, Status>; // key: `${trackId}/${moduleId}`
+  quizzes: Record<string, QuizResult>; // key: trackId
+  checklists: Record<string, number[]>; // key: `${trackId}/${moduleId}` -> checked step indexes
   lastOpened?: { trackId: string; moduleId: string; at: number };
 };
 
 const KEY = "codeready.progress.v1";
 
-const emptyState: ProgressState = { modules: {} };
+const emptyState: ProgressState = { modules: {}, quizzes: {}, checklists: {} };
 
 function read(): ProgressState {
   if (typeof window === "undefined") return emptyState;
