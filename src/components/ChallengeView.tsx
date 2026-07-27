@@ -62,7 +62,7 @@ export function ChallengeView({
                     </svg>
                   </span>
                   <span className={on ? "line-through text-[color:var(--forest)]/50" : ""}>
-                    {s}
+                    <RichText text={s} />
                   </span>
                 </button>
               </li>
