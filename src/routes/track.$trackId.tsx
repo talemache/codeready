@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { ProgressBar } from "@/components/ProgressRing";
 import { TrackIcon, DoodleSquiggle } from "@/components/Doodles";
 import { getTrack } from "@/lib/tracks";
@@ -128,6 +129,7 @@ function TrackPage() {
           </ol>
         </div>
       </main>
+      <SiteFooter />
     </div>
   );
 }
