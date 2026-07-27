@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { ProgressRing, ProgressBar } from "@/components/ProgressRing";
 import { TrackIcon, DoodleArrow } from "@/components/Doodles";
 import { TRACKS, getTrack, getModule } from "@/lib/tracks";
@@ -100,6 +101,7 @@ function Dashboard() {
           })}
         </div>
       </main>
+      <SiteFooter />
     </div>
   );
 }

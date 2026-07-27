@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { DoodleArrow, DoodleSquiggle, DoodleStar, DoodleUnderline, TrackIcon } from "@/components/Doodles";
 import { TRACKS } from "@/lib/tracks";
 
@@ -114,9 +115,7 @@ function Landing() {
         </div>
       </section>
 
-      <footer className="border-t border-[color:var(--forest)]/10 py-8 text-center text-sm text-[color:var(--forest)]/60">
-        Made with care · CodeReady
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

@@ -3,14 +3,18 @@ import { TRACKS, TOTAL_MODULES } from "./tracks";
 
 export type Status = "not-started" | "in-progress" | "complete";
 
+export type QuizResult = { score: number; total: number; passed: boolean; at: number };
+
 type ProgressState = {
   modules: Record<string, Status>; // key: `${trackId}/${moduleId}`
+  quizzes: Record<string, QuizResult>; // key: trackId
+  checklists: Record<string, number[]>; // key: `${trackId}/${moduleId}` -> checked step indexes
   lastOpened?: { trackId: string; moduleId: string; at: number };
 };
 
 const KEY = "codeready.progress.v1";
 
-const emptyState: ProgressState = { modules: {} };
+const emptyState: ProgressState = { modules: {}, quizzes: {}, checklists: {} };
 
 function read(): ProgressState {
   if (typeof window === "undefined") return emptyState;
@@ -85,13 +89,47 @@ export function useProgress() {
     });
   }, []);
 
+  const saveQuizResult = useCallback(
+    (trackId: string, result: QuizResult) => {
+      const current = getSnapshot();
+      const quizzes = { ...current.quizzes, [trackId]: result };
+      const modules = { ...current.modules };
+      if (result.passed) modules[`${trackId}/track-quiz`] = "complete";
+      write({ ...current, quizzes, modules });
+    },
+    [],
+  );
+
+  const toggleChecklistStep = useCallback(
+    (trackId: string, moduleId: string, step: number, totalSteps: number) => {
+      const key = `${trackId}/${moduleId}`;
+      const current = getSnapshot();
+      const prev = current.checklists[key] ?? [];
+      const next = prev.includes(step)
+        ? prev.filter((s) => s !== step)
+        : [...prev, step].sort((a, b) => a - b);
+      const checklists = { ...current.checklists, [key]: next };
+      const modules = { ...current.modules };
+      modules[key] = next.length >= totalSteps ? "complete" : "in-progress";
+      write({ ...current, checklists, modules });
+    },
+    [],
+  );
+
   const getStatus = useCallback(
     (trackId: string, moduleId: string): Status =>
       state.modules[`${trackId}/${moduleId}`] ?? "not-started",
     [state],
   );
 
-  return { state, setStatus, markOpened, getStatus };
+  return { state, setStatus, markOpened, getStatus, saveQuizResult, toggleChecklistStep };
+}
+
+export function isTrackComplete(trackId: string) {
+  const s = getSnapshot();
+  const t = TRACKS.find((x) => x.id === trackId);
+  if (!t) return false;
+  return t.modules.every((m) => s.modules[`${trackId}/${m.id}`] === "complete");
 }
 
 // Ensures client-only render after hydration (avoids SSR mismatch for progress UI)

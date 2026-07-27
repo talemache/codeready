@@ -14,20 +14,18 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-[color:var(--paper)] px-5">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+        <p className="font-serif text-7xl text-[color:var(--forest)]">404</p>
+        <h1 className="mt-4 font-serif text-3xl text-[color:var(--forest)]">
+          This page took a wrong turn
+        </h1>
+        <p className="mt-3 text-[color:var(--forest)]/70">
+          Nothing lives at this address. The tracks are still where you left them.
         </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Link to="/dashboard" className="btn-primary">Go to dashboard</Link>
+          <Link to="/" className="btn-outline">Back home</Link>
         </div>
       </div>
     </div>

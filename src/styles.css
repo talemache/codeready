@@ -150,3 +150,29 @@
   background: color-mix(in oklab, var(--periwinkle) 55%, var(--paper));
   color: var(--forest);
 }
+
+/* Hand-drawn squiggle underline for section headings */
+@utility heading-squiggle {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.35rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5 Q 12 1, 25 4 T 50 4 T 75 4 T 99 3' fill='none' stroke='%23E8A595' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 7px;
+}
+
+/* Smooth page entrance */
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+main {
+  animation: page-in 0.28s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main { animation: none; }
+  .card-paper:hover { transform: none; }
+}

@@ -11,8 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TrackTrackIdRouteImport } from './routes/track.$trackId'
+import { Route as TrackTrackIdIndexRouteImport } from './routes/track.$trackId.index'
 import { Route as TrackTrackIdLessonModuleIdRouteImport } from './routes/track.$trackId.lesson.$moduleId'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -25,6 +27,11 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -35,6 +42,11 @@ const TrackTrackIdRoute = TrackTrackIdRouteImport.update({
   path: '/track/$trackId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrackTrackIdIndexRoute = TrackTrackIdIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TrackTrackIdRoute,
+} as any)
 const TrackTrackIdLessonModuleIdRoute =
   TrackTrackIdLessonModuleIdRouteImport.update({
     id: '/lesson/$moduleId',
@@ -44,37 +56,45 @@ const TrackTrackIdLessonModuleIdRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/dashboard': typeof DashboardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/track/$trackId': typeof TrackTrackIdRouteWithChildren
+  '/track/$trackId/': typeof TrackTrackIdIndexRoute
   '/track/$trackId/lesson/$moduleId': typeof TrackTrackIdLessonModuleIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/dashboard': typeof DashboardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/track/$trackId': typeof TrackTrackIdRouteWithChildren
+  '/track/$trackId': typeof TrackTrackIdIndexRoute
   '/track/$trackId/lesson/$moduleId': typeof TrackTrackIdLessonModuleIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/dashboard': typeof DashboardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/track/$trackId': typeof TrackTrackIdRouteWithChildren
+  '/track/$trackId/': typeof TrackTrackIdIndexRoute
   '/track/$trackId/lesson/$moduleId': typeof TrackTrackIdLessonModuleIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/dashboard'
     | '/sitemap.xml'
     | '/track/$trackId'
+    | '/track/$trackId/'
     | '/track/$trackId/lesson/$moduleId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/dashboard'
     | '/sitemap.xml'
     | '/track/$trackId'
@@ -82,14 +102,17 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/dashboard'
     | '/sitemap.xml'
     | '/track/$trackId'
+    | '/track/$trackId/'
     | '/track/$trackId/lesson/$moduleId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   DashboardRoute: typeof DashboardRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TrackTrackIdRoute: typeof TrackTrackIdRouteWithChildren
@@ -111,6 +134,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -125,6 +155,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrackTrackIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/track/$trackId/': {
+      id: '/track/$trackId/'
+      path: '/'
+      fullPath: '/track/$trackId/'
+      preLoaderRoute: typeof TrackTrackIdIndexRouteImport
+      parentRoute: typeof TrackTrackIdRoute
+    }
     '/track/$trackId/lesson/$moduleId': {
       id: '/track/$trackId/lesson/$moduleId'
       path: '/lesson/$moduleId'
@@ -136,10 +173,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface TrackTrackIdRouteChildren {
+  TrackTrackIdIndexRoute: typeof TrackTrackIdIndexRoute
   TrackTrackIdLessonModuleIdRoute: typeof TrackTrackIdLessonModuleIdRoute
 }
 
 const TrackTrackIdRouteChildren: TrackTrackIdRouteChildren = {
+  TrackTrackIdIndexRoute: TrackTrackIdIndexRoute,
   TrackTrackIdLessonModuleIdRoute: TrackTrackIdLessonModuleIdRoute,
 }
 
@@ -149,6 +188,7 @@ const TrackTrackIdRouteWithChildren = TrackTrackIdRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   DashboardRoute: DashboardRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TrackTrackIdRoute: TrackTrackIdRouteWithChildren,
