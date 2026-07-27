@@ -1,4 +1,5 @@
 import type { Challenge } from "@/lib/content-types";
+import { RichText } from "@/components/RichText";
 import { useProgress } from "@/lib/progress";
 import { celebrateIfTrackComplete } from "@/lib/celebrate";
 
