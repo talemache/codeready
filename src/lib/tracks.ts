@@ -160,6 +160,34 @@ export const TRACKS: Track[] = [
   },
 ];
 
+// Every track ends with a quiz. Tracks 1-6 also get a hands-on challenge.
+const CHALLENGE_TITLES: Record<string, string> = {
+  "programming-foundations": "Challenge: Refactor an Old Project",
+  dsa: "Challenge: Five Problems, Three Patterns",
+  git: "Challenge: Fork, Branch, Pull Request",
+  building: "Challenge: Ship a One-Endpoint API",
+  testing: "Challenge: Test the Thing You Built",
+  devops: "Challenge: Containerize and Automate",
+};
+
+for (const t of TRACKS) {
+  const challengeTitle = CHALLENGE_TITLES[t.id];
+  if (challengeTitle) {
+    t.modules.push({
+      id: "track-challenge",
+      title: challengeTitle,
+      type: "Challenge",
+      minutes: 60,
+    });
+  }
+  t.modules.push({
+    id: "track-quiz",
+    title: `${t.name} Quiz`,
+    type: "Quiz",
+    minutes: 10,
+  });
+}
+
 export const getTrack = (id: string) => TRACKS.find((t) => t.id === id);
 
 export const getModule = (trackId: string, moduleId: string) => {
