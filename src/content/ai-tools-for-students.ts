@@ -8,7 +8,7 @@ export const aiToolsForStudents: TrackContent = {
         "## Useful mental model",
         "Treat AI like a fast assistant that suggests ideas. You still decide goals, check output, and own final code. If you ask for a small clear task, results are usually better than asking for an entire project in one shot.",
         "AI is great for brainstorming names, explaining errors, and generating starter code you can inspect. It is weaker at understanding your exact project context unless you provide clear details and constraints.",
-        "Visible win: ask an AI tool to explain one line from your own project, then rewrite that explanation in your words. If you can restate it clearly, you learned something real.",
+        "Visible win: ask an AI tool to explain one line from your own project, then rewrite that explanation in your words. If you can restate it clearly, you learned something real. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
       ],
       takeaways: [
         "AI predicts plausible code, not guaranteed-correct code.",
@@ -29,7 +29,7 @@ export const aiToolsForStudents: TrackContent = {
         "## Good use vs bad use",
         "Good use: 'I wrote this loop, can you explain why line 3 fails?' Bad use: 'Do my whole assignment.' Good use keeps you in control and turns AI into a tutor. Bad use hides gaps until quizzes or projects expose them.",
         "A practical habit is 'type first draft yourself.' Even if imperfect, it gives you context. Then ask AI for feedback, edge cases, or a clearer explanation. This keeps your brain in the driver's seat.",
-        "Visible win: solve one small problem manually, then use AI only to review your solution and suggest one improvement. You keep the learning while still getting support.",
+        "Visible win: solve one small problem manually, then use AI only to review your solution and suggest one improvement. You keep the learning while still getting support. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
       ],
       takeaways: [
         "Attempt first, then use AI for support.",
@@ -50,7 +50,7 @@ export const aiToolsForStudents: TrackContent = {
         "## How to catch mistakes",
         "Test with unusual inputs: empty values, negative numbers, very long text, or repeated clicks. Then compare function names and syntax with official docs. If the tool invented something, docs will expose it quickly.",
         "When a bug appears, do not just ask AI for another full rewrite. Ask narrower questions: 'What fails when input is empty?' or 'Why is this condition wrong?' Focused debugging teaches much more than endless regeneration.",
-        "Visible win: take one AI-generated snippet, find one bug or weakness, and fix it yourself. That turns you from passive user into active engineer.",
+        "Visible win: take one AI-generated snippet, find one bug or weakness, and fix it yourself. That turns you from passive user into active engineer. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
       ],
       takeaways: [
         "Polished AI output can still be incorrect.",
@@ -67,11 +67,11 @@ export const aiToolsForStudents: TrackContent = {
     },
     "asking-better-questions": {
       body: [
-        "Better questions produce better answers. Vague prompts force AI to guess your goals, which often leads to generic or mismatched code. Specific prompts reduce guessing and improve quality fast.",
+        "Better questions produce better answers. Vague prompts force AI to guess your goals, which often leads to generic or mismatched code. Specific prompts reduce guessing and improve quality fast consistently.",
         "## What to include",
         "Say your language, your exact goal, and constraints. Example structure: 'Use JavaScript. Keep it beginner-friendly. No extra libraries. I want a button click to change heading text.' This gives the tool clear boundaries.",
         "You can also include your current code and ask for one targeted fix. That is usually better than requesting a brand-new solution because it preserves your understanding and project structure.",
-        "Visible win: rewrite one weak prompt into a specific prompt, compare outputs, and keep the better version in a personal 'good prompts' note.",
+        "Visible win: rewrite one weak prompt into a specific prompt, compare outputs, and keep the better version in a personal 'good prompts' note. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
       ],
       takeaways: [
         "Specific prompts reduce low-quality guesses.",
@@ -92,7 +92,7 @@ export const aiToolsForStudents: TrackContent = {
         "## Guided learning loop",
         "Pick one confusing topic like loops, arrays, or functions. Ask AI to explain it at beginner level with one short example. Then close AI and write your own explanation plus a tiny code sample from memory.",
         "If your version is shaky, reopen AI and ask only about the parts you missed. This back-and-forth is normal. If this feels fuzzy, that's normal—keep going. Understanding grows through cycles, not one perfect pass.",
-        "Visible win: learn one concept with the loop above and teach it to someone else in two minutes without looking at notes.",
+        "Visible win: learn one concept with the loop above and teach it to someone else in two minutes without looking at notes. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
       ],
       takeaways: [
         "AI works best as a tutor when paired with self-testing.",

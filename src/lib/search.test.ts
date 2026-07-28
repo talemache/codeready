@@ -3,17 +3,17 @@ import { highlight, search } from "./search";
 
 describe("search index", () => {
   it("finds modules by title", () => {
-    const hits = search("debugging");
+    const hits = search("naming");
 
     expect(hits.length).toBeGreaterThan(0);
-    expect(hits.some((h) => h.title.toLowerCase().includes("debugging"))).toBe(true);
+    expect(hits.some((h) => h.title.toLowerCase().includes("naming"))).toBe(true);
   });
 
   it("highlights matches", () => {
-    const [before, match, after] = highlight("Debugging Like a Detective", "detective");
+    const [before, match, after] = highlight("Reading Error Messages Without Panicking", "panicking");
 
-    expect(before).toContain("Debugging");
-    expect(match.toLowerCase()).toBe("detective");
+    expect(before).toContain("Reading Error Messages");
+    expect(match.toLowerCase()).toBe("panicking");
     expect(after).toBe("");
   });
 

@@ -8,7 +8,7 @@ export const isCodingForMe: TrackContent = {
         "## What the day really looks like",
         "A normal coding session is usually: read a problem, try a small change, run it, inspect what happened, then adjust. Most time is spent thinking and checking, not blasting out new lines. Even experienced developers search docs and reread their own code constantly.",
         "You also work with people. You explain your idea, get feedback, and improve it. Coding is part puzzle, part teamwork, and part patience. If this feels less dramatic than social media clips, good. Real progress is usually quiet and steady.",
-        "Visible win: watch one short coding video, pause at each step, and write down every non-typing action you notice. You'll see that coding is mostly testing and decision-making, and that's exactly the skill you can practice right now.",
+        "Visible win: watch one short coding video, pause at each step, and write down every non-typing action you notice. You'll see that coding is mostly testing and decision-making, and that's exactly the skill you can practice right now. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
       ],
       takeaways: [
         "Coding is mostly reading, testing, and fixing, not fast typing.",
@@ -25,13 +25,11 @@ export const isCodingForMe: TrackContent = {
     },
     "you-dont-need-to-be-a-math-person": {
       body: [
-        "A lot of students think coding is only for " +
-          "'math people.' That myth blocks good learners before they even start. Most beginner coding uses simple arithmetic and logic, not advanced formulas. The main skill is breaking a problem into clear steps.",
+        "A lot of students think coding is only for 'math people.' That myth blocks good learners before they even start. Most beginner coding uses simple arithmetic and logic, not advanced formulas. The main skill is breaking a problem into clear steps.",
         "## The real skill",
         "When you code, you ask: what input do I get, what should happen next, and what output do I want? That is structured thinking. If you can explain directions to a friend or follow a recipe, you already use the same mindset.",
         "Some coding paths use heavier math later, but lots of useful projects do not. Websites, small apps, and automations depend more on naming, testing, and careful reading than calculus. You can get very far before math is ever the hard part.",
-        "Visible win: write a three-step plan for a daily task, then turn that plan into a tiny program comment block. You just practiced algorithm thinking, which is a core coding skill and has nothing to do with being a " +
-          "'genius math person.'",
+        "Visible win: write a three-step plan for a daily task, then turn that plan into a tiny program comment block. You just practiced algorithm thinking, which is a core coding skill and has nothing to do with being a 'genius math person.' Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
       ],
       takeaways: [
         "Most beginner coding uses logic and structure more than advanced math.",
@@ -52,7 +50,7 @@ export const isCodingForMe: TrackContent = {
         "## Keep the first win small",
         "Beginners often jump to big ideas too early, then feel stuck. Start with tiny code you fully understand. Change one thing, run again, and watch the output change. That loop builds confidence faster than watching long tutorials.",
         "Try a few edits: change the message, change the numbers, add one more line. Each run teaches cause and effect. If it breaks, good—you've found a chance to learn debugging in a safe way while the stakes are tiny.",
-        "Visible win: save screenshots of three runs—original output, your edited output, and one fixed error. That's proof you can create behavior, change behavior, and recover from mistakes.",
+        "Visible win: save screenshots of three runs—original output, your edited output, and one fixed error. That's proof you can create behavior, change behavior, and recover from mistakes. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
       ],
       takeaways: [
         "Tiny first programs are a strength, not a weakness.",
@@ -73,7 +71,7 @@ export const isCodingForMe: TrackContent = {
         "## Reframe the moment",
         "When you hit an error, pause and read it out loud. Find the file name, line number, and main clue word. Change one thing, rerun, and check if the message changed. You are running an experiment, not proving your worth.",
         "Confusion is part of learning any technical skill. If this feels fuzzy, that's normal—keep going. Most learners quit right before understanding clicks. Staying calm for five extra minutes often solves more than starting over from scratch.",
-        "Visible win: break a working line on purpose, trigger one error, then fix it. You just practiced the exact recovery loop professionals use all the time.",
+        "Visible win: break a working line on purpose, trigger one error, then fix it. You just practiced the exact recovery loop professionals use all the time. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
       ],
       takeaways: [
         "Errors are signals, not judgments.",
@@ -94,7 +92,7 @@ export const isCodingForMe: TrackContent = {
         "## Sample, then choose",
         "Try short previews across different project types: one game demo, one web page, one small app idea, one creative coding sketch. Notice what makes you curious enough to keep going when something gets hard. Curiosity is the best fuel.",
         "Once you notice a pattern, pick one direction for a month. Going slightly deeper in one area teaches more than hopping topics every day. You can always switch later with better foundations and more confidence.",
-        "Visible win: make a simple list called 'My coding interests' with your top two project types and one first mini-project for each. That's your personal map, not someone else's path.",
+        "Visible win: make a simple list called 'My coding interests' with your top two project types and one first mini-project for each. That's your personal map, not someone else's path. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
       ],
       takeaways: [
         "Coding includes many creative and technical paths.",

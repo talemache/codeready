@@ -8,7 +8,7 @@ export const buildSomethingReal: TrackContent = {
         "## The simple flow",
         "You type a URL or click a link. Your browser sends a request. A server receives it, finds the right content, and sends a response. The browser then displays that response as a page you can read and use.",
         "This model helps debugging too. If a page is broken, ask where the issue lives: request, response, or display. You do not need networking jargon to start. Clear mental models beat memorized terms every time.",
-        "Visible win: open browser developer tools, reload a page, and watch one request appear in the network list. You just saw the web conversation happen live.",
+        "Visible win: open browser developer tools, reload a page, and watch one request appear in the network list. You just saw the web conversation happen live. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
       ],
       takeaways: [
         "Web pages use a request-and-response loop.",
@@ -29,7 +29,7 @@ export const buildSomethingReal: TrackContent = {
         "## Start with simple blocks",
         "Create one page with a title, one heading, two short paragraphs, and one image. Keep it small and personal: an about-me page, a hobby fan page, or a page about your favorite game strategy.",
         "Do not chase perfection yet. Focus on clear structure and readable text. If it renders in the browser, you already built a real artifact. That first visible page matters more than fancy design at this stage.",
-        "Visible win: save your file and open it in a browser. Take a screenshot of your first working HTML page. You made a real website file from scratch.",
+        "Visible win: save your file and open it in a browser. Take a screenshot of your first working HTML page. You made a real website file from scratch. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
       ],
       takeaways: [
         "HTML is the structural foundation of a webpage.",
@@ -50,7 +50,7 @@ export const buildSomethingReal: TrackContent = {
         "## Pick a simple style goal",
         "Choose a small visual theme before editing: maybe calm colors, bold contrast, or a playful look. Then change one part at a time: body background, heading color, paragraph spacing, image size, and button style if you have one.",
         "Changing everything at once can get messy. Make one style edit, refresh, and keep what you like. This iterative approach helps you learn cause and effect quickly and avoids confusing CSS conflicts.",
-        "Visible win: compare a screenshot of your plain HTML page with your styled CSS version. Side-by-side proof makes your progress obvious.",
+        "Visible win: compare a screenshot of your plain HTML page with your styled CSS version. Side-by-side proof makes your progress obvious. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
       ],
       takeaways: [
         "CSS controls presentation, not structure.",
@@ -71,7 +71,7 @@ export const buildSomethingReal: TrackContent = {
         "## One action, one visible result",
         "Add a button that changes something obvious: swap a heading message, reveal a hidden fun fact, or change the page theme color. Keep the logic tiny so you fully understand each line.",
         "This is the same loop you used earlier: write a little, run it, observe, adjust. If it does not work first try, that is normal. Read the console message and check your element names carefully.",
-        "Visible win: click your button and watch the page update instantly. That moment means you built behavior, not just a static document.",
+        "Visible win: click your button and watch the page update instantly. That moment means you built behavior, not just a static document. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
       ],
       takeaways: [
         "JavaScript adds interaction to static pages.",
@@ -92,7 +92,7 @@ export const buildSomethingReal: TrackContent = {
         "## Easy ways to share",
         "Option one: screenshots and a short explanation of what you built and what changed from version one. Option two: publish with GitHub Pages using a simple walkthrough from the docs. Both are valid and count as real progress.",
         "When you present it, explain one design choice and one coding choice. This proves understanding, not just completion. If this feels awkward, that's normal—keep going. Explaining your work is a skill that improves with practice.",
-        "Visible win: share your page with one person and ask them to click your interactive element. Watching someone else use your build is a huge confidence moment.",
+        "Visible win: share your page with one person and ask them to click your interactive element. Watching someone else use your build is a huge confidence moment. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
       ],
       takeaways: [
         "A project feels complete when others can see or use it.",

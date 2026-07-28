@@ -30,8 +30,17 @@ const TRACK_DEFAULT_RESOURCES: Record<string, string[]> = {
 };
 
 function resourceIdFromLegacy(title: string, url: string): string | null {
+  const titleLower = title.toLowerCase();
   const u = `${title} ${url}`.toLowerCase();
-  if (u.includes("code.org")) return "code_org";
+  const parsedHost = (() => {
+    try {
+      return new URL(url).hostname.toLowerCase();
+    } catch {
+      return "";
+    }
+  })();
+
+  if (titleLower === "code.org" || parsedHost === "code.org" || parsedHost.endsWith(".code.org")) return "code_org";
   if (u.includes("scratch")) return "scratch";
   if (u.includes("appinventor")) return "mit_app_inventor";
   if (u.includes("khanacademy")) return "khan_academy_cs";
@@ -88,6 +97,7 @@ function normalizeResources(trackId: string, legacyResources: Array<{ title: str
     if (!deduped.some((r) => r.resourceId === resource.resourceId)) deduped.push(resource);
   }
 
+  // Fallback defaults are teen-safe and avoid social-first or advanced-path resources.
   const defaults = TRACK_DEFAULT_RESOURCES[trackId] ?? ["mdn", "freecodecamp", "w3schools"];
   for (const resourceId of defaults) {
     if (deduped.length >= 4) break;
@@ -112,7 +122,7 @@ function normalizeTrack(trackId: string, content: LegacyTrackContent): TrackCont
   }
 
   const questions = content.quiz.questions.slice(0, 5).map((question) => {
-    const choices = question.options.slice(0, 4) as [string, string, string, string];
+    const choices = (question.options.slice(0, 4) as [string, string, string, string]);
     return {
       prompt: question.q,
       choices,

@@ -38,7 +38,7 @@ export const TRACKS: Track[] = [
     tagline: "Start curious, not stressed.",
     description: "A friendly first step that shows what coding really feels like.",
     parentSummary:
-      "Your teen learns what coding work actually looks like day to day and why mistakes are normal. They finish with three tiny programs they can run, break, and fix on purpose.",
+      "Teens learn what coding work actually looks like day to day and why mistakes are normal. They finish with three tiny programs they can run, break, and fix on purpose.",
     icon: "book",
     modules: [
       mk("What Coders Actually Do All Day"),
@@ -55,7 +55,7 @@ export const TRACKS: Track[] = [
     tagline: "Build smart habits early.",
     description: "Core coding habits taught with short lessons and practical wins.",
     parentSummary:
-      "Your teen practices naming, problem breakdown, testing, and calm debugging habits. They improve an existing program by adding a real new feature.",
+      "Teens practice naming, problem breakdown, testing, and calm debugging habits. They improve an existing program by adding a real new feature.",
     icon: "tree",
     modules: [
       mk("Naming Things Well"),
@@ -72,7 +72,7 @@ export const TRACKS: Track[] = [
     tagline: "One project, start to finish.",
     description: "Turn an idea into a personal web page with HTML, CSS, and JavaScript.",
     parentSummary:
-      "Your teen builds a complete personal web page and customizes it around their own interests. They learn the web stack in simple steps and end with something concrete to show.",
+      "Teens build a complete personal web page and customize it around their own interests. They learn the web stack in simple steps and end with something concrete to show.",
     icon: "hammer",
     modules: [
       mk("How Websites Actually Work"),
@@ -89,7 +89,7 @@ export const TRACKS: Track[] = [
     tagline: "Save points for code.",
     description: "Learn Git basics and collaborate on a shared project without chaos.",
     parentSummary:
-      "Your teen learns to save, branch, and merge code changes the same way real teams do. They complete a shared mini-project with another person and combine both sets of edits.",
+      "Teens learn to save, branch, and merge code changes the same way real teams do. They complete a shared mini-project with another person and combine both sets of edits.",
     icon: "branch",
     modules: [
       mk("Why Save Points Matter"),
@@ -106,7 +106,7 @@ export const TRACKS: Track[] = [
     tagline: "Use AI to learn, not to skip thinking.",
     description: "Learn to use AI coding tools responsibly with skepticism and clear prompts.",
     parentSummary:
-      "Your teen learns to treat AI as a helper, not a shortcut, and to verify every output. They build one AI-assisted feature and explain the final code in their own words.",
+      "Teens learn to treat AI as a helper, not a shortcut, and to verify every output. They build one AI-assisted feature and explain the final code in their own words.",
     icon: "spark",
     modules: [
       mk("What AI Coding Tools Actually Do"),
