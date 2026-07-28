@@ -5,8 +5,8 @@ describe("progress calculations", () => {
   it("calculates overall completion from moduleStatus", () => {
     const state = {
       moduleStatus: {
-        "programming-foundations/writing-clean-code": "complete",
-        "programming-foundations/language-mastery-pick-your-primary-language": "in_progress",
+        "programming-foundations-teen/naming-things-well": "complete",
+        "programming-foundations-teen/reading-error-messages-without-panicking": "in_progress",
       },
       quizScores: {},
       challengeChecklist: {},
@@ -22,17 +22,17 @@ describe("progress calculations", () => {
   it("calculates per-track completion", () => {
     const state = {
       moduleStatus: {
-        "git/git-fundamentals": "complete",
-        "git/branching-merging": "complete",
+        "git-working-with-others/why-save-points-matter": "complete",
+        "git-working-with-others/making-a-change-and-saving-it": "complete",
       },
       quizScores: {},
       challengeChecklist: {},
     };
 
-    const completion = trackCompletion(state as any, "git");
+    const completion = trackCompletion(state as any, "git-working-with-others");
 
     expect(completion.done).toBe(2);
-    expect(completion.total).toBeGreaterThanOrEqual(6);
+    expect(completion.total).toBeGreaterThanOrEqual(7);
     expect(completion.pct).toBeGreaterThan(0);
   });
 });

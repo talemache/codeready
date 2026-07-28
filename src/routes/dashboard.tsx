@@ -19,9 +19,9 @@ export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
       { title: "Your dashboard — CodeReady" },
-      { name: "description", content: "Track your progress through all 8 CodeReady learning tracks." },
+      { name: "description", content: "Track your progress through all 5 CodeReady teen learning tracks." },
       { property: "og:title", content: "Your CodeReady dashboard" },
-      { property: "og:description", content: "See your progress across the full engineer's field guide." },
+      { property: "og:description", content: "See your progress across the full teen coding field guide." },
     ],
   }),
   component: Dashboard,
@@ -103,7 +103,7 @@ function Dashboard() {
                   : "Keep going — you're building it."}
             </h1>
             <p className="mt-2 text-[color:var(--paper)]/80">
-              {hydrated ? overall.done : 0} of {overall.total} modules complete across 8 tracks.
+              {hydrated ? overall.done : 0} of {overall.total} modules complete across 5 tracks.
             </p>
           </div>
         </div>

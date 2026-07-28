@@ -7,10 +7,10 @@ import { TRACKS } from "@/lib/tracks";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CodeReady — Everything they don't teach you in class" },
-      { name: "description", content: "A free, structured path from CS student to confident software engineer." },
-      { property: "og:title", content: "CodeReady — Everything they don't teach you in class" },
-      { property: "og:description", content: "A free, structured path from CS student to confident software engineer." },
+      { title: "CodeReady — Build your first real projects" },
+      { name: "description", content: "A free guided path for teens to explore coding, build projects, and share what they make." },
+      { property: "og:title", content: "CodeReady — Build your first real projects" },
+      { property: "og:description", content: "A free guided path for teens to explore coding, build projects, and share what they make." },
     ],
   }),
   component: Landing,
@@ -21,24 +21,23 @@ function Landing() {
     <div className="min-h-screen bg-[color:var(--paper)] text-[color:var(--forest)]">
       <SiteHeader />
 
-      {/* Hero */}
       <main id="main-content" tabIndex={-1}>
       <section className="relative overflow-hidden">
         <div className="paper-grain absolute inset-0 opacity-40 pointer-events-none" />
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-24 relative">
           <div className="max-w-3xl">
-            <span className="tag mb-6">A free field guide for CS students</span>
+            <span className="tag mb-6">A free field guide for curious teens</span>
             <h1 className="font-serif text-5xl sm:text-7xl leading-[1.02] tracking-tight">
-              Everything they{" "}
+              Build real things,
               <span className="relative inline-block italic">
-                don't teach
+                one small win
                 <DoodleUnderline className="absolute -bottom-2 left-0 w-full text-[color:var(--coral)]" />
               </span>{" "}
-              you in class.
+              at a time.
             </h1>
             <p className="mt-8 text-lg sm:text-xl max-w-2xl text-[color:var(--forest)]/80 leading-relaxed">
-              A free, structured path from CS student to confident software engineer —
-              technical skills, career skills, and everything in between.
+              Five short tracks for ages 13–18: learn coding basics, build a personal project,
+              collaborate with Git, and use AI tools responsibly.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -58,13 +57,12 @@ function Landing() {
         </div>
       </section>
 
-      {/* Tracks */}
       <section id="tracks" className="mx-auto max-w-6xl px-5 py-16">
         <div className="flex items-end justify-between gap-6 flex-wrap mb-10">
           <div>
-            <h2 className="font-serif text-3xl sm:text-4xl">The 8 tracks</h2>
+            <h2 className="font-serif text-3xl sm:text-4xl">The 5 tracks</h2>
             <p className="mt-2 text-[color:var(--forest)]/70 max-w-xl">
-              A complete curriculum, drawn from what actually matters on the job.
+              Short lessons, real projects, and visible progress in every module.
             </p>
           </div>
           <Link to="/dashboard" className="btn-outline text-sm">Open dashboard</Link>
@@ -91,7 +89,22 @@ function Landing() {
         </div>
       </section>
 
-      {/* Why free */}
+      <section className="mx-auto max-w-6xl px-5 pb-16">
+        <h2 className="font-serif text-3xl sm:text-4xl">What your teen is learning</h2>
+        <p className="mt-2 text-[color:var(--forest)]/70 max-w-2xl">
+          Parent-friendly summaries for each track.
+        </p>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {TRACKS.map((t) => (
+            <div key={`${t.id}-parent`} className="card-paper p-5">
+              <div className="text-xs uppercase tracking-widest text-[color:var(--forest)]/60">Track {t.number}</div>
+              <h3 className="font-serif text-xl mt-1">{t.name}</h3>
+              <p className="mt-2 text-sm text-[color:var(--forest)]/75">{t.parentSummary}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-5 pb-24">
         <div className="panel p-8 sm:p-12 relative overflow-hidden">
           <DoodleStar className="absolute -top-4 -right-4 w-24 text-[color:var(--coral)]/70 rotate-12" />
@@ -101,11 +114,10 @@ function Landing() {
                 Why free?
               </div>
               <h2 className="font-serif text-3xl sm:text-4xl text-[color:var(--paper)] leading-tight">
-                Built by an engineer who remembers what it was like.
+                Built by a mentor who wants teens to make real things.
               </h2>
               <p className="mt-4 text-[color:var(--paper)]/80 max-w-xl leading-relaxed">
-                No paywall, no upsell, ever. Just the guide you needed on day one —
-                open to every student who wants it.
+                No paywall, no upsell, ever. Just a guided path from curiosity to capability.
               </p>
             </div>
             <Link to="/dashboard" className="justify-self-start md:justify-self-end inline-flex items-center gap-2 rounded-full bg-[color:var(--coral)] px-6 py-3 font-medium text-[color:var(--forest)] hover:brightness-95 transition">
