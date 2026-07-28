@@ -10,11 +10,11 @@ const CONTACT_EMAIL = "rlevels@outlook.com";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About CodeReady — Free forever, built for teen makers" },
+      { title: "About CodeReady — Free forever, built for project builders" },
       {
         name: "description",
         content:
-          "CodeReady is a free learning path built by Ryan Levels so curious teens can learn by building real projects, without paywalls.",
+          "CodeReady is a free learning path built by Ryan Levels so curious learners can grow by building real projects, without paywalls.",
       },
       { property: "og:title", content: "About CodeReady — Free forever" },
       {
@@ -44,7 +44,7 @@ function AboutPage() {
           </p>
           <p className="mt-4 text-[color:var(--forest)]/80 leading-relaxed max-w-[68ch]">
             Built by Ryan Levels — Navy veteran, software engineer turned data &
-            evaluation leader, and mentor — so teens can turn curiosity into capability
+            evaluation leader, and mentor — so learners can turn curiosity into capability
             with practical, project-based learning that stays free forever.
           </p>
         </div>
