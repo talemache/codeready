@@ -70,6 +70,38 @@
   --ring: var(--forest);
 }
 
+/* Dark mode palette */
+.dark {
+  --paper: #1c2a22;
+  --paper-deep: #162019;
+  --cream-text: #ede8de;
+  --forest: #d0c9ba;
+  --forest-deep: #e8e2d5;
+  --coral: #e8836b;
+  --periwinkle: #8b92c9;
+  --ink: #ede8de;
+
+  --background: var(--paper);
+  --foreground: var(--forest);
+  --card: #243328;
+  --card-foreground: var(--forest);
+  --popover: #243328;
+  --popover-foreground: var(--forest);
+  --primary: var(--forest);
+  --primary-foreground: var(--paper);
+  --secondary: var(--paper-deep);
+  --secondary-foreground: var(--forest);
+  --muted: var(--paper-deep);
+  --muted-foreground: color-mix(in oklab, var(--forest) 75%, transparent);
+  --accent: var(--coral);
+  --accent-foreground: var(--paper);
+  --destructive: #e05c3e;
+  --destructive-foreground: var(--paper);
+  --border: color-mix(in oklab, var(--forest) 20%, transparent);
+  --input: color-mix(in oklab, var(--forest) 25%, transparent);
+  --ring: var(--coral);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -150,7 +182,7 @@
 }
 
 @utility card-paper {
-  background: #ffffff;
+  background: var(--card);
   border: 1px solid color-mix(in oklab, var(--forest) 12%, transparent);
   border-radius: 1.25rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;

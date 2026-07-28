@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { DoodleUnderline, DoodleStar } from "@/components/Doodles";
 
-// Set this once the portfolio site is live — the button below only renders when it's non-null.
+// Set this once the portfolio site is live.
 const PORTFOLIO_URL: string | null = null;
 const CONTACT_EMAIL = "rlevels@outlook.com";
 

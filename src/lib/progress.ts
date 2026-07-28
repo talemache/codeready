@@ -177,3 +177,29 @@ export function overallCompletion(state: ProgressState) {
     pct: Math.round((done / TOTAL_MODULES) * 100),
   };
 }
+
+export function exportProgress(): string {
+  return JSON.stringify(getSnapshot(), null, 2);
+}
+
+export function importProgress(json: string): { ok: boolean; error?: string } {
+  try {
+    const parsed = JSON.parse(json);
+    if (typeof parsed !== "object" || parsed === null) throw new Error("Invalid format");
+    const next: ProgressState = {
+      moduleStatus: parsed.moduleStatus ?? {},
+      quizScores: parsed.quizScores ?? {},
+      challengeChecklist: parsed.challengeChecklist ?? {},
+      lastOpenedModuleId: parsed.lastOpenedModuleId,
+      lastOpenedModuleKey: parsed.lastOpenedModuleKey,
+    };
+    write(next);
+    return { ok: true };
+  } catch (e) {
+    return { ok: false, error: e instanceof Error ? e.message : "Unknown error" };
+  }
+}
+
+export function resetProgress() {
+  write(emptyState);
+}

@@ -3,31 +3,76 @@ import { RichText } from "@/components/RichText";
 import type { Lesson } from "@/lib/content-types";
 import { RESOURCE_REGISTRY } from "@/content/resources";
 
+/** Groups consecutive `- ` or `N. ` lines into a single list block. */
+function parseBodyBlocks(body: string): Array<{ type: "heading" | "ul" | "ol" | "p"; content: string | string[] }> {
+  const rawBlocks = body.split(/\n\n+/).filter(Boolean);
+  const result: Array<{ type: "heading" | "ul" | "ol" | "p"; content: string | string[] }> = [];
+
+  for (const block of rawBlocks) {
+    if (block.startsWith("## ")) {
+      result.push({ type: "heading", content: block.slice(3) });
+    } else {
+      const lines = block.split("\n");
+      const allBullet = lines.every((l) => /^- /.test(l));
+      const allNumbered = lines.every((l) => /^\d+\. /.test(l));
+      if (allBullet && lines.length > 0) {
+        result.push({ type: "ul", content: lines.map((l) => l.replace(/^- /, "")) });
+      } else if (allNumbered && lines.length > 0) {
+        result.push({ type: "ol", content: lines.map((l) => l.replace(/^\d+\. /, "")) });
+      } else {
+        result.push({ type: "p", content: block });
+      }
+    }
+  }
+  return result;
+}
+
 export function LessonBody({ lesson }: { lesson: Lesson }) {
-  const bodyBlocks = lesson.body.split(/\n\n+/).filter(Boolean);
+  const blocks = parseBodyBlocks(lesson.body);
 
   return (
     <article className="prose-lesson mt-8">
       <div className="card-paper p-6 sm:p-10 relative overflow-hidden">
         <DoodleSquiggle className="absolute -top-3 -right-3 w-24 text-[color:var(--periwinkle)]" />
         <div className="space-y-5 max-w-[68ch]">
-          {bodyBlocks.map((block, i) =>
-            block.startsWith("## ") ? (
-              <h2
-                key={i}
-                className="font-serif text-2xl pt-2 text-[color:var(--forest)]"
-              >
-                {block.slice(3)}
-              </h2>
-            ) : (
-              <p
-                key={i}
-                className="text-[color:var(--forest)]/80 leading-relaxed text-[1.05rem]"
-              >
-                <RichText text={block} />
+          {blocks.map((block, i) => {
+            if (block.type === "heading") {
+              return (
+                <h2 key={i} className="font-serif text-2xl pt-2 text-[color:var(--forest)]">
+                  {block.content as string}
+                </h2>
+              );
+            }
+            if (block.type === "ul") {
+              return (
+                <ul key={i} className="list-none space-y-1.5 pl-1">
+                  {(block.content as string[]).map((item, j) => (
+                    <li key={j} className="flex gap-2 text-[color:var(--forest)]/80 leading-relaxed text-[1.05rem]">
+                      <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--coral)]" />
+                      <span><RichText text={item} /></span>
+                    </li>
+                  ))}
+                </ul>
+              );
+            }
+            if (block.type === "ol") {
+              return (
+                <ol key={i} className="space-y-1.5 pl-1">
+                  {(block.content as string[]).map((item, j) => (
+                    <li key={j} className="flex gap-3 text-[color:var(--forest)]/80 leading-relaxed text-[1.05rem]">
+                      <span className="shrink-0 font-mono text-sm text-[color:var(--coral)] mt-0.5">{j + 1}.</span>
+                      <span><RichText text={item} /></span>
+                    </li>
+                  ))}
+                </ol>
+              );
+            }
+            return (
+              <p key={i} className="text-[color:var(--forest)]/80 leading-relaxed text-[1.05rem]">
+                <RichText text={block.content as string} />
               </p>
-            ),
-          )}
+            );
+          })}
         </div>
       </div>
 

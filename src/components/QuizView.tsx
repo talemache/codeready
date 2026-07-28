@@ -1,18 +1,28 @@
-import { useState } from "react";
-import type { Quiz } from "@/lib/content-types";
+import { useCallback, useMemo, useState } from "react";
+import type { Quiz, QuizQuestion } from "@/lib/content-types";
 import { useProgress } from "@/lib/progress";
 import { celebrateIfTrackComplete } from "@/lib/celebrate";
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 export function QuizView({ quiz, trackId }: { quiz: Quiz; trackId: string }) {
   const { state, saveQuizResult } = useProgress();
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [questions, setQuestions] = useState<QuizQuestion[]>(() => shuffle(quiz.questions));
 
   const prior = state.quizScores?.[trackId];
-  const total = quiz.questions.length;
-  const score = quiz.questions.reduce(
-    (n, q, i) => n + (answers[i] === q.correctIndex ? 1 : 0),
-    0,
+  const total = questions.length;
+  const score = useMemo(
+    () => questions.reduce((n, q, i) => n + (answers[i] === q.correctIndex ? 1 : 0), 0),
+    [questions, answers],
   );
   const allAnswered = Object.keys(answers).length === total;
 
@@ -24,10 +34,11 @@ export function QuizView({ quiz, trackId }: { quiz: Quiz; trackId: string }) {
     if (passed) celebrateIfTrackComplete(trackId, wasComplete);
   };
 
-  const retry = () => {
+  const retry = useCallback(() => {
     setAnswers({});
     setSubmitted(false);
-  };
+    setQuestions(shuffle(quiz.questions));
+  }, [quiz.questions]);
 
   return (
     <div className="mt-8">
@@ -39,7 +50,7 @@ export function QuizView({ quiz, trackId }: { quiz: Quiz; trackId: string }) {
       ) : null}
 
       <ol className="space-y-5">
-        {quiz.questions.map((q, qi) => {
+        {questions.map((q, qi) => {
           const chosen = answers[qi];
           return (
             <li key={qi} className="card-paper p-5 sm:p-6">
@@ -91,11 +102,9 @@ export function QuizView({ quiz, trackId }: { quiz: Quiz; trackId: string }) {
             <div className="font-serif text-2xl">
               {score}/{total} — {score >= quiz.passThreshold ? "Passed!" : `Need ${quiz.passThreshold} to pass`}
             </div>
-            {score >= quiz.passThreshold ? null : (
-              <button onClick={retry} className="btn-primary">
-                Try again
-              </button>
-            )}
+            <button onClick={retry} className="btn-outline">
+              {score >= quiz.passThreshold ? "Retake quiz" : "Try again"}
+            </button>
           </>
         ) : (
           <button onClick={submit} disabled={!allAnswered} className="btn-primary disabled:opacity-50">
