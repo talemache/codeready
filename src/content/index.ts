@@ -6,6 +6,14 @@ import type {
   LegacyTrackContent,
   ResourceRef,
 } from "@/lib/content-types";
+import { programmingFoundations } from "./programming-foundations";
+import { dsa } from "./dsa";
+import { git } from "./git";
+import { building } from "./building";
+import { testing } from "./testing";
+import { devops } from "./devops";
+import { aiEra } from "./ai-era";
+import { career } from "./career";
 import { isCodingForMe } from "./is-coding-for-me";
 import { programmingFoundationsTeen } from "./programming-foundations-teen";
 import { buildSomethingReal } from "./build-something-real";
@@ -14,6 +22,14 @@ import { aiToolsForStudents } from "./ai-tools-for-students";
 import { RESOURCE_REGISTRY } from "./resources";
 
 const LEGACY_CONTENT: Record<string, LegacyTrackContent> = {
+  "programming-foundations": programmingFoundations as LegacyTrackContent,
+  dsa: dsa as LegacyTrackContent,
+  git: git as LegacyTrackContent,
+  building: building as LegacyTrackContent,
+  testing: testing as LegacyTrackContent,
+  devops: devops as LegacyTrackContent,
+  "ai-era": aiEra as LegacyTrackContent,
+  career: career as LegacyTrackContent,
   "is-coding-for-me": isCodingForMe as LegacyTrackContent,
   "programming-foundations-teen": programmingFoundationsTeen as LegacyTrackContent,
   "build-something-real": buildSomethingReal as LegacyTrackContent,
@@ -22,6 +38,14 @@ const LEGACY_CONTENT: Record<string, LegacyTrackContent> = {
 };
 
 const TRACK_DEFAULT_RESOURCES: Record<string, string[]> = {
+  "programming-foundations": ["odin_project", "exercism", "missing_semester", "mdn"],
+  dsa: ["neetcode", "leetcode", "hackerrank", "visualgo"],
+  git: ["learn_git_branching", "github_docs", "pro_git", "oh_shit_git"],
+  building: ["mdn", "full_stack_open", "sqlbolt", "roadmap_sh"],
+  testing: ["test_automation_university", "jest_docs", "pytest_docs", "mdn"],
+  devops: ["docker_get_started", "roadmap_sh", "system_design_primer", "github_docs"],
+  "ai-era": ["anthropic_docs", "openai_docs", "three_blue_one_brown_nn", "mdn"],
+  career: ["tech_interview_handbook", "interviewing_io", "pramp", "levels_fyi"],
   "is-coding-for-me": ["code_org", "freecodecamp", "khan_academy_cs", "mdn"],
   "programming-foundations-teen": ["mdn", "freecodecamp", "code_org", "w3schools"],
   "build-something-real": ["mdn", "freecodecamp", "github_pages_docs", "w3schools"],

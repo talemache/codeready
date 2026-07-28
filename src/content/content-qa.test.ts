@@ -10,8 +10,10 @@ describe("content QA", () => {
     for (const [trackId, trackContent] of Object.entries(CONTENT)) {
       for (const [moduleId, lesson] of Object.entries(trackContent.lessons)) {
         const words = lesson.body.trim().split(/\s+/).length;
-        if (words < 150 || words > 300) {
-          violations.push(`${trackId}/${moduleId} body words=${words}`);
+        const track = TRACKS.find((t) => t.id === trackId);
+        const [minWords, maxWords] = track?.audience === "teen" ? [150, 300] : [300, 500];
+        if (words < minWords || words > maxWords) {
+          violations.push(`${trackId}/${moduleId} body words=${words} (expected ${minWords}-${maxWords})`);
         }
 
         if (lesson.keyTakeaways.length < 3 || lesson.keyTakeaways.length > 5) {

@@ -1,51 +1,110 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ProgressRing, ProgressBar } from "@/components/ProgressRing";
 import { TrackIcon, DoodleArrow } from "@/components/Doodles";
-import { TRACKS, getModule } from "@/lib/tracks";
+import { type AudienceBand, getModule, getTracksByAudience } from "@/lib/tracks";
 import {
   useProgress,
   useHydrated,
-  overallCompletion,
   trackCompletion,
   exportProgress,
   importProgress,
   resetProgress,
 } from "@/lib/progress";
 
+const AUDIENCE_KEY = "codeready-audience";
+
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
       { title: "Your dashboard — CodeReady" },
-      { name: "description", content: "Track your progress through all 5 CodeReady teen learning tracks." },
+      { name: "description", content: "Track your progress through your selected CodeReady learning tracks." },
       { property: "og:title", content: "Your CodeReady dashboard" },
-      { property: "og:description", content: "See your progress across the full teen coding field guide." },
+      { property: "og:description", content: "See your progress across your selected CodeReady track set." },
     ],
   }),
   component: Dashboard,
 });
 
 function Dashboard() {
+  const navigate = useNavigate();
   const hydrated = useHydrated();
   const { state } = useProgress();
-  const overall = overallCompletion(state);
-  const allModules = TRACKS.flatMap((track) =>
-    track.modules.map((module) => getModule(track.id, module.id)).filter(Boolean),
+  const [audience, setAudience] = useState<AudienceBand | null>(null);
+  const [audienceLoaded, setAudienceLoaded] = useState(false);
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem(AUDIENCE_KEY);
+    if (saved === "teen" || saved === "college") setAudience(saved);
+    setAudienceLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!audienceLoaded) return;
+    if (!audience) navigate({ to: "/" });
+  }, [audience, audienceLoaded, navigate]);
+
+  useEffect(() => {
+    if (!audience) return;
+    const description = audience === "teen"
+      ? "Track your progress through all 5 CodeReady teen learning tracks."
+      : "Track your progress through all 8 CodeReady college-and-beyond learning tracks.";
+
+    const setMeta = (selector: string, attrs: Record<string, string>) => {
+      let el = document.head.querySelector<HTMLMetaElement>(selector);
+      if (!el) {
+        el = document.createElement("meta");
+        if (attrs.name) el.setAttribute("name", attrs.name);
+        if (attrs.property) el.setAttribute("property", attrs.property);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", description);
+    };
+
+    setMeta('meta[name="description"]', { name: "description" });
+    setMeta('meta[property="og:description"]', { property: "og:description" });
+  }, [audience]);
+
+  const tracks = useMemo(
+    () => (audience ? getTracksByAudience(audience) : []),
+    [audience],
   );
+
+  const allModules = useMemo(
+    () => tracks.flatMap((track) => track.modules.map((module) => getModule(track.id, module.id)).filter(Boolean)),
+    [tracks],
+  );
+
+  const overall = useMemo(() => {
+    let done = 0;
+    let total = 0;
+
+    for (const track of tracks) {
+      for (const module of track.modules) {
+        total += 1;
+        if (state.moduleStatus[`${track.id}/${module.id}`] === "complete") done += 1;
+      }
+    }
+
+    return {
+      done,
+      total,
+      pct: total ? Math.round((done / total) * 100) : 0,
+    };
+  }, [state.moduleStatus, tracks]);
+
   const lastInfo = state.lastOpenedModuleKey
     ? allModules.find((info) => `${info?.track.id}/${info?.module.id}` === state.lastOpenedModuleKey) ?? null
     : state.lastOpenedModuleId
       ? allModules.find((info) => info?.module.id === state.lastOpenedModuleId) ?? null
       : null;
 
-  // Find first untouched track for "Start next" suggestion (shown when no lastInfo)
   const nextTrack = hydrated && !lastInfo
-    ? TRACKS.find((t) => trackCompletion(state, t.id).done === 0)
+    ? tracks.find((t) => trackCompletion(state, t.id).done === 0)
     : null;
 
-  // Export/import/reset state
   const [resetConfirm, setResetConfirm] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -72,7 +131,6 @@ function Dashboard() {
       else setImportError(null);
     };
     reader.readAsText(file);
-    // Reset input so same file can be re-selected
     e.target.value = "";
   }
 
@@ -83,6 +141,11 @@ function Dashboard() {
     }
     resetProgress();
     setResetConfirm(false);
+  }
+
+  function handleSwitchAudience() {
+    window.localStorage.removeItem(AUDIENCE_KEY);
+    navigate({ to: "/" });
   }
 
   return (
@@ -103,8 +166,13 @@ function Dashboard() {
                   : "Keep going — you're building it."}
             </h1>
             <p className="mt-2 text-[color:var(--paper)]/80">
-              {hydrated ? overall.done : 0} of {overall.total} modules complete across 5 tracks.
+              {hydrated ? overall.done : 0} of {overall.total} modules complete across {tracks.length} tracks.
             </p>
+            {audienceLoaded && audience && (
+              <button onClick={handleSwitchAudience} className="mt-3 text-xs underline text-[color:var(--paper)]/80 hover:text-[color:var(--paper)]">
+                Not a {audience === "teen" ? "teen" : "college student"}? Switch
+              </button>
+            )}
           </div>
         </div>
 
@@ -148,7 +216,7 @@ function Dashboard() {
 
         <h2 className="mt-14 font-serif text-2xl sm:text-3xl">Tracks</h2>
         <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {TRACKS.map((t) => {
+          {tracks.map((t) => {
             const c = hydrated ? trackCompletion(state, t.id) : { done: 0, total: t.modules.length, pct: 0 };
             const complete = hydrated && c.pct === 100;
             return (
@@ -187,7 +255,6 @@ function Dashboard() {
           })}
         </div>
 
-        {/* Progress management */}
         <div className="mt-14 border-t border-[color:var(--forest)]/10 pt-10">
           <h2 className="font-serif text-xl text-[color:var(--forest)]/80">Your data</h2>
           <p className="mt-1 text-sm text-[color:var(--forest)]/60">
