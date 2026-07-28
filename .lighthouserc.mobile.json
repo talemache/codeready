@@ -3,14 +3,19 @@
     "collect": {
       "numberOfRuns": 1,
       "url": [
-        "http://127.0.0.1:4173/"
+        "http://127.0.0.1:4173/",
+        "http://127.0.0.1:4173/dashboard",
+        "http://127.0.0.1:4173/track/programming-foundations",
+        "http://127.0.0.1:4173/track/programming-foundations/writing-clean-code",
+        "http://127.0.0.1:4173/about"
       ],
-      "chromeFlags": "--headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu",
+      "chromeFlags": "--headless=new --no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage --disable-gpu --no-zygote",
       "startServerCommand": "npm run dev -- --host 127.0.0.1 --port 4173",
       "startServerReadyPattern": "Local",
       "startServerReadyTimeout": 90000,
       "settings": {
-        "disableFullPageScreenshot": true
+        "disableFullPageScreenshot": true,
+        "maxWaitForLoad": 45000
       }
     },
     "assert": {

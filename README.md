@@ -30,7 +30,15 @@ npm run browsers:install
 npm run qa:lighthouse
 ```
 
-This command builds the app, audits key pages, and enforces accessibility >= 95.
+This command builds the app, audits key pages (`/`, `/dashboard`, track page, lesson page, and `/about`), enforces accessibility >= 95, and prints a Lighthouse score summary table.
+
+To run Lighthouse only (skip build step):
+
+```sh
+npm run qa:lighthouse:run
+```
+
+A pull request workflow is included at `.github/workflows/qa-lighthouse.yml` and uploads `.lighthouseci` reports as artifacts.
 
 ## Built with
 

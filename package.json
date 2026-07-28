@@ -15,7 +15,9 @@
     "browsers:install": "playwright install chromium",
     "lighthouse:mobile": "CHROME_PATH=$(node --input-type=module -e \"import { chromium } from 'playwright'; console.log(chromium.executablePath())\") lhci autorun --config=.lighthouserc.mobile.json",
     "lighthouse:desktop": "CHROME_PATH=$(node --input-type=module -e \"import { chromium } from 'playwright'; console.log(chromium.executablePath())\") lhci autorun --config=.lighthouserc.desktop.json",
-    "qa:lighthouse": "npm run build && npm run lighthouse:mobile && npm run lighthouse:desktop"
+    "lighthouse:summary": "node scripts/lighthouse-summary.mjs",
+    "qa:lighthouse:run": "npm run lighthouse:mobile && npm run lighthouse:desktop && npm run lighthouse:summary",
+    "qa:lighthouse": "npm run build && npm run qa:lighthouse:run"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
