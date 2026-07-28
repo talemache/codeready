@@ -30,9 +30,11 @@ function Landing() {
     setCheckedAudience(true);
   }, []);
 
-  const selectAudience = (nextAudience: AudienceBand) => {
-    window.localStorage.setItem(AUDIENCE_KEY, nextAudience);
-    setAudience(nextAudience);
+  const [pendingAudience, setPendingAudience] = useState<AudienceBand | null>(null);
+
+  const confirmAudience = (selected: AudienceBand) => {
+    window.localStorage.setItem(AUDIENCE_KEY, selected);
+    setAudience(selected);
     void navigate({ to: "/dashboard" });
   };
 
@@ -53,22 +55,36 @@ function Landing() {
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             <button
-              onClick={() => selectAudience("teen")}
-              className="card-paper p-6 text-left rounded-3xl hover:-translate-y-0.5 transition"
+              onClick={() => setPendingAudience("teen")}
+              aria-pressed={pendingAudience === "teen"}
+              className={`card-paper p-6 text-left rounded-3xl hover:-translate-y-0.5 transition ${pendingAudience === "teen" ? "ring-2 ring-[color:var(--forest)]" : ""}`}
             >
               <div className="text-xs uppercase tracking-widest text-[color:var(--forest)]/60">Audience</div>
               <div className="mt-2 font-serif text-2xl">I'm in high school (ages 13 to 18)</div>
               <p className="mt-2 text-sm text-[color:var(--forest)]/75">5 short tracks focused on exploration and project confidence.</p>
             </button>
             <button
-              onClick={() => selectAudience("college")}
-              className="card-paper p-6 text-left rounded-3xl hover:-translate-y-0.5 transition"
+              onClick={() => setPendingAudience("college")}
+              aria-pressed={pendingAudience === "college"}
+              className={`card-paper p-6 text-left rounded-3xl hover:-translate-y-0.5 transition ${pendingAudience === "college" ? "ring-2 ring-[color:var(--forest)]" : ""}`}
             >
               <div className="text-xs uppercase tracking-widest text-[color:var(--forest)]/60">Audience</div>
               <div className="mt-2 font-serif text-2xl">I'm in college or beyond</div>
               <p className="mt-2 text-sm text-[color:var(--forest)]/75">8 deeper tracks covering software engineering and career launch skills.</p>
             </button>
           </div>
+
+          {pendingAudience && (
+            <div className="mt-6">
+              <button
+                onClick={() => confirmAudience(pendingAudience)}
+                className="btn-primary text-base"
+              >
+                Continue
+                <span aria-hidden>→</span>
+              </button>
+            </div>
+          )}
         </main>
         <SiteFooter />
       </div>

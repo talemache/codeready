@@ -4,7 +4,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ProgressRing, ProgressBar } from "@/components/ProgressRing";
 import { TrackIcon, DoodleArrow } from "@/components/Doodles";
-import { type AudienceBand, getModule, getTracksByAudience } from "@/lib/tracks";
+import { getModule, getTracksByAudience } from "@/lib/tracks";
 import {
   useProgress,
   useHydrated,
@@ -13,8 +13,7 @@ import {
   importProgress,
   resetProgress,
 } from "@/lib/progress";
-
-const AUDIENCE_KEY = "codeready-audience";
+import { useAudience } from "@/hooks/use-audience";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -32,18 +31,11 @@ function Dashboard() {
   const navigate = useNavigate();
   const hydrated = useHydrated();
   const { state } = useProgress();
-  const [audience, setAudience] = useState<AudienceBand | null>(null);
-  const [audienceLoaded, setAudienceLoaded] = useState(false);
-
-  useEffect(() => {
-    const saved = window.localStorage.getItem(AUDIENCE_KEY);
-    if (saved === "teen" || saved === "college") setAudience(saved);
-    setAudienceLoaded(true);
-  }, []);
+  const { audience, audienceLoaded, clearAudience } = useAudience();
 
   useEffect(() => {
     if (!audienceLoaded) return;
-    if (!audience) navigate({ to: "/" });
+    if (!audience) void navigate({ to: "/" });
   }, [audience, audienceLoaded, navigate]);
 
   useEffect(() => {
@@ -141,11 +133,7 @@ function Dashboard() {
     }
     resetProgress();
     setResetConfirm(false);
-  }
-
-  function handleSwitchAudience() {
-    window.localStorage.removeItem(AUDIENCE_KEY);
-    navigate({ to: "/" });
+    void navigate({ to: "/" });
   }
 
   return (
@@ -170,7 +158,7 @@ function Dashboard() {
             </p>
             {audienceLoaded && audience && (
               <button
-                onClick={handleSwitchAudience}
+                onClick={clearAudience}
                 aria-label={`Switch audience from ${audience}`}
                 className="mt-3 text-xs underline text-[color:var(--paper)]/80 hover:text-[color:var(--paper)]"
               >
