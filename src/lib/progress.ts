@@ -10,6 +10,7 @@ type ProgressState = {
   quizScores: Record<string, QuizResult>; // key: trackId
   challengeChecklist: Record<string, number[]>; // key: `${trackId}/${moduleId}` -> checked step indexes
   lastOpenedModuleId?: string;
+  lastOpenedModuleKey?: string;
 };
 
 const KEY = "codeready-progress-v1";
@@ -33,6 +34,7 @@ function read(): ProgressState {
       quizScores: parsed.quizScores ?? parsed.quizzes ?? {},
       challengeChecklist: parsed.challengeChecklist ?? parsed.checklists ?? {},
       lastOpenedModuleId: parsed.lastOpenedModuleId ?? parsed.lastOpened?.moduleId,
+      lastOpenedModuleKey: parsed.lastOpenedModuleKey,
     };
   } catch {
     return emptyState;
@@ -97,6 +99,7 @@ export function useProgress() {
     write({
       ...current,
       moduleStatus,
+      lastOpenedModuleKey: key,
       lastOpenedModuleId: moduleId,
     });
   }, []);

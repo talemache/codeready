@@ -22,16 +22,19 @@ function Dashboard() {
   const hydrated = useHydrated();
   const { state } = useProgress();
   const overall = overallCompletion(state);
-  const lastInfo = state.lastOpenedModuleId
-    ? TRACKS.flatMap((track) =>
-        track.modules.map((module) => getModule(track.id, module.id)).filter(Boolean),
-      ).find((info) => info?.module.id === state.lastOpenedModuleId) ?? null
-    : null;
+  const allModules = TRACKS.flatMap((track) =>
+    track.modules.map((module) => getModule(track.id, module.id)).filter(Boolean),
+  );
+  const lastInfo = state.lastOpenedModuleKey
+    ? allModules.find((info) => `${info?.track.id}/${info?.module.id}` === state.lastOpenedModuleKey) ?? null
+    : state.lastOpenedModuleId
+      ? allModules.find((info) => info?.module.id === state.lastOpenedModuleId) ?? null
+      : null;
 
   return (
     <div className="min-h-screen bg-[color:var(--paper)]">
       <SiteHeader />
-      <main className="mx-auto max-w-6xl px-5 py-10 sm:py-14">
+      <main id="main-content" className="mx-auto max-w-6xl px-5 py-10 sm:py-14" tabIndex={-1}>
         <div className="grid gap-6 md:grid-cols-[auto_1fr] items-center panel p-6 sm:p-10">
           <ProgressRing pct={hydrated ? overall.pct : 0} label="complete" />
           <div>

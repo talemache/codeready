@@ -22,6 +22,7 @@ function Landing() {
       <SiteHeader />
 
       {/* Hero */}
+      <main id="main-content" tabIndex={-1}>
       <section className="relative overflow-hidden">
         <div className="paper-grain absolute inset-0 opacity-40 pointer-events-none" />
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-24 relative">
@@ -114,6 +115,7 @@ function Landing() {
           </div>
         </div>
       </section>
+      </main>
 
       <SiteFooter />
     </div>

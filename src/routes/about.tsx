@@ -30,7 +30,7 @@ function AboutPage() {
   return (
     <div className="min-h-screen bg-[color:var(--paper)] flex flex-col">
       <SiteHeader />
-      <main className="mx-auto w-full max-w-3xl flex-1 px-5 py-10 sm:py-14">
+      <main id="main-content" className="mx-auto w-full max-w-3xl flex-1 px-5 py-10 sm:py-14" tabIndex={-1}>
         <div className="relative inline-block">
           <h1 className="font-serif text-4xl sm:text-5xl leading-tight">About CodeReady</h1>
           <DoodleUnderline className="absolute -bottom-3 left-0 w-full text-[color:var(--coral)]" />

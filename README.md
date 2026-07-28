@@ -21,6 +21,17 @@ npm i
 npm run dev
 ```
 
+## QA Checks
+
+Run the full accessibility Lighthouse CI gate (mobile + desktop):
+
+```sh
+npm run browsers:install
+npm run qa:lighthouse
+```
+
+This command builds the app, audits key pages, and enforces accessibility >= 95.
+
 ## Built with
 
 - TanStack Start

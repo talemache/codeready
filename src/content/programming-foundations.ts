@@ -40,6 +40,7 @@ export const programmingFoundations: TrackContent = {
         "This also means learning to read official documentation without flinching. Docs are denser than tutorials, but they're the source of truth, and tutorials go stale.",
         "## Depth compounds",
         "Once you're fluent in one language's mental model — how it handles memory, errors, typing, concurrency — picking up a second language is dramatically faster, because you're mapping new syntax onto concepts you already understand instead of learning everything from scratch. Interviewers and teammates also trust someone who clearly knows one language well over someone who knows five languages shallowly.",
+        "A practical way to force depth is to build one small app and keep improving it for a month: refactor one module per week, replace one custom helper with a standard-library call, and write down one language-specific pattern you learned after each coding session. That repetition is what turns syntax knowledge into real fluency.",
       ],
       takeaways: [
         "Pick one primary language and go deep before spreading thin across many.",

@@ -1,0 +1,32 @@
+{
+  "ci": {
+    "collect": {
+      "numberOfRuns": 1,
+      "url": [
+        "http://127.0.0.1:4173/"
+      ],
+      "chromeFlags": "--headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu",
+      "startServerCommand": "npm run dev -- --host 127.0.0.1 --port 4173",
+      "startServerReadyPattern": "Local",
+      "startServerReadyTimeout": 90000,
+      "settings": {
+        "preset": "desktop",
+        "disableFullPageScreenshot": true
+      }
+    },
+    "assert": {
+      "assertions": {
+        "categories:accessibility": [
+          "error",
+          {
+            "minScore": 0.95
+          }
+        ]
+      }
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": ".lighthouseci/desktop"
+    }
+  }
+}

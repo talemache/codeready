@@ -16,4 +16,13 @@ describe("search index", () => {
     expect(match.toLowerCase()).toBe("detective");
     expect(after).toBe("");
   });
+
+  it("returns results within 50ms for full index", () => {
+    const started = performance.now();
+    const hits = search("code");
+    const elapsed = performance.now() - started;
+
+    expect(hits.length).toBeGreaterThan(0);
+    expect(elapsed).toBeLessThan(50);
+  });
 });

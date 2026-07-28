@@ -10,7 +10,7 @@ export type SearchDoc = {
   text: string;
 };
 
-let index: SearchDoc[] | null = null;
+const index: SearchDoc[] = buildIndex();
 
 function buildIndex(): SearchDoc[] {
   const docs: SearchDoc[] = [];
@@ -38,7 +38,6 @@ export type SearchHit = SearchDoc & { snippet: string; matchInTitle: boolean };
 export function search(query: string, limit = 20): SearchHit[] {
   const q = query.trim().toLowerCase();
   if (q.length < 2) return [];
-  if (!index) index = buildIndex();
 
   const hits: (SearchHit & { score: number })[] = [];
   for (const d of index) {

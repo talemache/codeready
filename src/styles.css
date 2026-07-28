@@ -87,6 +87,23 @@
     font-weight: 500;
     letter-spacing: -0.01em;
   }
+
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    min-height: 2.75rem;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 3px solid color-mix(in oklab, var(--coral) 75%, white);
+    outline-offset: 2px;
+  }
 }
 
 /* Subtle paper grain */

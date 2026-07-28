@@ -31,7 +31,7 @@ function TrackIndexPage() {
   return (
     <div className="min-h-screen bg-[color:var(--paper)]">
       <SiteHeader />
-      <main className="mx-auto max-w-4xl px-5 py-10 sm:py-14">
+      <main id="main-content" className="mx-auto max-w-4xl px-5 py-10 sm:py-14" tabIndex={-1}>
         <Link to="/dashboard" className="text-sm text-[color:var(--forest)]/70 hover:underline">
           ← Dashboard
         </Link>

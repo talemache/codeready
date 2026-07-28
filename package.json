@@ -11,7 +11,11 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "browsers:install": "playwright install chromium",
+    "lighthouse:mobile": "CHROME_PATH=$(node --input-type=module -e \"import { chromium } from 'playwright'; console.log(chromium.executablePath())\") lhci autorun --config=.lighthouserc.mobile.json",
+    "lighthouse:desktop": "CHROME_PATH=$(node --input-type=module -e \"import { chromium } from 'playwright'; console.log(chromium.executablePath())\") lhci autorun --config=.lighthouserc.desktop.json",
+    "qa:lighthouse": "npm run build && npm run lighthouse:mobile && npm run lighthouse:desktop"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -70,6 +74,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
+    "@lhci/cli": "^0.15.0",
     "@lovable.dev/vite-tanstack-config": "^2.7.7",
     "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^22.16.5",
@@ -83,6 +88,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^15.15.0",
     "nitro": "3.0.260603-beta",
+    "playwright": "^1.55.0",
     "prettier": "^3.7.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
