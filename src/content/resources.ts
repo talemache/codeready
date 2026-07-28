@@ -3,6 +3,12 @@ import type { Resource } from "@/lib/content-types";
 export const RESOURCE_REGISTRY: Record<string, Resource> = {
   cs50: { id: "cs50", label: "CS50", url: "https://cs50.harvard.edu/x/", free: true },
   freecodecamp: { id: "freecodecamp", label: "freeCodeCamp", url: "https://www.freecodecamp.org/", free: true },
+  code_org: { id: "code_org", label: "Code.org", url: "https://code.org/", free: true },
+  scratch: { id: "scratch", label: "Scratch", url: "https://scratch.mit.edu/", free: true },
+  github_pages_docs: { id: "github_pages_docs", label: "GitHub Pages Docs", url: "https://docs.github.com/en/pages", free: true },
+  mit_app_inventor: { id: "mit_app_inventor", label: "MIT App Inventor", url: "https://appinventor.mit.edu/", free: true },
+  khan_academy_cs: { id: "khan_academy_cs", label: "Khan Academy CS", url: "https://www.khanacademy.org/computing/computer-programming", free: true },
+  w3schools: { id: "w3schools", label: "W3Schools", url: "https://www.w3schools.com/", free: true },
   odin_project: { id: "odin_project", label: "The Odin Project", url: "https://www.theodinproject.com/", free: true },
   mdn: { id: "mdn", label: "MDN Web Docs", url: "https://developer.mozilla.org/", free: true },
   roadmap_sh: { id: "roadmap_sh", label: "roadmap.sh", url: "https://roadmap.sh/", free: true },

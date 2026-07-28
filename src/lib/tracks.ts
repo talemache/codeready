@@ -11,6 +11,7 @@ export type Track = {
   name: string;
   tagline: string;
   description: string;
+  parentSummary: string;
   icon: string; // doodle svg id
   modules: Module[];
 };
@@ -18,7 +19,7 @@ export type Track = {
 const mk = (
   title: string,
   type: Module["type"] = "Lesson",
-  minutes = 20,
+  minutes = 15,
 ): Module => ({
   id: title
     .toLowerCase()
@@ -31,145 +32,98 @@ const mk = (
 
 export const TRACKS: Track[] = [
   {
-    id: "programming-foundations",
+    id: "is-coding-for-me",
     number: 1,
-    name: "Programming Foundations",
-    tagline: "The habits great engineers build early.",
-    description:
-      "Clean code, debugging, and reading real codebases like a pro.",
+    name: "Is Coding For Me?",
+    tagline: "Start curious, not stressed.",
+    description: "A friendly first step that shows what coding really feels like.",
+    parentSummary:
+      "Your teen learns what coding work actually looks like day to day and why mistakes are normal. They finish with three tiny programs they can run, break, and fix on purpose.",
     icon: "book",
     modules: [
-      mk("Writing Clean Code"),
-      mk("Language Mastery (pick your primary language)"),
-      mk("Debugging Like a Detective"),
-      mk("Reading Other People's Code"),
-      mk("Code Review Etiquette"),
+      mk("What Coders Actually Do All Day"),
+      mk("You Don't Need to Be a Math Person"),
+      mk("Your First Program"),
+      mk("Mistakes Are Part of the Job"),
+      mk("Finding Your Kind of Coding"),
     ],
   },
   {
-    id: "dsa",
+    id: "programming-foundations-teen",
     number: 2,
-    name: "Data Structures & Algorithms",
-    tagline: "Think in patterns, not puzzles.",
-    description: "The core toolkit for interviews and everyday problem solving.",
+    name: "Programming Foundations (Teen Edition)",
+    tagline: "Build smart habits early.",
+    description: "Core coding habits taught with short lessons and practical wins.",
+    parentSummary:
+      "Your teen practices naming, problem breakdown, testing, and calm debugging habits. They improve an existing program by adding a real new feature.",
     icon: "tree",
     modules: [
-      mk("Big-O Thinking"),
-      mk("Arrays, Strings & Hash Maps"),
-      mk("Linked Lists, Stacks & Queues"),
-      mk("Trees & Graphs"),
-      mk("Sorting & Searching"),
-      mk("Dynamic Programming Basics"),
-      mk("Interview Problem Patterns", "Challenge", 45),
+      mk("Naming Things Well"),
+      mk("Breaking Big Problems Into Small Ones"),
+      mk("Reading Error Messages Without Panicking"),
+      mk("Testing Your Own Work"),
+      mk("Sharing Code Kindly"),
     ],
   },
   {
-    id: "git",
+    id: "build-something-real",
     number: 3,
-    name: "Version Control & Collaboration",
-    tagline: "Git, without the panic.",
-    description: "Work confidently on any team's codebase.",
-    icon: "branch",
-    modules: [
-      mk("Git Fundamentals"),
-      mk("Branching & Merging"),
-      mk("Pull Requests Done Right"),
-      mk("Resolving Conflicts"),
-      mk("Working on a Team Codebase"),
-    ],
-  },
-  {
-    id: "building",
-    number: 4,
-    name: "Building Real Software",
-    tagline: "From idea to deployed app.",
-    description: "Frontend, backend, databases, deploy — the full stack.",
+    name: "Build Something Real",
+    tagline: "One project, start to finish.",
+    description: "Turn an idea into a personal web page with HTML, CSS, and JavaScript.",
+    parentSummary:
+      "Your teen builds a complete personal web page and customizes it around their own interests. They learn the web stack in simple steps and end with something concrete to show.",
     icon: "hammer",
     modules: [
-      mk("How the Web Works"),
-      mk("Frontend Fundamentals"),
-      mk("Backend & APIs"),
-      mk("Databases & SQL"),
-      mk("Authentication Basics"),
-      mk("Deploying Your First App"),
-      mk("Building Your Portfolio Project", "Challenge", 90),
+      mk("How Websites Actually Work"),
+      mk("HTML: The Skeleton"),
+      mk("CSS: Making It Yours"),
+      mk("A Little Bit of Interactivity"),
+      mk("Show It Off"),
     ],
   },
   {
-    id: "testing",
+    id: "git-working-with-others",
+    number: 4,
+    name: "Git & Working With Others",
+    tagline: "Save points for code.",
+    description: "Learn Git basics and collaborate on a shared project without chaos.",
+    parentSummary:
+      "Your teen learns to save, branch, and merge code changes the same way real teams do. They complete a shared mini-project with another person and combine both sets of edits.",
+    icon: "branch",
+    modules: [
+      mk("Why Save Points Matter"),
+      mk("Making a Change and Saving It"),
+      mk("Working on the Same Project as a Friend"),
+      mk("When Two People Change the Same Thing"),
+      mk("Showing Your Work"),
+    ],
+  },
+  {
+    id: "ai-tools-for-students",
     number: 5,
-    name: "Testing & Quality",
-    tagline: "Sleep better. Ship safer.",
-    description: "Learn to write code that keeps working tomorrow.",
-    icon: "shield",
-    modules: [
-      mk("Why Tests Matter"),
-      mk("Unit Testing"),
-      mk("Integration & End-to-End Testing"),
-      mk("Test-Driven Development Intro"),
-      mk("Handling Bugs in Production"),
-    ],
-  },
-  {
-    id: "devops",
-    number: 6,
-    name: "DevOps & Systems Basics",
-    tagline: "How software actually runs.",
-    description: "The command line, containers, cloud, and system design.",
-    icon: "gear",
-    modules: [
-      mk("The Command Line"),
-      mk("CI/CD Pipelines"),
-      mk("Docker & Containers Intro"),
-      mk("Cloud Fundamentals"),
-      mk("Monitoring & Logging Basics"),
-      mk("System Design First Principles"),
-    ],
-  },
-  {
-    id: "ai-era",
-    number: 7,
-    name: "AI-Era Engineering",
-    tagline: "Work with AI, not against it.",
-    description: "The new muscle every modern engineer needs.",
+    name: "AI Tools for Students",
+    tagline: "Use AI to learn, not to skip thinking.",
+    description: "Learn to use AI coding tools responsibly with skepticism and clear prompts.",
+    parentSummary:
+      "Your teen learns to treat AI as a helper, not a shortcut, and to verify every output. They build one AI-assisted feature and explain the final code in their own words.",
     icon: "spark",
     modules: [
-      mk("Coding with AI Assistants Effectively"),
-      mk("Prompting for Developers"),
-      mk("Evaluating AI Output Critically"),
-      mk("Understanding LLM Basics"),
-      mk("Where AI Fits in the SDLC"),
-    ],
-  },
-  {
-    id: "career",
-    number: 8,
-    name: "Career Launchpad",
-    tagline: "Land the job. Thrive in it.",
-    description: "Résumés, interviews, offers, and your first 90 days.",
-    icon: "rocket",
-    modules: [
-      mk("Résumés That Get Interviews"),
-      mk("Building a Portfolio & GitHub Profile"),
-      mk("Networking Without Being Weird"),
-      mk("Technical Interview Prep Strategy"),
-      mk("Behavioral Interviews & STAR Stories"),
-      mk("Negotiating Your First Offer"),
-      mk("Your First 90 Days on the Job"),
+      mk("What AI Coding Tools Actually Do"),
+      mk("Using AI Without Losing the Learning"),
+      mk("AI Gets Things Wrong Sometimes"),
+      mk("Asking Better Questions"),
+      mk("Using AI to Learn a New Topic Fast"),
     ],
   },
 ];
 
-// Every track ends with a quiz. Tracks 1-6 also get a hands-on challenge.
 const CHALLENGE_TITLES: Record<string, string> = {
-  "programming-foundations": "Challenge: Refactor an Old Project",
-  dsa: "Challenge: Five Problems, Three Patterns",
-  git: "Challenge: Fork, Branch, Pull Request",
-  building: "Challenge: Ship a One-Endpoint API",
-  testing: "Challenge: Test the Thing You Built",
-  devops: "Challenge: Containerize and Automate",
-  "ai-era": "Challenge: Build a Developer Prompt Library",
-  career: "Challenge: Run Your First Informational Interview",
+  "is-coding-for-me": "Challenge: Run, Change, Break, Fix",
+  "programming-foundations-teen": "Challenge: Add One New Feature",
+  "build-something-real": "Challenge: Build Your Personal Web Page",
+  "git-working-with-others": "Challenge: Team Merge Mission",
+  "ai-tools-for-students": "Challenge: Build With AI, Explain Without It",
 };
 
 for (const t of TRACKS) {
@@ -179,7 +133,7 @@ for (const t of TRACKS) {
       id: "track-challenge",
       title: challengeTitle,
       type: "Challenge",
-      minutes: 60,
+      minutes: 45,
     });
   }
   t.modules.push({

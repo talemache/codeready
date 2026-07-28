@@ -10,7 +10,7 @@ describe("content QA", () => {
     for (const [trackId, trackContent] of Object.entries(CONTENT)) {
       for (const [moduleId, lesson] of Object.entries(trackContent.lessons)) {
         const words = lesson.body.trim().split(/\s+/).length;
-        if (words < 300 || words > 500) {
+        if (words < 150 || words > 300) {
           violations.push(`${trackId}/${moduleId} body words=${words}`);
         }
 
@@ -53,8 +53,8 @@ describe("content QA", () => {
     }
   });
 
-  it("ensures challenge coverage and checklist size for tracks 1-6", () => {
-    const challengeTracks = new Set(TRACKS.slice(0, 6).map((track) => track.id));
+  it("ensures challenge coverage and checklist size for all tracks", () => {
+    const challengeTracks = new Set(TRACKS.map((track) => track.id));
 
     for (const trackId of challengeTracks) {
       const challenge = CONTENT[trackId]?.challenge;
