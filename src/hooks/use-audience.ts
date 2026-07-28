@@ -11,7 +11,8 @@ export function useAudience() {
 
   useEffect(() => {
     const saved = window.localStorage.getItem(AUDIENCE_KEY);
-    if (saved === "teen" || saved === "college") setAudience(saved as AudienceBand);
+    if (saved === "teen") setAudience("teen");
+    else if (saved === "college") setAudience("college");
     setAudienceLoaded(true);
   }, []);
 

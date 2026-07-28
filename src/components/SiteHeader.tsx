@@ -64,7 +64,7 @@ export function SiteHeader() {
             {audienceLoaded && audience && (
               <button
                 onClick={clearAudience}
-                aria-label={`Change learning path (currently ${audience === "teen" ? "Teen" : "College"})`}
+                aria-label={`Switch learning path from ${audience === "teen" ? "Teen" : "College"}`}
                 className="hidden sm:inline-flex items-center rounded-full px-3 py-1.5 text-xs font-medium border border-[color:var(--forest)]/30 text-[color:var(--forest)]/80 hover:bg-[color:var(--forest)]/10 transition"
               >
                 Path: {audience === "teen" ? "Teen" : "College"}
