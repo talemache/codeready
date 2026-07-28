@@ -210,13 +210,17 @@ function Dashboard() {
             <button
               onClick={handleReset}
               onBlur={() => setResetConfirm(false)}
+              aria-label={resetConfirm ? "Confirm: reset all progress" : "Reset all progress"}
               className="text-sm rounded-full px-4 py-1.5 border border-[color:var(--coral)]/50 text-[color:var(--coral)] hover:bg-[color:var(--coral)]/10 transition"
             >
               {resetConfirm ? "Click again to confirm reset" : "Reset all progress"}
             </button>
           </div>
+          <div aria-live="polite" className="sr-only">
+            {resetConfirm ? "Click the reset button again to confirm resetting all progress." : ""}
+          </div>
           {importError && (
-            <p className="mt-2 text-sm text-[color:var(--coral)]">Import failed: {importError}</p>
+            <p className="mt-2 text-sm text-[color:var(--coral)]" role="alert">Import failed: {importError}</p>
           )}
         </div>
       </main>

@@ -3,10 +3,16 @@ import { RichText } from "@/components/RichText";
 import type { Lesson } from "@/lib/content-types";
 import { RESOURCE_REGISTRY } from "@/content/resources";
 
+type BodyBlock =
+  | { type: "heading"; content: string }
+  | { type: "p"; content: string }
+  | { type: "ul"; content: string[] }
+  | { type: "ol"; content: string[] };
+
 /** Groups consecutive `- ` or `N. ` lines into a single list block. */
-function parseBodyBlocks(body: string): Array<{ type: "heading" | "ul" | "ol" | "p"; content: string | string[] }> {
+function parseBodyBlocks(body: string): BodyBlock[] {
   const rawBlocks = body.split(/\n\n+/).filter(Boolean);
-  const result: Array<{ type: "heading" | "ul" | "ol" | "p"; content: string | string[] }> = [];
+  const result: BodyBlock[] = [];
 
   for (const block of rawBlocks) {
     if (block.startsWith("## ")) {
@@ -39,14 +45,14 @@ export function LessonBody({ lesson }: { lesson: Lesson }) {
             if (block.type === "heading") {
               return (
                 <h2 key={i} className="font-serif text-2xl pt-2 text-[color:var(--forest)]">
-                  {block.content as string}
+                  {block.content}
                 </h2>
               );
             }
             if (block.type === "ul") {
               return (
                 <ul key={i} className="list-none space-y-1.5 pl-1">
-                  {(block.content as string[]).map((item, j) => (
+                  {block.content.map((item, j) => (
                     <li key={j} className="flex gap-2 text-[color:var(--forest)]/80 leading-relaxed text-[1.05rem]">
                       <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--coral)]" />
                       <span><RichText text={item} /></span>
@@ -58,7 +64,7 @@ export function LessonBody({ lesson }: { lesson: Lesson }) {
             if (block.type === "ol") {
               return (
                 <ol key={i} className="space-y-1.5 pl-1">
-                  {(block.content as string[]).map((item, j) => (
+                  {block.content.map((item, j) => (
                     <li key={j} className="flex gap-3 text-[color:var(--forest)]/80 leading-relaxed text-[1.05rem]">
                       <span className="shrink-0 font-mono text-sm text-[color:var(--coral)] mt-0.5">{j + 1}.</span>
                       <span><RichText text={item} /></span>
@@ -69,7 +75,7 @@ export function LessonBody({ lesson }: { lesson: Lesson }) {
             }
             return (
               <p key={i} className="text-[color:var(--forest)]/80 leading-relaxed text-[1.05rem]">
-                <RichText text={block.content as string} />
+                <RichText text={block.content} />
               </p>
             );
           })}

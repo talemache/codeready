@@ -1,4 +1,4 @@
-/** Renders inline formatting: `code`, **bold**, and plain text. */
+/** Inline formatted text: `code`, **bold**, plain. */
 export function RichText({ text }: { text: string }) {
   // Split on backtick code spans and **bold** markers
   const parts = text.split(/(`[^`]+`|\*\*[^*]+\*\*)/g);

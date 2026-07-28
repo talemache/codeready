@@ -115,11 +115,12 @@ export function SearchBar() {
           aria-controls="search-results"
           aria-autocomplete="list"
           className="w-32 sm:w-48 rounded-full border border-[color:var(--forest)]/25 bg-[color:var(--paper)] pl-4 pr-10 py-1.5 text-sm text-[color:var(--forest)] placeholder:text-[color:var(--forest)]/45 focus:w-44 sm:focus:w-72 focus:outline-none focus:ring-2 focus:ring-[color:var(--forest)]/30 transition-all"
+          aria-label="Search lessons (press / to focus)"
         />
         {!q && (
           <kbd
-            aria-hidden
             className="pointer-events-none absolute right-3 rounded border border-[color:var(--forest)]/20 bg-[color:var(--paper-deep)] px-1.5 py-0.5 font-mono text-[11px] text-[color:var(--forest)]/50 leading-none"
+            title="Press / to search"
           >
             /
           </kbd>
