@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { SearchBar } from "@/components/SearchBar";
 import { useDarkMode } from "@/hooks/use-dark-mode";
+import { useAudience } from "@/hooks/use-audience";
 
 function SunIcon() {
   return (
@@ -28,6 +29,7 @@ function MoonIcon() {
 
 export function SiteHeader() {
   const { dark, toggle } = useDarkMode();
+  const { audience, audienceLoaded, clearAudience } = useAudience();
 
   return (
     <header className="sticky top-0 z-40 border-b border-[color:var(--forest)]/10 bg-[color:var(--paper)]/85 backdrop-blur">
@@ -59,6 +61,15 @@ export function SiteHeader() {
             >
               About
             </Link>
+            {audienceLoaded && audience && (
+              <button
+                onClick={clearAudience}
+                aria-label={`Switch learning path from ${audience === "teen" ? "Teen" : "College"}`}
+                className="hidden sm:inline-flex items-center rounded-full px-3 py-1.5 text-xs font-medium border border-[color:var(--forest)]/30 text-[color:var(--forest)]/80 hover:bg-[color:var(--forest)]/10 transition"
+              >
+                Path: {audience === "teen" ? "Teen" : "College"}
+              </button>
+            )}
           </nav>
           <button
             onClick={toggle}
