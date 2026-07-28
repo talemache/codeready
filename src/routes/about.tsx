@@ -3,8 +3,9 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { DoodleUnderline, DoodleStar } from "@/components/Doodles";
 
-const PORTFOLIO_URL = "https://example.com"; // TODO: Replace with Ryan's real portfolio URL.
-const CONTACT_EMAIL = "hello@example.com"; // TODO: Replace with Ryan's real suggestion email.
+// Set this once the portfolio site is live — the button below only renders when it's non-null.
+const PORTFOLIO_URL: string | null = null;
+const CONTACT_EMAIL = "rlevels@outlook.com";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -49,14 +50,16 @@ function AboutPage() {
         </div>
 
         <div className="mt-8 flex flex-wrap gap-4">
-          <a
-            href={PORTFOLIO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary"
-          >
-            Visit Ryan's portfolio
-          </a>
+          {PORTFOLIO_URL && (
+            <a
+              href={PORTFOLIO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              Visit Ryan's portfolio
+            </a>
+          )}
           <a href={`mailto:${CONTACT_EMAIL}?subject=CodeReady improvement`} className="btn-outline">
             Suggest an improvement
           </a>
