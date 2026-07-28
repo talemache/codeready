@@ -201,4 +201,20 @@ export const aiEra: TrackContent = {
       },
     ],
   },
+
+  challenge: {
+    id: "track-challenge",
+    title: "Challenge: Build a Developer Prompt Library",
+    brief:
+      "Put your AI-era skills into practice. Build a personal prompt library — a small, organized collection of reusable prompts you'd actually reach for day-to-day as a developer. The goal is to move from ad-hoc prompting to a deliberate, repeatable practice.",
+    steps: [
+      "Identify five real developer tasks where you'd use an AI assistant (e.g., write tests, explain code, review a PR, debug an error, write a commit message).",
+      "Write a high-quality template prompt for each task, with placeholder variables (e.g., <LANGUAGE>, <ERROR_MESSAGE>) clearly marked.",
+      "Test each prompt in a real AI tool and refine it until the output is consistently useful — document what changed and why.",
+      "Organize your prompts in a Markdown file or Notion page with a title, task category, the prompt template, and example output.",
+      "Add a section for what NOT to use AI for — based on this track, list three task types where you'll rely on your own judgment instead.",
+      "Share at least one prompt with a classmate or peer, collect their feedback, and update the prompt based on what they find unclear.",
+      "Write a one-paragraph reflection: what surprised you about how the model responded, and what did you learn about prompting well?",
+    ],
+  },
 };

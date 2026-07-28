@@ -7,6 +7,39 @@ import { getTrack } from "@/lib/tracks";
 import { useProgress, useHydrated, trackCompletion } from "@/lib/progress";
 
 export const Route = createFileRoute("/track/$trackId/")({
+  head: ({ loaderData }) => {
+    if (!loaderData?.track) return {};
+    const t = loaderData.track;
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      name: t.name,
+      description: t.description,
+      url: `https://codeready.app/track/${t.id}`,
+      provider: {
+        "@type": "Organization",
+        name: "CodeReady",
+        url: "https://codeready.app",
+      },
+      isAccessibleForFree: true,
+      hasCourseInstance: t.modules.map((m) => ({
+        "@type": "CourseInstance",
+        name: m.title,
+        courseMode: "online",
+      })),
+    };
+    return {
+      meta: [
+        { title: `${t.name} — CodeReady` },
+        { name: "description", content: `${t.tagline} ${t.description}` },
+        { property: "og:title", content: `${t.name} — CodeReady` },
+        { property: "og:description", content: t.tagline },
+      ],
+      scripts: [
+        { type: "application/ld+json", children: JSON.stringify(jsonLd), suppressHydrationWarning: true },
+      ],
+    };
+  },
   loader: ({ params }) => {
     const t = getTrack(params.trackId);
     if (!t) throw notFound();

@@ -344,4 +344,20 @@ export const career: TrackContent = {
       },
     ],
   },
+
+  challenge: {
+    id: "track-challenge",
+    title: "Challenge: Run Your First Informational Interview",
+    brief:
+      "Career skills don't come from reading about them — they come from doing them. This challenge walks you through one complete, real-world career exercise: identifying someone worth talking to, reaching out, having the conversation, and applying what you learned. One conversation at the right time can change your trajectory.",
+    steps: [
+      "Identify one person in a role you want in 2–5 years: a senior engineer, a team lead, or someone whose career path you respect. Find them via LinkedIn, a university alumni directory, or a community Slack.",
+      "Send a brief, specific outreach message: introduce yourself, say exactly why you're reaching out, ask for a 20-minute call. Reference something real about their work to show you've done your homework.",
+      "Prepare five thoughtful questions in advance — not things you could Google, but questions only someone with their experience could answer (e.g., 'What surprised you most in your first year on the job?').",
+      "Have the conversation. Take notes on what surprised you, what confirmed your assumptions, and one thing you want to follow up on.",
+      "Within 24 hours, send a genuine thank-you note (not a template) mentioning one specific thing from your conversation.",
+      "Update your résumé or portfolio based on one piece of feedback or insight from the call.",
+      "Write a short reflection: what did you learn that you couldn't have read in an article, and what's your next step?",
+    ],
+  },
 };

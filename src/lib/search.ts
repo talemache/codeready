@@ -36,25 +36,39 @@ function buildIndex(): SearchDoc[] {
 export type SearchHit = SearchDoc & { snippet: string; matchInTitle: boolean };
 
 export function search(query: string, limit = 20): SearchHit[] {
-  const q = query.trim().toLowerCase();
-  if (q.length < 2) return [];
+  const raw = query.trim().toLowerCase();
+  if (raw.length < 2) return [];
+
+  // Support multi-word AND queries: every term must appear somewhere in the doc.
+  const terms = raw.split(/\s+/).filter((t) => t.length > 0);
 
   const hits: (SearchHit & { score: number })[] = [];
   for (const d of index) {
-    const titleIdx = d.title.toLowerCase().indexOf(q);
-    const textIdx = d.text.toLowerCase().indexOf(q);
-    if (titleIdx === -1 && textIdx === -1) continue;
+    const titleLower = d.title.toLowerCase();
+    const textLower = d.text.toLowerCase();
+
+    // Every term must match in either title or text.
+    const allMatch = terms.every((t) => titleLower.includes(t) || textLower.includes(t));
+    if (!allMatch) continue;
+
+    // Snippet uses the first term for anchor context.
+    const firstTerm = terms[0];
     let snippet = "";
+    const textIdx = textLower.indexOf(firstTerm);
     if (textIdx !== -1) {
       const start = Math.max(0, textIdx - 60);
       snippet =
-        (start > 0 ? "…" : "") + d.text.slice(start, textIdx + q.length + 80).trim() + "…";
+        (start > 0 ? "…" : "") + d.text.slice(start, textIdx + firstTerm.length + 80).trim() + "…";
     }
+
+    // Score: title matches score higher; more terms matching in title scores even higher.
+    const titleMatches = terms.filter((t) => titleLower.includes(t)).length;
+    const textMatches = terms.filter((t) => textLower.includes(t)).length;
     hits.push({
       ...d,
       snippet,
-      matchInTitle: titleIdx !== -1,
-      score: (titleIdx !== -1 ? 100 - titleIdx : 0) + (textIdx !== -1 ? 10 : 0),
+      matchInTitle: titleMatches > 0,
+      score: titleMatches * 100 + textMatches * 10,
     });
   }
   hits.sort((a, b) => b.score - a.score);

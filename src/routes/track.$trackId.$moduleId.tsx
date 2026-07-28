@@ -16,6 +16,28 @@ export const Route = createFileRoute("/track/$trackId/$moduleId")({
     const info = getModule(params.trackId, params.moduleId);
     const title = info ? `${info.module.title} — CodeReady` : "Lesson — CodeReady";
     const desc = info ? `${info.module.title} · ${info.track.name}` : "A CodeReady lesson.";
+    const jsonLd = info
+      ? {
+          "@context": "https://schema.org",
+          "@type": "LearningResource",
+          name: info.module.title,
+          description: desc,
+          url: `https://codeready.app/track/${info.track.id}/${info.module.id}`,
+          timeRequired: `PT${info.module.minutes}M`,
+          educationalLevel: "beginner",
+          isAccessibleForFree: true,
+          isPartOf: {
+            "@type": "Course",
+            name: info.track.name,
+            url: `https://codeready.app/track/${info.track.id}`,
+          },
+          provider: {
+            "@type": "Organization",
+            name: "CodeReady",
+            url: "https://codeready.app",
+          },
+        }
+      : null;
     return {
       meta: [
         { title },
@@ -23,6 +45,9 @@ export const Route = createFileRoute("/track/$trackId/$moduleId")({
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
       ],
+      ...(jsonLd
+        ? { scripts: [{ type: "application/ld+json", children: JSON.stringify(jsonLd), suppressHydrationWarning: true }] }
+        : {}),
     };
   },
   loader: ({ params }) => {

@@ -168,6 +168,8 @@ const CHALLENGE_TITLES: Record<string, string> = {
   building: "Challenge: Ship a One-Endpoint API",
   testing: "Challenge: Test the Thing You Built",
   devops: "Challenge: Containerize and Automate",
+  "ai-era": "Challenge: Build a Developer Prompt Library",
+  career: "Challenge: Run Your First Informational Interview",
 };
 
 for (const t of TRACKS) {
