@@ -48,9 +48,9 @@ function Dashboard() {
 
   useEffect(() => {
     if (!audience) return;
-    const description = audience === "teen"
-      ? "Track your progress through all 5 CodeReady teen learning tracks."
-      : "Track your progress through all 8 CodeReady college-and-beyond learning tracks.";
+    const audienceTrackCount = getTracksByAudience(audience).length;
+    const audienceLabel = audience === "teen" ? "teen" : "college-and-beyond";
+    const description = `Track your progress through all ${audienceTrackCount} CodeReady ${audienceLabel} learning tracks.`;
 
     const setMeta = (selector: string, attrs: Record<string, string>) => {
       let el = document.head.querySelector<HTMLMetaElement>(selector);
@@ -169,8 +169,12 @@ function Dashboard() {
               {hydrated ? overall.done : 0} of {overall.total} modules complete across {tracks.length} tracks.
             </p>
             {audienceLoaded && audience && (
-              <button onClick={handleSwitchAudience} className="mt-3 text-xs underline text-[color:var(--paper)]/80 hover:text-[color:var(--paper)]">
-                Not a {audience === "teen" ? "teen" : "college student"}? Switch
+              <button
+                onClick={handleSwitchAudience}
+                aria-label={`Switch audience from ${audience}`}
+                className="mt-3 text-xs underline text-[color:var(--paper)]/80 hover:text-[color:var(--paper)]"
+              >
+                Not a {audience === "teen" ? "teen" : "college or beyond learner"}? Switch
               </button>
             )}
           </div>

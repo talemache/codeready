@@ -33,7 +33,7 @@ function Landing() {
   const selectAudience = (nextAudience: AudienceBand) => {
     window.localStorage.setItem(AUDIENCE_KEY, nextAudience);
     setAudience(nextAudience);
-    navigate({ to: "/dashboard" });
+    void navigate({ to: "/dashboard" });
   };
 
   if (checkedAudience && !audience) {
@@ -57,7 +57,7 @@ function Landing() {
               className="card-paper p-6 text-left rounded-3xl hover:-translate-y-0.5 transition"
             >
               <div className="text-xs uppercase tracking-widest text-[color:var(--forest)]/60">Audience</div>
-              <div className="mt-2 font-serif text-2xl">I'm in high school (13–18)</div>
+              <div className="mt-2 font-serif text-2xl">I'm in high school (ages 13 to 18)</div>
               <p className="mt-2 text-sm text-[color:var(--forest)]/75">5 short tracks focused on exploration and project confidence.</p>
             </button>
             <button

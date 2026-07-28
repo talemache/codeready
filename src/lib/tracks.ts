@@ -19,7 +19,7 @@ export type Track = {
   modules: Module[];
 };
 
-const mk = (
+const createModule = (
   title: string,
   type: Module["type"] = "Lesson",
   minutes = 20,
@@ -33,7 +33,7 @@ const mk = (
   minutes,
 });
 
-const mkTeen = (
+const createModuleWithTeenDefaults = (
   title: string,
   type: Module["type"] = "Lesson",
   minutes = 15,
@@ -59,11 +59,11 @@ export const TRACKS: Track[] = [
       "Builds core engineering habits early: readability, debugging discipline, and confidence navigating unfamiliar codebases.",
     icon: "book",
     modules: [
-      mk("Writing Clean Code"),
-      mk("Language Mastery (pick your primary language)"),
-      mk("Debugging Like a Detective"),
-      mk("Reading Other People's Code"),
-      mk("Code Review Etiquette"),
+      createModule("Writing Clean Code"),
+      createModule("Language Mastery (pick your primary language)"),
+      createModule("Debugging Like a Detective"),
+      createModule("Reading Other People's Code"),
+      createModule("Code Review Etiquette"),
     ],
   },
   {
@@ -77,13 +77,13 @@ export const TRACKS: Track[] = [
       "Builds practical problem-solving fluency through patterns that transfer to coursework, interviews, and day-to-day engineering work.",
     icon: "tree",
     modules: [
-      mk("Big-O Thinking"),
-      mk("Arrays, Strings & Hash Maps"),
-      mk("Linked Lists, Stacks & Queues"),
-      mk("Trees & Graphs"),
-      mk("Sorting & Searching"),
-      mk("Dynamic Programming Basics"),
-      mk("Interview Problem Patterns", "Challenge", 45),
+      createModule("Big-O Thinking"),
+      createModule("Arrays, Strings & Hash Maps"),
+      createModule("Linked Lists, Stacks & Queues"),
+      createModule("Trees & Graphs"),
+      createModule("Sorting & Searching"),
+      createModule("Dynamic Programming Basics"),
+      createModule("Interview Problem Patterns", "Challenge", 45),
     ],
   },
   {
@@ -97,11 +97,11 @@ export const TRACKS: Track[] = [
       "Teaches the collaboration mechanics real teams rely on: clean commits, branching, pull requests, and conflict resolution.",
     icon: "branch",
     modules: [
-      mk("Git Fundamentals"),
-      mk("Branching & Merging"),
-      mk("Pull Requests Done Right"),
-      mk("Resolving Conflicts"),
-      mk("Working on a Team Codebase"),
+      createModule("Git Fundamentals"),
+      createModule("Branching & Merging"),
+      createModule("Pull Requests Done Right"),
+      createModule("Resolving Conflicts"),
+      createModule("Working on a Team Codebase"),
     ],
   },
   {
@@ -115,13 +115,13 @@ export const TRACKS: Track[] = [
       "Covers end-to-end product building from browser to database to deployment, with a portfolio-ready shipping focus.",
     icon: "hammer",
     modules: [
-      mk("How the Web Works"),
-      mk("Frontend Fundamentals"),
-      mk("Backend & APIs"),
-      mk("Databases & SQL"),
-      mk("Authentication Basics"),
-      mk("Deploying Your First App"),
-      mk("Building Your Portfolio Project", "Challenge", 90),
+      createModule("How the Web Works"),
+      createModule("Frontend Fundamentals"),
+      createModule("Backend & APIs"),
+      createModule("Databases & SQL"),
+      createModule("Authentication Basics"),
+      createModule("Deploying Your First App"),
+      createModule("Building Your Portfolio Project", "Challenge", 90),
     ],
   },
   {
@@ -135,11 +135,11 @@ export const TRACKS: Track[] = [
       "Builds confidence and quality habits through unit, integration, and end-to-end testing strategies used in production teams.",
     icon: "shield",
     modules: [
-      mk("Why Tests Matter"),
-      mk("Unit Testing"),
-      mk("Integration & End-to-End Testing"),
-      mk("Test-Driven Development Intro"),
-      mk("Handling Bugs in Production"),
+      createModule("Why Tests Matter"),
+      createModule("Unit Testing"),
+      createModule("Integration & End-to-End Testing"),
+      createModule("Test-Driven Development Intro"),
+      createModule("Handling Bugs in Production"),
     ],
   },
   {
@@ -153,12 +153,12 @@ export const TRACKS: Track[] = [
       "Introduces the operational side of engineering: automation, deployment pipelines, containers, and reliability fundamentals.",
     icon: "gear",
     modules: [
-      mk("The Command Line"),
-      mk("CI/CD Pipelines"),
-      mk("Docker & Containers Intro"),
-      mk("Cloud Fundamentals"),
-      mk("Monitoring & Logging Basics"),
-      mk("System Design First Principles"),
+      createModule("The Command Line"),
+      createModule("CI/CD Pipelines"),
+      createModule("Docker & Containers Intro"),
+      createModule("Cloud Fundamentals"),
+      createModule("Monitoring & Logging Basics"),
+      createModule("System Design First Principles"),
     ],
   },
   {
@@ -172,11 +172,11 @@ export const TRACKS: Track[] = [
       "Teaches practical AI-assisted engineering workflows with emphasis on verification, judgment, and responsible adoption.",
     icon: "spark",
     modules: [
-      mk("Coding with AI Assistants Effectively"),
-      mk("Prompting for Developers"),
-      mk("Evaluating AI Output Critically"),
-      mk("Understanding LLM Basics"),
-      mk("Where AI Fits in the SDLC"),
+      createModule("Coding with AI Assistants Effectively"),
+      createModule("Prompting for Developers"),
+      createModule("Evaluating AI Output Critically"),
+      createModule("Understanding LLM Basics"),
+      createModule("Where AI Fits in the SDLC"),
     ],
   },
   {
@@ -190,13 +190,13 @@ export const TRACKS: Track[] = [
       "Bridges technical growth to career outcomes with practical preparation for hiring processes and early-career success.",
     icon: "rocket",
     modules: [
-      mk("Résumés That Get Interviews"),
-      mk("Building a Portfolio & GitHub Profile"),
-      mk("Networking Without Being Weird"),
-      mk("Technical Interview Prep Strategy"),
-      mk("Behavioral Interviews & STAR Stories"),
-      mk("Negotiating Your First Offer"),
-      mk("Your First 90 Days on the Job"),
+      createModule("Résumés That Get Interviews"),
+      createModule("Building a Portfolio & GitHub Profile"),
+      createModule("Networking Without Being Weird"),
+      createModule("Technical Interview Prep Strategy"),
+      createModule("Behavioral Interviews & STAR Stories"),
+      createModule("Negotiating Your First Offer"),
+      createModule("Your First 90 Days on the Job"),
     ],
   },
   {
@@ -210,11 +210,11 @@ export const TRACKS: Track[] = [
       "Teens learn what coding work actually looks like day to day and why mistakes are normal. They finish with three tiny programs they can run, break, and fix on purpose.",
     icon: "book",
     modules: [
-      mkTeen("What Coders Actually Do All Day"),
-      mkTeen("You Don't Need to Be a Math Person"),
-      mkTeen("Your First Program"),
-      mkTeen("Mistakes Are Part of the Job"),
-      mkTeen("Finding Your Kind of Coding"),
+      createModuleWithTeenDefaults("What Coders Actually Do All Day"),
+      createModuleWithTeenDefaults("You Don't Need to Be a Math Person"),
+      createModuleWithTeenDefaults("Your First Program"),
+      createModuleWithTeenDefaults("Mistakes Are Part of the Job"),
+      createModuleWithTeenDefaults("Finding Your Kind of Coding"),
     ],
   },
   {
@@ -228,11 +228,11 @@ export const TRACKS: Track[] = [
       "Teens practice naming, problem breakdown, testing, and calm debugging habits. They improve an existing program by adding a real new feature.",
     icon: "tree",
     modules: [
-      mkTeen("Naming Things Well"),
-      mkTeen("Breaking Big Problems Into Small Ones"),
-      mkTeen("Reading Error Messages Without Panicking"),
-      mkTeen("Testing Your Own Work"),
-      mkTeen("Sharing Code Kindly"),
+      createModuleWithTeenDefaults("Naming Things Well"),
+      createModuleWithTeenDefaults("Breaking Big Problems Into Small Ones"),
+      createModuleWithTeenDefaults("Reading Error Messages Without Panicking"),
+      createModuleWithTeenDefaults("Testing Your Own Work"),
+      createModuleWithTeenDefaults("Sharing Code Kindly"),
     ],
   },
   {
@@ -246,11 +246,11 @@ export const TRACKS: Track[] = [
       "Teens build a complete personal web page and customize it around their own interests. They learn the web stack in simple steps and end with something concrete to show.",
     icon: "hammer",
     modules: [
-      mkTeen("How Websites Actually Work"),
-      mkTeen("HTML: The Skeleton"),
-      mkTeen("CSS: Making It Yours"),
-      mkTeen("A Little Bit of Interactivity"),
-      mkTeen("Show It Off"),
+      createModuleWithTeenDefaults("How Websites Actually Work"),
+      createModuleWithTeenDefaults("HTML: The Skeleton"),
+      createModuleWithTeenDefaults("CSS: Making It Yours"),
+      createModuleWithTeenDefaults("A Little Bit of Interactivity"),
+      createModuleWithTeenDefaults("Show It Off"),
     ],
   },
   {
@@ -264,11 +264,11 @@ export const TRACKS: Track[] = [
       "Teens learn to save, branch, and merge code changes the same way real teams do. They complete a shared mini-project with another person and combine both sets of edits.",
     icon: "branch",
     modules: [
-      mkTeen("Why Save Points Matter"),
-      mkTeen("Making a Change and Saving It"),
-      mkTeen("Working on the Same Project as a Friend"),
-      mkTeen("When Two People Change the Same Thing"),
-      mkTeen("Showing Your Work"),
+      createModuleWithTeenDefaults("Why Save Points Matter"),
+      createModuleWithTeenDefaults("Making a Change and Saving It"),
+      createModuleWithTeenDefaults("Working on the Same Project as a Friend"),
+      createModuleWithTeenDefaults("When Two People Change the Same Thing"),
+      createModuleWithTeenDefaults("Showing Your Work"),
     ],
   },
   {
@@ -282,11 +282,11 @@ export const TRACKS: Track[] = [
       "Teens learn to treat AI as a helper, not a shortcut, and to verify every output. They build one AI-assisted feature and explain the final code in their own words.",
     icon: "spark",
     modules: [
-      mkTeen("What AI Coding Tools Actually Do"),
-      mkTeen("Using AI Without Losing the Learning"),
-      mkTeen("AI Gets Things Wrong Sometimes"),
-      mkTeen("Asking Better Questions"),
-      mkTeen("Using AI to Learn a New Topic Fast"),
+      createModuleWithTeenDefaults("What AI Coding Tools Actually Do"),
+      createModuleWithTeenDefaults("Using AI Without Losing the Learning"),
+      createModuleWithTeenDefaults("AI Gets Things Wrong Sometimes"),
+      createModuleWithTeenDefaults("Asking Better Questions"),
+      createModuleWithTeenDefaults("Using AI to Learn a New Topic Fast"),
     ],
   },
 ];
