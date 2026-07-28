@@ -61,7 +61,7 @@ function LessonPage() {
 
   const toggleComplete = () => {
     const wasComplete = done;
-    setStatus(track.id, mod.id, done ? "not-started" : "complete");
+    setStatus(track.id, mod.id, done ? "not_started" : "complete");
     if (!done) celebrateIfTrackComplete(track.id, wasComplete);
   };
 
@@ -150,7 +150,7 @@ function LessonPage() {
         <nav className="mt-12 flex items-center justify-between gap-4 border-t border-[color:var(--forest)]/10 pt-6">
           {prev ? (
             <Link
-              to="/track/$trackId/lesson/$moduleId"
+              to="/track/$trackId/$moduleId"
               params={{ trackId: track.id, moduleId: prev.id }}
               className="group min-w-0"
             >
@@ -160,7 +160,7 @@ function LessonPage() {
           ) : <div />}
           {next ? (
             <Link
-              to="/track/$trackId/lesson/$moduleId"
+              to="/track/$trackId/$moduleId"
               params={{ trackId: track.id, moduleId: next.id }}
               className="group min-w-0 text-right"
             >

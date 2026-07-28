@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ProgressRing, ProgressBar } from "@/components/ProgressRing";
 import { TrackIcon, DoodleArrow } from "@/components/Doodles";
-import { TRACKS, getTrack, getModule } from "@/lib/tracks";
+import { TRACKS, getModule } from "@/lib/tracks";
 import { useProgress, useHydrated, overallCompletion, trackCompletion } from "@/lib/progress";
 
 export const Route = createFileRoute("/dashboard")({
@@ -22,8 +22,11 @@ function Dashboard() {
   const hydrated = useHydrated();
   const { state } = useProgress();
   const overall = overallCompletion(state);
-  const last = state.lastOpened;
-  const lastInfo = last ? getModule(last.trackId, last.moduleId) : null;
+  const lastInfo = state.lastOpenedModuleId
+    ? TRACKS.flatMap((track) =>
+        track.modules.map((module) => getModule(track.id, module.id)).filter(Boolean),
+      ).find((info) => info?.module.id === state.lastOpenedModuleId) ?? null
+    : null;
 
   return (
     <div className="min-h-screen bg-[color:var(--paper)]">
@@ -50,7 +53,7 @@ function Dashboard() {
 
         {hydrated && lastInfo ? (
           <Link
-            to="/track/$trackId/lesson/$moduleId"
+            to="/track/$trackId/$moduleId"
             params={{ trackId: lastInfo.track.id, moduleId: lastInfo.module.id }}
             className="card-paper mt-6 p-5 flex items-center gap-4 group"
           >

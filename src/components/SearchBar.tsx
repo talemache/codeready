@@ -73,7 +73,7 @@ export function SearchBar() {
     setOpen(false);
     setQ("");
     navigate({
-      to: "/track/$trackId/lesson/$moduleId",
+      to: "/track/$trackId/$moduleId",
       params: { trackId: h.trackId, moduleId: h.moduleId },
     });
   };

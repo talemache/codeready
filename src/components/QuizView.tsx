@@ -3,25 +3,23 @@ import type { Quiz } from "@/lib/content-types";
 import { useProgress } from "@/lib/progress";
 import { celebrateIfTrackComplete } from "@/lib/celebrate";
 
-const PASS = 4;
-
 export function QuizView({ quiz, trackId }: { quiz: Quiz; trackId: string }) {
   const { state, saveQuizResult } = useProgress();
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [submitted, setSubmitted] = useState(false);
 
-  const prior = state.quizzes?.[trackId];
+  const prior = state.quizScores?.[trackId];
   const total = quiz.questions.length;
   const score = quiz.questions.reduce(
-    (n, q, i) => n + (answers[i] === q.answer ? 1 : 0),
+    (n, q, i) => n + (answers[i] === q.correctIndex ? 1 : 0),
     0,
   );
   const allAnswered = Object.keys(answers).length === total;
 
   const submit = () => {
     setSubmitted(true);
-    const passed = score >= PASS;
-    const wasComplete = state.modules[`${trackId}/track-quiz`] === "complete";
+    const passed = score >= quiz.passThreshold;
+    const wasComplete = state.moduleStatus[`${trackId}/track-quiz`] === "complete";
     saveQuizResult(trackId, { score, total, passed, at: Date.now() });
     if (passed) celebrateIfTrackComplete(trackId, wasComplete);
   };
@@ -46,12 +44,12 @@ export function QuizView({ quiz, trackId }: { quiz: Quiz; trackId: string }) {
           return (
             <li key={qi} className="card-paper p-5 sm:p-6">
               <div className="font-serif text-xl leading-snug">
-                {qi + 1}. {q.q}
+                {qi + 1}. {q.prompt}
               </div>
               <div className="mt-4 space-y-2">
-                {q.options.map((opt, oi) => {
+                {q.choices.map((opt, oi) => {
                   const selected = chosen === oi;
-                  const isCorrect = oi === q.answer;
+                  const isCorrect = oi === q.correctIndex;
                   let cls =
                     "border-[color:var(--forest)]/20 hover:border-[color:var(--forest)]/60";
                   if (submitted && isCorrect)
@@ -78,7 +76,7 @@ export function QuizView({ quiz, trackId }: { quiz: Quiz; trackId: string }) {
               </div>
               {submitted ? (
                 <p className="mt-3 text-sm text-[color:var(--forest)]/75">
-                  <strong>{chosen === q.answer ? "Correct." : "Not quite."}</strong>{" "}
+                  <strong>{chosen === q.correctIndex ? "Correct." : "Not quite."}</strong>{" "}
                   {q.explanation}
                 </p>
               ) : null}
@@ -91,9 +89,9 @@ export function QuizView({ quiz, trackId }: { quiz: Quiz; trackId: string }) {
         {submitted ? (
           <>
             <div className="font-serif text-2xl">
-              {score}/{total} — {score >= PASS ? "Passed!" : `Need ${PASS} to pass`}
+              {score}/{total} — {score >= quiz.passThreshold ? "Passed!" : `Need ${quiz.passThreshold} to pass`}
             </div>
-            {score >= PASS ? null : (
+            {score >= quiz.passThreshold ? null : (
               <button onClick={retry} className="btn-primary">
                 Try again
               </button>

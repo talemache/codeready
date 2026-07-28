@@ -62,7 +62,7 @@ function TrackIndexPage() {
           <ol className="mt-4 space-y-3">
             {track.modules.map((m: any, i: number) => {
               const key = `${track.id}/${m.id}`;
-              const status = hydrated ? state.modules[key] ?? "not-started" : "not-started";
+              const status = hydrated ? state.moduleStatus[key] ?? "not_started" : "not_started";
               const done = status === "complete";
               return (
                 <li key={m.id} className="card-paper p-4 sm:p-5 flex items-center gap-4">
@@ -70,7 +70,7 @@ function TrackIndexPage() {
                     aria-label={done ? "Mark incomplete" : "Mark complete"}
                     onClick={(e) => {
                       e.preventDefault();
-                      setStatus(track.id, m.id, done ? "not-started" : "complete");
+                      setStatus(track.id, m.id, done ? "not_started" : "complete");
                     }}
                     className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border-2 transition ${
                       done
@@ -83,7 +83,7 @@ function TrackIndexPage() {
                     </svg>
                   </button>
                   <Link
-                    to="/track/$trackId/lesson/$moduleId"
+                    to="/track/$trackId/$moduleId"
                     params={{ trackId: track.id, moduleId: m.id }}
                     className="flex-1 min-w-0 flex items-center gap-3"
                   >
@@ -97,7 +97,7 @@ function TrackIndexPage() {
                       <div className="mt-1 flex items-center gap-2 text-xs text-[color:var(--forest)]/60">
                         <span className={`rounded-full px-2 py-0.5 ${tagStyle[m.type]}`}>{m.type}</span>
                         <span>· {m.minutes} min</span>
-                        {status === "in-progress" ? <span className="tag">In progress</span> : null}
+                        {status === "in_progress" ? <span className="tag">In progress</span> : null}
                       </div>
                     </div>
                     <span aria-hidden className="text-xl text-[color:var(--forest)]/50">→</span>

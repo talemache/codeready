@@ -1,14 +1,17 @@
 import { DoodleStar, DoodleSquiggle } from "@/components/Doodles";
 import { RichText } from "@/components/RichText";
-import type { LessonContent } from "@/lib/content-types";
+import type { Lesson } from "@/lib/content-types";
+import { RESOURCE_REGISTRY } from "@/content/resources";
 
-export function LessonBody({ lesson }: { lesson: LessonContent }) {
+export function LessonBody({ lesson }: { lesson: Lesson }) {
+  const bodyBlocks = lesson.body.split(/\n\n+/).filter(Boolean);
+
   return (
     <article className="prose-lesson mt-8">
       <div className="card-paper p-6 sm:p-10 relative overflow-hidden">
         <DoodleSquiggle className="absolute -top-3 -right-3 w-24 text-[color:var(--periwinkle)]" />
         <div className="space-y-5 max-w-[68ch]">
-          {lesson.body.map((block, i) =>
+          {bodyBlocks.map((block, i) =>
             block.startsWith("## ") ? (
               <h2
                 key={i}
@@ -33,7 +36,7 @@ export function LessonBody({ lesson }: { lesson: LessonContent }) {
           Key Takeaways
         </div>
         <ul className="mt-3 space-y-2">
-          {lesson.takeaways.map((t, i) => (
+          {lesson.keyTakeaways.map((t, i) => (
             <li key={i} className="flex gap-3 text-[color:var(--forest)]/85">
               <span aria-hidden className="text-[color:var(--coral)]">◆</span>
               <span><RichText text={t} /></span>
@@ -48,19 +51,23 @@ export function LessonBody({ lesson }: { lesson: LessonContent }) {
           Curated Free Resources
         </div>
         <ul className="mt-4 space-y-4">
-          {lesson.resources.map((r) => (
-            <li key={r.url}>
+          {lesson.resources.map((resourceRef) => {
+            const resource = RESOURCE_REGISTRY[resourceRef.resourceId];
+            if (!resource) return null;
+            return (
+            <li key={resource.id}>
               <a
-                href={r.url}
+                href={resource.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-serif text-xl text-[color:var(--paper)] underline decoration-[color:var(--coral)] decoration-2 underline-offset-4 hover:italic"
               >
-                {r.title}
+                {resource.label}
               </a>
-              <div className="text-sm text-[color:var(--paper)]/75 mt-1">{r.note}</div>
+              <div className="text-sm text-[color:var(--paper)]/75 mt-1">{resourceRef.note ?? "Free official resource."}</div>
             </li>
-          ))}
+          );
+          })}
         </ul>
       </div>
 
@@ -68,7 +75,7 @@ export function LessonBody({ lesson }: { lesson: LessonContent }) {
         <div className="text-xs uppercase tracking-widest text-[color:var(--forest)]/60">
           Try This Today
         </div>
-        <p className="mt-2 font-serif text-xl text-[color:var(--forest)]"><RichText text={lesson.tryThis} /></p>
+        <p className="mt-2 font-serif text-xl text-[color:var(--forest)]"><RichText text={lesson.tryThisToday} /></p>
       </div>
     </article>
   );

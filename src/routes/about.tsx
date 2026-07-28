@@ -3,8 +3,8 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { DoodleUnderline, DoodleStar } from "@/components/Doodles";
 
-const PORTFOLIO_URL = "https://example.com"; // PLACEHOLDER — portfolio URL
-const CONTACT_EMAIL = "hello@example.com"; // PLACEHOLDER — email
+const PORTFOLIO_URL = "https://example.com"; // TODO: Replace with Ryan's real portfolio URL.
+const CONTACT_EMAIL = "hello@example.com"; // TODO: Replace with Ryan's real suggestion email.
 
 export const Route = createFileRoute("/about")({
   head: () => ({

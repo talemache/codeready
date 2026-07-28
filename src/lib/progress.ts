@@ -1,27 +1,39 @@
 import { useEffect, useState, useCallback, useSyncExternalStore } from "react";
 import { TRACKS, TOTAL_MODULES } from "./tracks";
 
-export type Status = "not-started" | "in-progress" | "complete";
+export type Status = "not_started" | "in_progress" | "complete";
 
 export type QuizResult = { score: number; total: number; passed: boolean; at: number };
 
 type ProgressState = {
-  modules: Record<string, Status>; // key: `${trackId}/${moduleId}`
-  quizzes: Record<string, QuizResult>; // key: trackId
-  checklists: Record<string, number[]>; // key: `${trackId}/${moduleId}` -> checked step indexes
-  lastOpened?: { trackId: string; moduleId: string; at: number };
+  moduleStatus: Record<string, Status>; // key: `${trackId}/${moduleId}`
+  quizScores: Record<string, QuizResult>; // key: trackId
+  challengeChecklist: Record<string, number[]>; // key: `${trackId}/${moduleId}` -> checked step indexes
+  lastOpenedModuleId?: string;
 };
 
-const KEY = "codeready.progress.v1";
+const KEY = "codeready-progress-v1";
+const LEGACY_KEY = "codeready.progress.v1";
 
-const emptyState: ProgressState = { modules: {}, quizzes: {}, checklists: {} };
+const emptyState: ProgressState = {
+  moduleStatus: {},
+  quizScores: {},
+  challengeChecklist: {},
+};
 
 function read(): ProgressState {
   if (typeof window === "undefined") return emptyState;
   try {
-    const raw = window.localStorage.getItem(KEY);
+    const raw = window.localStorage.getItem(KEY) ?? window.localStorage.getItem(LEGACY_KEY);
     if (!raw) return emptyState;
-    return { ...emptyState, ...JSON.parse(raw) };
+    const parsed = JSON.parse(raw);
+    return {
+      ...emptyState,
+      moduleStatus: parsed.moduleStatus ?? parsed.modules ?? {},
+      quizScores: parsed.quizScores ?? parsed.quizzes ?? {},
+      challengeChecklist: parsed.challengeChecklist ?? parsed.checklists ?? {},
+      lastOpenedModuleId: parsed.lastOpenedModuleId ?? parsed.lastOpened?.moduleId,
+    };
   } catch {
     return emptyState;
   }
@@ -71,8 +83,8 @@ export function useProgress() {
     (trackId: string, moduleId: string, status: Status) => {
       const key = `${trackId}/${moduleId}`;
       const current = getSnapshot();
-      const modules = { ...current.modules, [key]: status };
-      write({ ...current, modules });
+      const moduleStatus = { ...current.moduleStatus, [key]: status };
+      write({ ...current, moduleStatus });
     },
     [],
   );
@@ -80,22 +92,22 @@ export function useProgress() {
   const markOpened = useCallback((trackId: string, moduleId: string) => {
     const key = `${trackId}/${moduleId}`;
     const current = getSnapshot();
-    const modules = { ...current.modules };
-    if (modules[key] !== "complete") modules[key] = "in-progress";
+    const moduleStatus = { ...current.moduleStatus };
+    if (moduleStatus[key] !== "complete") moduleStatus[key] = "in_progress";
     write({
       ...current,
-      modules,
-      lastOpened: { trackId, moduleId, at: Date.now() },
+      moduleStatus,
+      lastOpenedModuleId: moduleId,
     });
   }, []);
 
   const saveQuizResult = useCallback(
     (trackId: string, result: QuizResult) => {
       const current = getSnapshot();
-      const quizzes = { ...current.quizzes, [trackId]: result };
-      const modules = { ...current.modules };
-      if (result.passed) modules[`${trackId}/track-quiz`] = "complete";
-      write({ ...current, quizzes, modules });
+      const quizScores = { ...current.quizScores, [trackId]: result };
+      const moduleStatus = { ...current.moduleStatus };
+      if (result.passed) moduleStatus[`${trackId}/track-quiz`] = "complete";
+      write({ ...current, quizScores, moduleStatus });
     },
     [],
   );
@@ -104,21 +116,21 @@ export function useProgress() {
     (trackId: string, moduleId: string, step: number, totalSteps: number) => {
       const key = `${trackId}/${moduleId}`;
       const current = getSnapshot();
-      const prev = current.checklists[key] ?? [];
+      const prev = current.challengeChecklist[key] ?? [];
       const next = prev.includes(step)
         ? prev.filter((s) => s !== step)
         : [...prev, step].sort((a, b) => a - b);
-      const checklists = { ...current.checklists, [key]: next };
-      const modules = { ...current.modules };
-      modules[key] = next.length >= totalSteps ? "complete" : "in-progress";
-      write({ ...current, checklists, modules });
+      const challengeChecklist = { ...current.challengeChecklist, [key]: next };
+      const moduleStatus = { ...current.moduleStatus };
+      moduleStatus[key] = next.length >= totalSteps ? "complete" : "in_progress";
+      write({ ...current, challengeChecklist, moduleStatus });
     },
     [],
   );
 
   const getStatus = useCallback(
     (trackId: string, moduleId: string): Status =>
-      state.modules[`${trackId}/${moduleId}`] ?? "not-started",
+      state.moduleStatus[`${trackId}/${moduleId}`] ?? "not_started",
     [state],
   );
 
@@ -129,7 +141,7 @@ export function isTrackComplete(trackId: string) {
   const s = getSnapshot();
   const t = TRACKS.find((x) => x.id === trackId);
   if (!t) return false;
-  return t.modules.every((m) => s.modules[`${trackId}/${m.id}`] === "complete");
+  return t.modules.every((m) => s.moduleStatus[`${trackId}/${m.id}`] === "complete");
 }
 
 // Ensures client-only render after hydration (avoids SSR mismatch for progress UI)
@@ -143,7 +155,7 @@ export function trackCompletion(state: ProgressState, trackId: string) {
   const t = TRACKS.find((x) => x.id === trackId);
   if (!t) return { done: 0, total: 0, pct: 0 };
   const done = t.modules.filter(
-    (m) => state.modules[`${trackId}/${m.id}`] === "complete",
+    (m) => state.moduleStatus[`${trackId}/${m.id}`] === "complete",
   ).length;
   return {
     done,
@@ -153,7 +165,7 @@ export function trackCompletion(state: ProgressState, trackId: string) {
 }
 
 export function overallCompletion(state: ProgressState) {
-  const done = Object.values(state.modules).filter(
+  const done = Object.values(state.moduleStatus).filter(
     (s) => s === "complete",
   ).length;
   return {

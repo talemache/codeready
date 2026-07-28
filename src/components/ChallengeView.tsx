@@ -12,11 +12,11 @@ export function ChallengeView({
 }) {
   const { state, toggleChecklistStep } = useProgress();
   const key = `${trackId}/track-challenge`;
-  const checked = state.checklists?.[key] ?? [];
-  const total = challenge.steps.length;
+  const checked = state.challengeChecklist?.[key] ?? [];
+  const total = challenge.checklist.length;
 
   const onToggle = (i: number) => {
-    const wasComplete = state.modules[key] === "complete";
+    const wasComplete = state.moduleStatus[key] === "complete";
     toggleChecklistStep(trackId, "track-challenge", i, total);
     const willBeComplete = !checked.includes(i) && checked.length + 1 >= total;
     if (willBeComplete) celebrateIfTrackComplete(trackId, wasComplete);
@@ -41,7 +41,7 @@ export function ChallengeView({
           </span>
         </div>
         <ul className="mt-4 space-y-2">
-          {challenge.steps.map((s, i) => {
+          {challenge.checklist.map((s, i) => {
             const on = checked.includes(i);
             return (
               <li key={i}>

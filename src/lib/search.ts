@@ -18,7 +18,7 @@ function buildIndex(): SearchDoc[] {
     for (const m of t.modules) {
       const lesson = CONTENT[t.id]?.lessons[m.id];
       const text = lesson
-        ? [...lesson.body, ...lesson.takeaways, lesson.tryThis].join(" ").replace(/## /g, "")
+        ? [lesson.body, ...lesson.keyTakeaways, lesson.tryThisToday].join(" ").replace(/## /g, "")
         : "";
       docs.push({
         trackId: t.id,

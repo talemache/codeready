@@ -42,11 +42,12 @@
   /* CodeReady palette */
   --paper: #faf6ef;
   --paper-deep: #f2ebdd;
+  --cream-text: #f7f3e9;
   --forest: #1e3a2c;
-  --forest-soft: #2b5540;
-  --coral: #e8a595;
-  --periwinkle: #b7bde0;
-  --ink: #1a1a1a;
+  --forest-deep: #142a20;
+  --coral: #e8836b;
+  --periwinkle: #c7cdea;
+  --ink: #1c1b18;
 
   --background: var(--paper);
   --foreground: var(--forest);
@@ -104,11 +105,11 @@
   gap: 0.5rem;
   border-radius: 9999px;
   background: var(--forest);
-  color: var(--paper);
+  color: var(--cream-text);
   padding: 0.75rem 1.5rem;
   font-weight: 500;
   transition: transform 0.15s ease, background 0.15s ease;
-  &:hover { background: var(--forest-soft); transform: translateY(-1px); }
+  &:hover { background: var(--forest-deep); transform: translateY(-2px); box-shadow: 0 2px 12px rgba(28, 27, 24, 0.08); }
 }
 
 @utility btn-outline {
@@ -127,7 +128,7 @@
 
 @utility panel {
   background: var(--forest);
-  color: var(--paper);
+  color: var(--cream-text);
   border-radius: 1.5rem;
 }
 
@@ -136,7 +137,8 @@
   border: 1px solid color-mix(in oklab, var(--forest) 12%, transparent);
   border-radius: 1.25rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  &:hover { transform: translateY(-2px); box-shadow: 0 12px 32px -18px color-mix(in oklab, var(--forest) 45%, transparent); }
+  box-shadow: 0 2px 12px rgba(28, 27, 24, 0.08);
+  &:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(28, 27, 24, 0.12); }
 }
 
 @utility tag {
