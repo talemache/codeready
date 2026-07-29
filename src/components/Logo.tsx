@@ -7,8 +7,7 @@ export function Logo({ size = 32, className }: Props) {
       height={size}
       viewBox="0 0 44 44"
       className={className}
-      role="img"
-      aria-label="Northal"
+      aria-hidden="true"
     >
       <circle
         cx="22"
