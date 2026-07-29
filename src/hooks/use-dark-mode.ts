@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "codeready-theme";
+const STORAGE_KEY = "northal-theme";
 type Theme = "dark" | "light";
 
 function isValidTheme(value: string | null): value is Theme {

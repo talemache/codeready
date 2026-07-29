@@ -42,7 +42,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-3 sm:py-4">
         <Link to="/" className="flex items-center gap-2 group shrink-0">
           <span className="grid h-8 w-8 place-items-center rounded-full bg-[color:var(--forest)] text-[color:var(--paper)] font-serif text-lg leading-none">C</span>
-          <span className="font-serif text-xl text-[color:var(--forest)] group-hover:italic">CodeReady</span>
+          <span className="font-serif text-xl text-[color:var(--forest)] group-hover:italic">Northal</span>
         </Link>
         <div className="flex items-center gap-1 sm:gap-2">
           <SearchBar />

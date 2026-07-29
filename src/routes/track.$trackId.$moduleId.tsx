@@ -14,27 +14,27 @@ import { celebrateIfTrackComplete } from "@/lib/celebrate";
 export const Route = createFileRoute("/track/$trackId/$moduleId")({
   head: ({ params }) => {
     const info = getModule(params.trackId, params.moduleId);
-    const title = info ? `${info.module.title} — CodeReady` : "Lesson — CodeReady";
-    const desc = info ? `${info.module.title} · ${info.track.name}` : "A CodeReady lesson.";
+    const title = info ? `${info.module.title} — Northal` : "Lesson — Northal";
+    const desc = info ? `${info.module.title} · ${info.track.name}` : "A Northal lesson.";
     const jsonLd = info
       ? {
           "@context": "https://schema.org",
           "@type": "LearningResource",
           name: info.module.title,
           description: desc,
-          url: `https://codeready.app/track/${info.track.id}/${info.module.id}`,
+          url: `https://northal.app/track/${info.track.id}/${info.module.id}`,
           timeRequired: `PT${info.module.minutes}M`,
           educationalLevel: "beginner",
           isAccessibleForFree: true,
           isPartOf: {
             "@type": "Course",
             name: info.track.name,
-            url: `https://codeready.app/track/${info.track.id}`,
+            url: `https://northal.app/track/${info.track.id}`,
           },
           provider: {
             "@type": "Organization",
-            name: "CodeReady",
-            url: "https://codeready.app",
+            name: "Northal",
+            url: "https://northal.app",
           },
         }
       : null;

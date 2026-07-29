@@ -10,17 +10,17 @@ const CONTACT_EMAIL = "rlevels@outlook.com";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About CodeReady — Free forever, built for project builders" },
+      { title: "About Northal — Free forever, built for project builders" },
       {
         name: "description",
         content:
-          "CodeReady is a free learning path built by Ryan Levels so curious learners can grow by building real projects, without paywalls.",
+          "Northal is a free learning path built by Ryan Levels so curious learners can grow by building real projects, without paywalls.",
       },
-      { property: "og:title", content: "About CodeReady — Free forever" },
+      { property: "og:title", content: "About Northal — Free forever" },
       {
         property: "og:description",
         content:
-          "Why CodeReady exists, who built it, and how to suggest an improvement.",
+          "Why Northal exists, who built it, and how to suggest an improvement.",
       },
     ],
   }),
@@ -33,14 +33,14 @@ function AboutPage() {
       <SiteHeader />
       <main id="main-content" className="mx-auto w-full max-w-3xl flex-1 px-5 py-10 sm:py-14" tabIndex={-1}>
         <div className="relative inline-block">
-          <h1 className="font-serif text-4xl sm:text-5xl leading-tight">About CodeReady</h1>
+          <h1 className="font-serif text-4xl sm:text-5xl leading-tight">About Northal</h1>
           <DoodleUnderline className="absolute -bottom-3 left-0 w-full text-[color:var(--coral)]" />
         </div>
 
         <div className="card-paper mt-10 p-6 sm:p-10 relative overflow-hidden">
           <DoodleStar className="absolute -top-2 -right-2 w-14 text-[color:var(--periwinkle)]" />
           <p className="font-serif text-2xl leading-snug text-[color:var(--forest)] max-w-[60ch]">
-            CodeReady is free forever.
+            Northal is free forever.
           </p>
           <p className="mt-4 text-[color:var(--forest)]/80 leading-relaxed max-w-[68ch]">
             Built by Ryan Levels — Navy veteran, software engineer turned data &
@@ -60,7 +60,7 @@ function AboutPage() {
               Visit Ryan's portfolio
             </a>
           )}
-          <a href={`mailto:${CONTACT_EMAIL}?subject=CodeReady improvement`} className="btn-outline">
+          <a href={`mailto:${CONTACT_EMAIL}?subject=Northal improvement`} className="btn-outline">
             Suggest an improvement
           </a>
         </div>
