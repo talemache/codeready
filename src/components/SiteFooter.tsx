@@ -7,7 +7,7 @@ export function SiteFooter() {
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-8 text-sm text-[color:var(--forest)]/70">
         <p className="flex items-center gap-2">
           <Logo size={20} />
-          <span>Northal — free forever. Built for curious learners who want to make real projects.</span>
+          <span>Northal — free forever, no login required, built for learners becoming job-ready.</span>
         </p>
         <nav className="flex items-center gap-4">
           <Link to="/dashboard" className="hover:underline">Dashboard</Link>

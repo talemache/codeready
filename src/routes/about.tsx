@@ -10,17 +10,17 @@ const CONTACT_EMAIL = "rlevels@outlook.com";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Northal — Free forever, built for project builders" },
+    { title: "About Northal — Free forever, no login required" },
       {
         name: "description",
         content:
-          "Northal is a free learning path built by Ryan Levels so curious learners can grow by building real projects, without paywalls.",
+        "Northal is a free, no-login learning path with original software engineering lessons, quizzes, and challenges.",
       },
-      { property: "og:title", content: "About Northal — Free forever" },
+    { property: "og:title", content: "About Northal — Free forever, no login required" },
       {
         property: "og:description",
         content:
-          "Why Northal exists, who built it, and how to suggest an improvement.",
+        "Why Northal exists, what it covers today, and how to suggest an improvement.",
       },
     ],
   }),
@@ -40,12 +40,14 @@ function AboutPage() {
         <div className="card-paper mt-10 p-6 sm:p-10 relative overflow-hidden">
           <DoodleStar className="absolute -top-2 -right-2 w-14 text-[color:var(--periwinkle)]" />
           <p className="font-serif text-2xl leading-snug text-[color:var(--forest)] max-w-[60ch]">
-            Northal is free forever.
+            Northal is free forever — no accounts, no paywalls.
           </p>
           <p className="mt-4 text-[color:var(--forest)]/80 leading-relaxed max-w-[68ch]">
             Built by Ryan Levels — Navy veteran, software engineer turned data &
             evaluation leader, and mentor — so learners can turn curiosity into capability
-            with practical, project-based learning that stays free forever.
+            with practical, project-based learning that stays free forever. Today the focus is
+            software engineering fundamentals across college/adult and teen paths, with more
+            track families planned over time.
           </p>
         </div>
 
