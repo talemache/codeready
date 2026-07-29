@@ -9,10 +9,10 @@ import { TRACKS, type AudienceBand, getTracksByAudience } from "@/lib/tracks";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Northal — Everything they don't teach you in class" },
-      { name: "description", content: "A free, structured path to build coding confidence through real projects." },
-      { property: "og:title", content: "Northal — Everything they don't teach you in class" },
-      { property: "og:description", content: "A free, structured path to build coding confidence through real projects." },
+      { title: "Northal — Free, no-login learning paths" },
+      { name: "description", content: "A free, no-login learning path with original lessons, quizzes, challenges, and local-only progress tracking." },
+      { property: "og:title", content: "Northal — Free, no-login learning paths" },
+      { property: "og:description", content: "A free, no-login learning path with original lessons, quizzes, challenges, and local-only progress tracking." },
     ],
   }),
   component: Landing,
@@ -111,8 +111,8 @@ function Landing() {
               you in class.
             </h1>
             <p className="mt-8 text-lg sm:text-xl max-w-2xl text-[color:var(--forest)]/80 leading-relaxed">
-              A free, structured path to build coding confidence through real projects,
-              technical skills, and practical career growth.
+              A free, no-login learning path with original lessons, hands-on challenges,
+              and practical software engineering tracks that move learners toward job-ready skills.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">

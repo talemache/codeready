@@ -1,27 +1,41 @@
-# Welcome to your Lovable project
+# Northal
 
-This project was built with [Lovable](https://lovable.dev).
+A free, no-login learning path that takes people from "knows the basics" to genuinely job-ready — currently covering software engineering fundamentals, with more tracks planned. Free forever, no accounts required, no paywalls.
 
-## Build with Lovable
+**Live at [northal.org](https://northal.org)**
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+## What's here
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **13 learning tracks** across two audiences — a college/adult path (Programming Foundations, Data Structures & Algorithms, Version Control & Collaboration, Building Real Software, Testing & Quality, DevOps & Systems Basics, AI-Era Engineering, Career Launchpad) and a teen path for ages 13–18 (Is Coding For Me?, Programming Foundations, Build Something Real, Git & Working With Others, AI Tools for Students)
+- An audience picker on first visit that tailors the dashboard to whichever track set fits
+- Original written lessons (not just links) with curated free resources, key takeaways, and a "try this today" action per lesson
+- End-of-track quizzes and hands-on challenges
+- Full-text search across all lesson content
+- Progress tracking saved locally in the browser (no account needed) — with a "reset all progress" option
+- Light/dark mode toggle
+- Accessibility-first: Lighthouse CI gate enforces a minimum accessibility score of 95 on every pull request
 
-## Development
+## Built with
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+- TanStack Start (React + TypeScript, SSR)
+- Tailwind CSS with a custom warm cream / forest green design system
+- Deployed on Cloudflare Workers
+
+## Local development
 
 ```sh
 git clone <this-repository-url>
-cd <repository-name>
-npm i
+cd northal
+npm install
 npm run dev
 ```
 
-## QA Checks
+## Testing and QA
+
+```sh
+npm test
+npm run build
+```
 
 Run the full accessibility Lighthouse CI gate (mobile + desktop):
 
@@ -30,19 +44,23 @@ npm run browsers:install
 npm run qa:lighthouse
 ```
 
-This command builds the app, audits key pages (`/`, `/dashboard`, track page, lesson page, and `/about`), enforces accessibility >= 95, and prints a Lighthouse score summary table.
+This builds the app, audits key pages (`/`, `/dashboard`, a track page, a lesson page, and `/about`), and enforces accessibility ≥ 95, printing a score summary table. To run Lighthouse only (skip the build step): `npm run qa:lighthouse:run`.
 
-To run Lighthouse only (skip build step):
+A pull request workflow at `.github/workflows/qa-lighthouse.yml` runs this automatically and uploads `.lighthouseci` reports as artifacts.
+
+## Deployment
+
+Deploys automatically to Cloudflare Workers on push to `main`:
 
 ```sh
-npm run qa:lighthouse:run
+npm run build
+npx wrangler deploy --config .output/server/wrangler.json
 ```
 
-A pull request workflow is included at `.github/workflows/qa-lighthouse.yml` and uploads `.lighthouseci` reports as artifacts.
+## Project origins
 
-## Built with
+Built with [Lovable](https://lovable.dev) and iterated on with GitHub Copilot. Content and design decisions are human-reviewed before merging — see `.lovable/codeready-SPEC.md` for the original build spec and content voice guide.
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+## Roadmap
+
+A Data path is planned as a second track family, following the same structure and design system.

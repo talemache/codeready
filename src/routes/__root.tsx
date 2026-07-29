@@ -75,23 +75,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Northal — Build your first real projects" },
+      { title: "Northal — Free, no-login learning paths" },
       {
         name: "description",
         content:
-          "A free, structured path to build coding confidence through real projects.",
+          "A free, no-login learning path for software engineering fundamentals with original lessons, quizzes, challenges, and local-only progress tracking.",
       },
       { name: "author", content: "Northal" },
-      { property: "og:title", content: "Northal — Build your first real projects" },
+      { property: "og:title", content: "Northal — Free, no-login learning paths" },
       {
         property: "og:description",
         content:
-          "A free, structured path to build coding confidence through real projects.",
+          "A free, no-login learning path for software engineering fundamentals with original lessons, quizzes, challenges, and local-only progress tracking.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Northal — Build your first real projects" },
-      { name: "twitter:description", content: "A free, structured path to build coding confidence through real projects." },
+      { name: "twitter:title", content: "Northal — Free, no-login learning paths" },
+      { name: "twitter:description", content: "A free, no-login learning path for software engineering fundamentals with original lessons, quizzes, challenges, and local-only progress tracking." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6fe005d6-9afc-4438-8840-1687220be6e0" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6fe005d6-9afc-4438-8840-1687220be6e0" },
     ],
