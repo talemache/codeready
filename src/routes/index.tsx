@@ -3,16 +3,15 @@ import { useEffect, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { DoodleArrow, DoodleSquiggle, DoodleStar, DoodleUnderline, TrackIcon } from "@/components/Doodles";
+import { AUDIENCE_KEY } from "@/hooks/use-audience";
 import { TRACKS, type AudienceBand, getTracksByAudience } from "@/lib/tracks";
-
-const AUDIENCE_KEY = "codeready-audience";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CodeReady — Everything they don't teach you in class" },
+      { title: "Northal — Everything they don't teach you in class" },
       { name: "description", content: "A free, structured path to build coding confidence through real projects." },
-      { property: "og:title", content: "CodeReady — Everything they don't teach you in class" },
+      { property: "og:title", content: "Northal — Everything they don't teach you in class" },
       { property: "og:description", content: "A free, structured path to build coding confidence through real projects." },
     ],
   }),

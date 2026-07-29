@@ -18,10 +18,10 @@ import { useAudience } from "@/hooks/use-audience";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Your dashboard — CodeReady" },
-      { name: "description", content: "Track your progress through your selected CodeReady learning tracks." },
-      { property: "og:title", content: "Your CodeReady dashboard" },
-      { property: "og:description", content: "See your progress across your selected CodeReady track set." },
+      { title: "Your dashboard — Northal" },
+      { name: "description", content: "Track your progress through your selected Northal learning tracks." },
+      { property: "og:title", content: "Your Northal dashboard" },
+      { property: "og:description", content: "See your progress across your selected Northal track set." },
     ],
   }),
   component: Dashboard,
@@ -42,7 +42,7 @@ function Dashboard() {
     if (!audience) return;
     const audienceTrackCount = getTracksByAudience(audience).length;
     const audienceLabel = audience === "teen" ? "teen" : "college-and-beyond";
-    const description = `Track your progress through all ${audienceTrackCount} CodeReady ${audienceLabel} learning tracks.`;
+    const description = `Track your progress through all ${audienceTrackCount} Northal ${audienceLabel} learning tracks.`;
 
     const setMeta = (selector: string, attrs: Record<string, string>) => {
       let el = document.head.querySelector<HTMLMetaElement>(selector);
@@ -107,7 +107,7 @@ function Dashboard() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "codeready-progress.json";
+    a.download = "northal-progress.json";
     a.click();
     URL.revokeObjectURL(url);
   }

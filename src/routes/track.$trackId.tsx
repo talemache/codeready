@@ -4,8 +4,8 @@ import { getTrack } from "@/lib/tracks";
 export const Route = createFileRoute("/track/$trackId")({
   head: ({ params }) => {
     const t = getTrack(params.trackId);
-    const title = t ? `${t.name} — CodeReady` : "Track — CodeReady";
-    const desc = t?.description ?? "A CodeReady learning track.";
+    const title = t ? `${t.name} — Northal` : "Track — Northal";
+    const desc = t?.description ?? "A Northal learning track.";
     return {
       meta: [
         { title },

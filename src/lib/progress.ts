@@ -13,7 +13,7 @@ type ProgressState = {
   lastOpenedModuleKey?: string;
 };
 
-const KEY = "codeready-progress-v1";
+const KEY = "northal-progress-v1";
 const LEGACY_KEY = "codeready.progress.v1";
 
 const emptyState: ProgressState = {

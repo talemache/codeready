@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import type { AudienceBand } from "@/lib/tracks";
 
-const AUDIENCE_KEY = "codeready-audience";
+export const AUDIENCE_KEY = "northal-audience";
 
 export function useAudience() {
   const navigate = useNavigate();

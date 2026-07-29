@@ -15,11 +15,11 @@ export const Route = createFileRoute("/track/$trackId/")({
       "@type": "Course",
       name: t.name,
       description: t.description,
-      url: `https://codeready.app/track/${t.id}`,
+      url: `https://northal.app/track/${t.id}`,
       provider: {
         "@type": "Organization",
-        name: "CodeReady",
-        url: "https://codeready.app",
+        name: "Northal",
+        url: "https://northal.app",
       },
       isAccessibleForFree: true,
       hasCourseInstance: t.modules.map((m) => ({
@@ -30,9 +30,9 @@ export const Route = createFileRoute("/track/$trackId/")({
     };
     return {
       meta: [
-        { title: `${t.name} — CodeReady` },
+        { title: `${t.name} — Northal` },
         { name: "description", content: `${t.tagline} ${t.description}` },
-        { property: "og:title", content: `${t.name} — CodeReady` },
+        { property: "og:title", content: `${t.name} — Northal` },
         { property: "og:description", content: t.tagline },
       ],
       scripts: [

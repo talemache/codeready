@@ -1,8 +1,9 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "northal",
   "private": true,
   "sideEffects": false,
   "type": "module",
+  "description": "A free learning path for computer science undergrads and teens, from foundations to job-ready — and now data-ready too.",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
