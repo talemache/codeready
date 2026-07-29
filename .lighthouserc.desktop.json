@@ -13,7 +13,6 @@
       "startServerReadyPattern": "Local",
       "startServerReadyTimeout": 90000,
       "settings": {
-        "chromeFlags": "--headless=new --no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage --disable-gpu --no-zygote",
         "preset": "desktop",
         "chromeFlags": "--headless=new --no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage --disable-gpu --no-zygote",
         "disableFullPageScreenshot": true,
