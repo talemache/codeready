@@ -45,10 +45,10 @@ function Landing() {
           <div className="max-w-3xl">
             <span className="tag mb-6">Pick your learning path</span>
             <h1 className="font-serif text-4xl sm:text-6xl leading-[1.04] tracking-tight">
-              Start with the track set built for you.
+              Pick your starting point. We'll meet you there.
             </h1>
             <p className="mt-6 text-lg text-[color:var(--forest)]/80">
-              Choose an audience to personalize your dashboard.
+              High schooler or college grad — the path ahead looks different. Choose one to begin.
             </p>
           </div>
 
