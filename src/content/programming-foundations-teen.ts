@@ -8,7 +8,7 @@ export const programmingFoundationsTeen: TrackContent = {
         "## Before and after",
         "A line like `x = x + 1` could mean anything. `playerScore = playerScore + 1` instantly shows intent. Clear names reduce mistakes because your brain spends less effort decoding what each variable means.",
         "Strong naming also helps when debugging. If an error says `playerScore` is undefined, you already know the problem area. If it says `x` is undefined, you still have to guess context. Clarity saves time in every stage of coding.",
-        "Visible win: rename three vague variables in an old file and read the code again. It should feel easier to follow immediately. That feeling is real progress. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
+        "Visible win: Rename three vague variables in an old file and read the code again.",
       ],
       takeaways: [
         "Names are part of code quality, not a cosmetic choice.",
@@ -29,7 +29,7 @@ export const programmingFoundationsTeen: TrackContent = {
         "## Use the same approach in code",
         "Suppose you want a homework reminder app. Break it into pieces: add a reminder, store a due date, show upcoming tasks, mark one done. Each piece can be built and checked on its own. That makes progress visible and less overwhelming.",
         "When you feel stuck, the task is usually still too big. Ask: what is the smallest useful thing I can build in 15 minutes? Tiny finished pieces create momentum and expose problems early, before you are buried in complexity.",
-        "Visible win: write a four-step breakdown for one project idea and complete step one today. You are now building like a real engineer: small chunks, clear sequence, steady progress. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
+        "Visible win: Write a four-step breakdown for one project idea and complete step one today.",
       ],
       takeaways: [
         "Large projects become manageable when split into small tasks.",
@@ -50,7 +50,7 @@ export const programmingFoundationsTeen: TrackContent = {
         "## Translate to plain English",
         "If you see something like `Unexpected token on line 12`, translate it to: 'I typed something invalid near line 12.' Then open that area, compare with nearby working lines, and check punctuation or spelling.",
         "Keep your process calm: read, change one thing, rerun. If the message changes, you learned something. If it does not, try the next likely fix. This method works better than random edits that create new problems.",
-        "If this feels fuzzy, that's normal—keep going. Nobody is born fluent in errors. Fluency comes from repetition. Visible win: fix one error today using a written three-step process and keep that process as your debugging card. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
+        "Nobody is born fluent in errors. Fluency comes from repetition. Visible win: Fix one error today using a written three-step process and keep that process as your debugging card.",
       ],
       takeaways: [
         "Errors are clues, not proof you are failing.",
@@ -71,7 +71,7 @@ export const programmingFoundationsTeen: TrackContent = {
         "## Think like a curious saboteur",
         "Ask: what if this field is blank, too long, negative, or misspelled? What if a button gets clicked twice? Simple checks catch many common bugs and make your code feel more reliable right away.",
         "You do not need fancy tooling to start. Make a tiny checklist beside your program and run through it every time you change behavior. Over time, this habit becomes automatic and saves huge debugging time later.",
-        "Visible win: create a five-case manual test list for one small program and run all five cases. Seeing all checks pass is a real engineering moment. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
+        "Visible win: Create a five-case manual test list for one small program and run all five cases.",
       ],
       takeaways: [
         "Testing is a habit, not a final step.",
@@ -92,7 +92,7 @@ export const programmingFoundationsTeen: TrackContent = {
         "## Give feedback on code, not people",
         "Say 'This variable name is unclear' instead of 'You wrote this badly.' Point to one line, explain one concern, and suggest one improvement. Kind, specific feedback is more useful than vague criticism.",
         "When receiving feedback, pause before reacting. Questions are normal. You can ask, 'Can you show an example?' or 'Would this alternative also work?' That turns review into collaboration, not conflict.",
-        "Visible win: swap one file with a friend, leave two specific helpful comments each, and both apply one improvement. You just practiced a real team skill. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
+        "Visible win: Swap one file with a friend, leave two specific helpful comments each, and both apply one improvement.",
       ],
       takeaways: [
         "Good help requests include context and expected behavior.",
