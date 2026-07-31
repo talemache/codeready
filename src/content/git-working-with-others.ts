@@ -6,9 +6,9 @@ export const gitWorkingWithOthers: TrackContent = {
       body: [
         "Think of Git like save points in a game. Before trying something risky, you save progress. If a change goes badly, you can return to a known working state instead of rebuilding from scratch. That safety makes experimentation much less scary.",
         "## Why teams rely on this",
-        "In a shared project, save points are not only for you. They help everyone understand what changed and when. Each commit becomes a checkpoint that can be reviewed, discussed, or restored if needed.",
-        "This mindset changes behavior: instead of delaying saves, you make small, clear checkpoints often. Small saves are easier to understand and safer to merge than giant mystery commits.",
-        "Visible win: initialize a repo for a tiny file, make two small commits, and use history view to see both checkpoints. You just built your first timeline. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
+        "In a shared project, save points are not only for you. They help everyone understand what changed and when. Each commit becomes a checkpoint that can be reviewed, discussed, or restored if needed. Teams often look at commit history to understand why a decision was made weeks or months later.",
+        "This mindset changes behavior: instead of delaying saves, you make small, clear checkpoints often. Small saves are easier to understand and safer to merge than giant mystery commits. Large, infrequent commits make it much harder to pinpoint when a bug was introduced.",
+        "Visible win: Initialize a repo for a tiny file, make two small commits, and use history view to see both checkpoints.",
       ],
       takeaways: [
         "Git commits act like recoverable save points.",
@@ -27,9 +27,9 @@ export const gitWorkingWithOthers: TrackContent = {
       body: [
         "The basic Git loop is simple: edit, stage, commit. Staging lets you choose exactly what belongs in one save point. Committing records that staged change with a message you can understand later.",
         "## Keep each commit focused",
-        "A strong beginner habit is one idea per commit: maybe fix a typo, add a heading, or change one style rule. Mixed commits are harder to review and harder to undo if needed.",
-        "Commit messages should explain intent clearly, like `Add profile section heading` instead of `update` or `stuff`. Clear messages make your timeline useful for future-you and teammates.",
-        "Visible win: make one clean change in your project, stage only that change, and commit with a clear message. Then show the commit in your history list. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
+        "A strong beginner habit is one idea per commit: maybe fix a typo, add a heading, or change one style rule. Mixed commits are harder to review and harder to undo if needed. If you realize you mixed two changes in one session, you can stage and commit them separately using file or hunk staging.",
+        "Commit messages should explain intent clearly, like `Add profile section heading` instead of `update` or `stuff`. A simple present-tense verb at the start of the message, like 'Add', 'Fix', or 'Remove', makes history easy to scan. Clear messages make your timeline useful for future-you and teammates.",
+        "Visible win: Make one clean change in your project, stage only that change, commit with a clear message, and show the commit in your history list.",
       ],
       takeaways: [
         "Edit-stage-commit is the core Git workflow.",
@@ -46,11 +46,11 @@ export const gitWorkingWithOthers: TrackContent = {
     },
     "working-on-the-same-project-as-a-friend": {
       body: [
-        "Branches let two people work on the same project without stepping on each other. Each branch is like a separate workspace. You can build your part, your friend builds theirs, and both can be merged later.",
+        "Branches let two people work on the same project without stepping on each other. Each branch is like a separate workspace. You can build your part, your friend builds theirs, and both can be merged later once each side is ready and tested.",
         "## Why branching helps",
-        "Without branches, everyone edits the same line of history at once, which causes confusion fast. With branches, each person can test safely before sharing. That lowers pressure and improves code quality.",
-        "A good branch name describes the work, like `add-header-style` or `fix-button-text`. Small focused branches are easier to review and merge than one branch containing everything.",
-        "Visible win: create a branch, add one change, and open the project from that branch. You now have a safe personal workspace inside a shared repo. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
+        "Without branches, everyone edits the same line of history at once, which causes confusion fast. With branches, each person can test safely before sharing. That lowers pressure and improves code quality. You can also keep a branch for experimentation and delete it without any harm if the experiment fails.",
+        "A good branch name describes the work, like `add-header-style` or `fix-button-text`. Small focused branches are easier to review and merge than one branch containing everything. Keeping branch scope small also makes the eventual merge conversation shorter and clearer for both collaborators.",
+        "Visible win: Create a branch, add one change, and open the project from that branch.",
       ],
       takeaways: [
         "Branches create safe parallel workspaces.",
@@ -67,11 +67,11 @@ export const gitWorkingWithOthers: TrackContent = {
     },
     "when-two-people-change-the-same-thing": {
       body: [
-        "Conflicts happen when two branches edit the same part of a file. This is normal teamwork, not a disaster. Git stops and asks for help because it cannot decide the best final version on its own.",
+        "Conflicts happen when two branches edit the same part of a file. This is normal teamwork, not a disaster. Git stops and asks for help because it cannot decide the best final version on its own. The conflict markers it inserts show both versions side by side so you can read them clearly.",
         "## Calm conflict workflow",
-        "Read both sides, understand what each change was trying to do, and write a combined version that keeps the right intent. Then remove conflict markers, save, and test before finishing the merge.",
-        "If this feels fuzzy, that's normal—keep going. Conflict resolution gets easier fast after two or three real examples. The skill is mostly careful reading and communication, not advanced syntax.",
-        "Visible win: create one intentional conflict in a practice repo, resolve it, and run the project successfully afterward. You just handled a real collaboration challenge. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
+        "Read both sides, understand what each change was trying to do, and write a combined version that keeps the right intent. Then remove conflict markers, save, and test before finishing the merge. Talk with your collaborator if both changes are important—sometimes the best resolution combines ideas from both sides.",
+        "Conflict resolution gets easier fast after two or three real examples. The skill is mostly careful reading and communication, not advanced syntax. Practicing on a safe test repo with a friend before you face a real conflict makes the process much less intimidating.",
+        "Visible win: Create one intentional conflict in a practice repo, resolve it, and run the project successfully afterward.",
       ],
       takeaways: [
         "Merge conflicts are normal in active teamwork.",
@@ -90,9 +90,9 @@ export const gitWorkingWithOthers: TrackContent = {
       body: [
         "A GitHub profile is a visible timeline of what you are building. It does not need huge projects to be useful. Small consistent commits already show persistence, growth, and real practice.",
         "## Make your work easy to understand",
-        "Use clear repo names, short readme notes, and meaningful commit messages. A teacher, parent, or club mentor should be able to open your repo and understand what the project does in under a minute.",
-        "You are not trying to look perfect. You are showing a learning journey with real artifacts. Bugs, fixes, and improvements are part of that story.",
-        "Visible win: publish your project repo and show someone your commit history plus one feature you added. That's concrete proof of work you can point to. Keep a screenshot or short note of what worked so you can show your progress and remind yourself that you can build, debug, and improve real code step by step.",
+        "Use clear repo names, short readme notes, and meaningful commit messages. A teacher, parent, or club mentor should be able to open your repo and understand what the project does in under a minute. The README does not need to be long—three sentences covering what the project does, how to open it, and what you plan next is enough.",
+        "You are not trying to look perfect. You are showing a learning journey with real artifacts. Bugs, fixes, and improvements are part of that story. Reviewers who see steady improvement over time remember that more than a polished final snapshot.",
+        "Visible win: Publish your project repo and show someone your commit history plus one feature you added.",
       ],
       takeaways: [
         "GitHub profiles can show growth through small consistent work.",
