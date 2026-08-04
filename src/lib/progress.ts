@@ -1,4 +1,14 @@
 import { useEffect, useState, useCallback, useSyncExternalStore } from "react";
+import {
+  doc,
+  getDoc,
+  setDoc,
+  onSnapshot,
+  type Unsubscribe,
+} from "firebase/firestore";
+import { db } from "./firebase";
+import { auth } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import { TRACKS, TOTAL_MODULES } from "./tracks";
 
 export type Status = "not_started" | "in_progress" | "complete";
@@ -70,13 +80,126 @@ function subscribe(cb: () => void) {
 
 function write(next: ProgressState) {
   cache = next;
+  // Always keep localStorage in sync as an offline fallback
   try {
     window.localStorage.setItem(KEY, JSON.stringify(next));
   } catch {
     /* ignore */
   }
+  // If signed in, also write to Firestore (fire-and-forget per-track)
+  const user = auth.currentUser;
+  if (user) {
+    void writeAllTracksToFirestore(user.uid, next);
+  }
   listeners.forEach((l) => l());
 }
+
+// ── Firestore helpers ────────────────────────────────────────────────────────
+
+function progressDocRef(userId: string, trackId: string) {
+  return doc(db, "users", userId, "progress", trackId);
+}
+
+/** Persist every track's progress slice into Firestore. */
+async function writeAllTracksToFirestore(userId: string, state: ProgressState) {
+  const trackIds = [...new Set(
+    Object.keys(state.moduleStatus)
+      .concat(Object.keys(state.quizScores))
+      .concat(Object.keys(state.challengeChecklist))
+      .map((k) => k.split("/")[0])
+  )];
+  await Promise.all(
+    trackIds.map((trackId) =>
+      setDoc(
+        progressDocRef(userId, trackId),
+        {
+          moduleStatus: filterByTrack(state.moduleStatus, trackId),
+          quizScores: state.quizScores[trackId] ?? null,
+          challengeChecklist: filterByTrack(state.challengeChecklist, trackId),
+          lastOpenedModuleId: state.lastOpenedModuleId ?? null,
+          lastOpenedModuleKey: state.lastOpenedModuleKey ?? null,
+        },
+        { merge: true },
+      ),
+    ),
+  );
+}
+
+function filterByTrack<T>(record: Record<string, T>, trackId: string): Record<string, T> {
+  return Object.fromEntries(
+    Object.entries(record).filter(([k]) => k.startsWith(`${trackId}/`)),
+  );
+}
+
+/** Load all Firestore progress for a user and merge into a single ProgressState. */
+async function loadFirestoreProgress(userId: string): Promise<ProgressState> {
+  const trackIds = TRACKS.map((t) => t.id);
+  const docs = await Promise.all(
+    trackIds.map((trackId) => getDoc(progressDocRef(userId, trackId))),
+  );
+  const merged: ProgressState = { ...emptyState, moduleStatus: {}, quizScores: {}, challengeChecklist: {} };
+  for (const snap of docs) {
+    if (!snap.exists()) continue;
+    const d = snap.data();
+    Object.assign(merged.moduleStatus, d.moduleStatus ?? {});
+    Object.assign(merged.challengeChecklist, d.challengeChecklist ?? {});
+    const trackId = snap.ref.id;
+    if (d.quizScores) merged.quizScores[trackId] = d.quizScores;
+    if (d.lastOpenedModuleKey && !merged.lastOpenedModuleKey) {
+      merged.lastOpenedModuleKey = d.lastOpenedModuleKey;
+      merged.lastOpenedModuleId = d.lastOpenedModuleId ?? undefined;
+    }
+  }
+  return merged;
+}
+
+// ── Auth-state listener: migrate + live-sync on sign-in ──────────────────────
+
+let firestoreUnsub: Unsubscribe | null = null;
+
+if (typeof window !== "undefined" && auth) {
+  onAuthStateChanged(auth, async (user) => {
+    // Clean up any previous Firestore listener
+    if (firestoreUnsub) {
+      firestoreUnsub();
+      firestoreUnsub = null;
+    }
+
+    if (!user) {
+      // Revert to localStorage state
+      cache = read();
+      listeners.forEach((l) => l());
+      return;
+    }
+
+    // Signed in: load Firestore progress
+    const remote = await loadFirestoreProgress(user.uid);
+    const local = read();
+
+    // Migrate any local progress that isn't already in Firestore
+    const hasMigratableLocal = Object.keys(local.moduleStatus).length > 0;
+    const hasRemote = Object.keys(remote.moduleStatus).length > 0;
+
+    let merged: ProgressState;
+    if (hasMigratableLocal && !hasRemote) {
+      // First sign-in with existing local progress: push local → Firestore
+      merged = local;
+      await writeAllTracksToFirestore(user.uid, merged);
+    } else if (hasRemote) {
+      merged = remote;
+    } else {
+      merged = emptyState;
+    }
+
+    cache = merged;
+    listeners.forEach((l) => l());
+
+    // Subscribe to live updates from the first track as a heartbeat
+    // (full multi-doc live sync would require a listener per track;
+    //  for now we rely on write() keeping Firestore in sync eagerly)
+  });
+}
+
 
 export function useProgress() {
   const state = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
