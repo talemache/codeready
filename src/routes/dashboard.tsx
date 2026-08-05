@@ -14,6 +14,11 @@ import {
   resetProgress,
 } from "@/lib/progress";
 import { useAudience } from "@/hooks/use-audience";
+import { useAuth } from "@/lib/auth";
+import { AccountInfoBubble } from "@/components/AccountInfoBubble";
+import { AuthModal } from "@/components/AuthModal";
+import { collection, query, orderBy, limit, onSnapshot, type Timestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -32,6 +37,31 @@ function Dashboard() {
   const hydrated = useHydrated();
   const { state } = useProgress();
   const { audience, audienceLoaded, clearAudience } = useAudience();
+  const { user } = useAuth();
+  const [authOpen, setAuthOpen] = useState(false);
+
+  type IdeProject = { id: string; title: string; language: string; updatedAt: Timestamp | null };
+  const [ideProjects, setIdeProjects] = useState<IdeProject[]>([]);
+
+  useEffect(() => {
+    if (!user) { setIdeProjects([]); return; }
+    const q = query(
+      collection(db, "users", user.uid, "ideProjects"),
+      orderBy("updatedAt", "desc"),
+      limit(5),
+    );
+    const unsub = onSnapshot(q, (snap) => {
+      setIdeProjects(
+        snap.docs.map((d) => ({
+          id: d.id,
+          title: d.data().title ?? "Untitled",
+          language: d.data().language ?? "javascript",
+          updatedAt: d.data().updatedAt ?? null,
+        })),
+      );
+    });
+    return unsub;
+  }, [user]);
 
   useEffect(() => {
     if (!audienceLoaded) return;
@@ -250,8 +280,21 @@ function Dashboard() {
         <div className="mt-14 border-t border-[color:var(--forest)]/10 pt-10">
           <h2 className="font-serif text-xl text-[color:var(--forest)]/80">Your data</h2>
           <p className="mt-1 text-sm text-[color:var(--forest)]/60">
-            Progress is stored only on this device. Export to back it up or move it to another browser.
+            {user
+              ? "Your progress is synced to your account across all devices."
+              : "Progress is stored only on this device. Export to back it up or move it to another browser."}
           </p>
+          {!user && (
+            <div className="mt-3 flex items-center gap-2 text-sm text-[color:var(--forest)]/70">
+              <button
+                onClick={() => setAuthOpen(true)}
+                className="underline hover:text-[color:var(--forest)] transition"
+              >
+                Create a free account to sync progress
+              </button>
+              <AccountInfoBubble />
+            </div>
+          )}
           <div className="mt-4 flex flex-wrap items-center gap-3">
             <button onClick={handleExport} className="btn-outline text-sm">
               Export progress
@@ -282,8 +325,63 @@ function Dashboard() {
             <p className="mt-2 text-sm text-[color:var(--coral)]" role="alert">Import failed: {importError}</p>
           )}
         </div>
+
+        {/* IDE Projects */}
+        <div className="mt-14 border-t border-[color:var(--forest)]/10 pt-10">
+          <div className="flex items-center justify-between gap-4">
+            <h2 className="font-serif text-xl text-[color:var(--forest)]/80">Your projects</h2>
+            <Link
+              to="/ide"
+              className="text-sm text-[color:var(--forest)]/70 underline hover:text-[color:var(--forest)] transition"
+            >
+              Open IDE →
+            </Link>
+          </div>
+          {user ? (
+            ideProjects.length > 0 ? (
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {ideProjects.map((p) => (
+                  <li key={p.id}>
+                    <Link
+                      to="/ide"
+                      search={{ projectId: p.id }}
+                      className="card-paper p-4 flex flex-col gap-1 group"
+                    >
+                      <span className="font-serif text-base truncate">{p.title}</span>
+                      <span className="text-xs text-[color:var(--forest)]/50 capitalize">{p.language}</span>
+                      {p.updatedAt && (
+                        <span className="text-xs text-[color:var(--forest)]/40">
+                          {new Date(p.updatedAt.seconds * 1000).toLocaleDateString()}
+                        </span>
+                      )}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="mt-3 text-sm text-[color:var(--forest)]/60">
+                No saved projects yet.{" "}
+                <Link to="/ide" className="underline hover:text-[color:var(--forest)] transition">
+                  Open the IDE
+                </Link>{" "}
+                to start one.
+              </p>
+            )
+          ) : (
+            <div className="mt-3 flex items-center gap-2 text-sm text-[color:var(--forest)]/70">
+              <button
+                onClick={() => setAuthOpen(true)}
+                className="underline hover:text-[color:var(--forest)] transition"
+              >
+                Sign in to save and view your IDE projects
+              </button>
+              <AccountInfoBubble />
+            </div>
+          )}
+        </div>
       </main>
       <SiteFooter />
+      <AuthModal open={authOpen} onOpenChange={setAuthOpen} />
     </div>
   );
 }
