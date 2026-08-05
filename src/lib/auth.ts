@@ -48,16 +48,21 @@ function subscribe(cb: () => void) {
 }
 
 async function ensureUserDoc(user: User) {
-  const ref = doc(db, "users", user.uid);
-  await setDoc(
-    ref,
-    {
-      email: user.email,
-      displayName: user.displayName ?? null,
-      createdAt: serverTimestamp(),
-    },
-    { merge: true },
-  );
+  try {
+    const ref = doc(db, "users", user.uid);
+    await setDoc(
+      ref,
+      {
+        email: user.email,
+        displayName: user.displayName ?? null,
+        createdAt: serverTimestamp(),
+      },
+      { merge: true },
+    );
+  } catch (err) {
+    // Non-fatal: the user is already authenticated. Log for diagnostics.
+    console.warn("[auth] ensureUserDoc failed:", err);
+  }
 }
 
 const googleProvider = new GoogleAuthProvider();

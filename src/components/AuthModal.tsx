@@ -32,6 +32,7 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
       }
       onOpenChange(false);
     } catch (err) {
+      console.error("[AuthModal] sign-in/sign-up error:", err);
       setError(err instanceof Error ? friendlyError(err.message) : "Something went wrong.");
     } finally {
       setLoading(false);
@@ -45,6 +46,7 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
       await signInWithGoogle();
       onOpenChange(false);
     } catch (err) {
+      console.error("[AuthModal] Google sign-in error:", err);
       setError(err instanceof Error ? friendlyError(err.message) : "Something went wrong.");
     } finally {
       setLoading(false);
@@ -147,5 +149,8 @@ function friendlyError(msg: string): string {
   if (msg.includes("user-not-found")) return "No account found with this email.";
   if (msg.includes("weak-password")) return "Password must be at least 6 characters.";
   if (msg.includes("popup-closed")) return "Sign-in popup was closed. Please try again.";
+  if (msg.includes("operation-not-allowed")) return "Email/password sign-in is not enabled. Please contact support.";
+  if (msg.includes("network-request-failed")) return "Network error. Please check your connection and try again.";
+  if (msg.includes("too-many-requests")) return "Too many attempts. Please wait a moment and try again.";
   return "Something went wrong. Please try again.";
 }
