@@ -27,6 +27,16 @@ A free, no-login learning path that takes people from "knows the basics" to genu
 git clone <this-repository-url>
 cd northal
 npm install
+```
+
+Add your Firebase config to `.env.local` (copy `.env.example` as a starting point):
+
+```sh
+cp .env.example .env.local
+# then fill in your VITE_FIREBASE_* values from the Firebase console
+```
+
+```sh
 npm run dev
 ```
 
