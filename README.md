@@ -1,49 +1,45 @@
-# Northal
+# Ryan Levels — Data & AI Consulting
 
-A free, no-login learning path that takes people from "knows the basics" to genuinely job-ready — currently covering software engineering fundamentals, with more tracks planned. Free forever, no accounts required, no paywalls.
+A single-page professional consulting site for Ryan Levels: data analytics, AI
+implementation, and software engineering consulting, with a focus on
+LegalServer and nonprofit/mission-driven organization reporting.
 
-**Live at [northal.org](https://northal.org)**
+**Live at [northal.org](https://northal.org)** ("Northal LLC" is the business
+entity — it's referenced only in the footer, not as the site's brand.)
 
 ## What's here
 
-- **13 learning tracks** across two audiences — a college/adult path (Programming Foundations, Data Structures & Algorithms, Version Control & Collaboration, Building Real Software, Testing & Quality, DevOps & Systems Basics, AI-Era Engineering, Career Launchpad) and a teen path for ages 13–18 (Is Coding For Me?, Programming Foundations, Build Something Real, Git & Working With Others, AI Tools for Students)
-- An audience picker on first visit that tailors the dashboard to whichever track set fits
-- Original written lessons (not just links) with curated free resources, key takeaways, and a "try this today" action per lesson
-- End-of-track quizzes and hands-on challenges
-- Full-text search across all lesson content
-- Progress tracking saved locally in the browser (no account needed) — with a "reset all progress" option
-- Light/dark mode toggle
-- Accessibility-first: Lighthouse CI gate enforces a minimum accessibility score of 95 on every pull request
+- A single anchor-linked page: hero, services, approach, selected work,
+  about, testimonials, FAQ, and a contact form
+- Editorial navy / cream / copper design system with serif display type
+  (Fraunces) over a clean sans body (Inter)
+- A contact form structured to POST to a real backend (Formspree, a
+  Cloudflare Worker, etc.) via `VITE_CONTACT_FORM_ENDPOINT`, with a
+  functional `mailto:` fallback when that's unset
+- Accessibility-first: Lighthouse CI gate enforces a minimum accessibility
+  score of 95 on every pull request
 
 ## Built with
 
 - TanStack Start (React + TypeScript, SSR)
-- Tailwind CSS with a custom warm cream / forest green design system
+- Tailwind CSS with a custom navy / cream / copper design system
 - Deployed on Cloudflare Workers
 
 ## Local development
 
 ```sh
 git clone <this-repository-url>
-cd northal
+cd ryan-levels-consulting
 npm install
-```
-
-Add your Firebase config to `.env.local` (copy `.env.example` as a starting point):
-
-```sh
-cp .env.example .env.local
-# then fill in your VITE_FIREBASE_* values from the Firebase console
-```
-
-```sh
 npm run dev
 ```
+
+To wire the contact form to a real backend, copy `.env.example` to
+`.env.local` and set `VITE_CONTACT_FORM_ENDPOINT`.
 
 ## Testing and QA
 
 ```sh
-npm test
 npm run build
 ```
 
@@ -54,9 +50,12 @@ npm run browsers:install
 npm run qa:lighthouse
 ```
 
-This builds the app, audits key pages (`/`, `/dashboard`, a track page, a lesson page, and `/about`), and enforces accessibility ≥ 95, printing a score summary table. To run Lighthouse only (skip the build step): `npm run qa:lighthouse:run`.
+This builds the app, audits `/`, and enforces accessibility ≥ 95, printing a
+score summary table. To run Lighthouse only (skip the build step):
+`npm run qa:lighthouse:run`.
 
-A pull request workflow at `.github/workflows/qa-lighthouse.yml` runs this automatically and uploads `.lighthouseci` reports as artifacts.
+A pull request workflow at `.github/workflows/qa-lighthouse.yml` runs this
+automatically and uploads `.lighthouseci` reports as artifacts.
 
 ## Deployment
 
@@ -67,10 +66,12 @@ npm run build
 npx wrangler deploy --config .output/server/wrangler.json
 ```
 
-## Project origins
+## Before launch
 
-Built with [Lovable](https://lovable.dev) and iterated on with GitHub Copilot. Content and design decisions are human-reviewed before merging — see `.lovable/codeready-SPEC.md` for the original build spec and content voice guide.
-
-## Roadmap
-
-A Data path is planned as a second track family, following the same structure and design system.
+- Replace the photo placeholders (hero, approach, about headshot) with real,
+  licensed photography — grounded and unstaged, no stock handshake/skyline
+  imagery. Each placeholder in the code names exactly what to shoot.
+- Confirm the contact inbox address in `SiteFooter.tsx` and `Contact.tsx`.
+- Set `VITE_CONTACT_FORM_ENDPOINT` to a real form backend.
+- Swap in real client testimonials and named case studies as they become
+  available.
