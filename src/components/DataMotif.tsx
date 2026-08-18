@@ -42,7 +42,3 @@ export function LineChartMotif({ className }: LineProps) {
     </svg>
   );
 }
-
-export function GridSwatch({ className }: LineProps) {
-  return <div className={className} aria-hidden="true" />;
-}
