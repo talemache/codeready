@@ -46,23 +46,22 @@ export function About() {
       <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
         {/* Headshot placeholder — replace with real <img> when photo is available */}
         <div className="relative mx-auto max-w-xs lg:mx-0">
-          <div className="aspect-[4/5] relative overflow-hidden rounded-2xl bg-[color:var(--cream-deep)]">
-            <div className="data-grid h-full w-full" />
+          <div className="aspect-[4/5] relative overflow-hidden bg-[color:var(--cream-deep)] border border-[color:var(--navy)]/10">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[color:var(--navy)]/10">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-10 w-10 text-[color:var(--navy)]/30" aria-hidden>
+                <div className="mx-auto flex h-20 w-20 items-center justify-center bg-[color:var(--navy)]/8">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-10 w-10 text-[color:var(--navy)]/25" aria-hidden>
                     <circle cx="12" cy="8" r="4" />
                     <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" strokeLinecap="round" />
                   </svg>
                 </div>
-                <p className="mt-3 px-4 text-xs text-[color:var(--navy)]/40">
+                <p className="mt-3 px-4 text-xs text-[color:var(--navy)]/35">
                   Photo coming soon
                 </p>
               </div>
             </div>
           </div>
-          <div className="absolute -bottom-4 -right-4 rounded-xl bg-[color:var(--navy)] p-4 shadow-xl">
+          <div className="absolute -bottom-4 -right-4 bg-[color:var(--navy)] p-4 shadow-xl">
             <p className="font-serif text-2xl text-[color:var(--copper)]">M.S.</p>
             <p className="mt-0.5 text-xs text-[color:var(--cream)]/70">Business Analytics</p>
             <p className="text-xs text-[color:var(--cream)]/50">Kent State</p>
@@ -92,13 +91,13 @@ export function About() {
             </p>
           </div>
 
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+          <ul className="mt-8 grid gap-2 sm:grid-cols-2">
             {CREDENTIALS.map((credential) => (
               <li
                 key={credential.text}
-                className="flex items-center gap-3 rounded-xl border border-[color:var(--navy)]/10 bg-[color:var(--cream-deep)] px-4 py-3.5 text-sm text-[color:var(--navy)]/85"
+                className="flex items-center gap-3 border-l-2 border-[color:var(--copper)] bg-[color:var(--cream-deep)] pl-4 py-3 pr-4 text-sm text-[color:var(--navy)]/80"
               >
-                <span className="text-[color:var(--copper-deep)]" aria-hidden>{credential.icon}</span>
+                <span className="text-[color:var(--copper-deep)] shrink-0" aria-hidden>{credential.icon}</span>
                 {credential.text}
               </li>
             ))}
