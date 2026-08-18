@@ -1,5 +1,3 @@
-import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
-
 export function Approach() {
   return (
     <section
@@ -7,11 +5,15 @@ export function Approach() {
       className="border-y border-[color:var(--navy)]/10 bg-[color:var(--cream-deep)]"
     >
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:py-24 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-        <PhotoPlaceholder
-          alt="A quiet, focused home or nonprofit-office workspace with a laptop open to real analysis work, natural window light"
-          brief="quiet focused workspace — laptop, notebook, coffee, natural window light. Unstaged, no stock office."
-          className="rounded-2xl order-2 lg:order-1"
-        />
+        <div className="relative overflow-hidden rounded-2xl shadow-[0_12px_40px_rgba(12,22,38,0.12)] order-2 lg:order-1">
+          <img
+            src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=900&q=80&auto=format&fit=crop"
+            alt="A focused home workspace with an open laptop, notebook, and coffee in natural window light"
+            className="aspect-[4/3] w-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--navy)]/15 via-transparent to-transparent" />
+        </div>
 
         <div className="order-1 lg:order-2">
           <span className="eyebrow">How I work</span>

@@ -1,5 +1,11 @@
 import { CASE_STUDIES } from "@/lib/content";
 
+const OUTCOME_ICONS: Record<string, string> = {
+  "legal-aid-reporting": "⏱",
+  "evaluation-pipeline": "🔗",
+  "intake-triage": "✓",
+};
+
 export function CaseStudies() {
   return (
     <section id="work" className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
@@ -14,27 +20,33 @@ export function CaseStudies() {
 
       <div className="mt-12 grid gap-6 lg:grid-cols-3">
         {CASE_STUDIES.map((study) => (
-          <article key={study.id} className="card-editorial flex flex-col p-7">
-            <span className="tag self-start">{study.org}</span>
-            <div className="mt-5 space-y-4 text-sm leading-relaxed text-[color:var(--navy)]/80">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--navy)]/50">
-                  Problem
+          <article key={study.id} className="card-editorial flex flex-col overflow-hidden">
+            {/* Outcome banner at top — the result that earns the click */}
+            <div className="bg-[color:var(--navy)] px-6 py-5">
+              <div className="flex items-start gap-3">
+                <span className="mt-0.5 text-xl" aria-hidden>{OUTCOME_ICONS[study.id]}</span>
+                <p className="font-serif text-base leading-snug text-[color:var(--cream)]">
+                  {study.outcome}
                 </p>
-                <p className="mt-1">{study.problem}</p>
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--navy)]/50">
-                  Approach
-                </p>
-                <p className="mt-1">{study.approach}</p>
               </div>
             </div>
-            <div className="mt-5 rounded-lg bg-[color:var(--cream-deep)] p-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--copper-deep)]">
-                Outcome
-              </p>
-              <p className="mt-1 font-serif text-base text-[color:var(--navy)]">{study.outcome}</p>
+
+            <div className="flex flex-1 flex-col p-6">
+              <span className="tag self-start">{study.org}</span>
+              <div className="mt-5 flex-1 space-y-4 text-sm leading-relaxed text-[color:var(--navy)]/80">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--navy)]/45">
+                    Problem
+                  </p>
+                  <p className="mt-1.5">{study.problem}</p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--navy)]/45">
+                    Approach
+                  </p>
+                  <p className="mt-1.5">{study.approach}</p>
+                </div>
+              </div>
             </div>
           </article>
         ))}

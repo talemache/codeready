@@ -273,6 +273,16 @@ main {
   animation: reveal-up 0.5s ease-out both;
 }
 
+/* Section heading accent line */
+@utility section-rule {
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--copper);
+  margin-bottom: 1rem;
+  border-radius: 9999px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   main {
     animation: none;

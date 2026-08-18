@@ -1,22 +1,30 @@
-import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
-
 const CREDENTIALS = [
-  "M.S. Business Analytics — Kent State University",
-  "B.S. Computer Science",
-  "B.S. Psychology",
-  "U.S. Navy veteran",
+  { icon: "🎓", text: "M.S. Business Analytics — Kent State University" },
+  { icon: "💻", text: "B.S. Computer Science" },
+  { icon: "🧠", text: "B.S. Psychology" },
+  { icon: "⚓", text: "U.S. Navy veteran" },
 ];
 
 export function About() {
   return (
     <section id="about" className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
       <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-        <PhotoPlaceholder
-          alt="Professional headshot of Ryan Levels — placeholder to be replaced with a real photograph"
-          brief="real professional headshot of Ryan, natural light, neutral background. Replace before launch."
-          shape="portrait"
-          className="rounded-2xl mx-auto max-w-xs lg:mx-0"
-        />
+        {/* Headshot placeholder — replace with real <img> when photo is available */}
+        <div className="relative mx-auto max-w-xs lg:mx-0">
+          <div className="aspect-[4/5] overflow-hidden rounded-2xl">
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&auto=format&fit=crop&crop=faces"
+              alt="Professional headshot — placeholder until real photography is added"
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div className="absolute -bottom-4 -right-4 rounded-xl bg-[color:var(--navy)] p-4 shadow-xl">
+            <p className="font-serif text-2xl text-[color:var(--copper)]">M.S.</p>
+            <p className="mt-0.5 text-xs text-[color:var(--cream)]/70">Business Analytics</p>
+            <p className="text-xs text-[color:var(--cream)]/50">Kent State</p>
+          </div>
+        </div>
 
         <div>
           <span className="eyebrow">About</span>
@@ -44,13 +52,11 @@ export function About() {
           <ul className="mt-8 grid gap-3 sm:grid-cols-2">
             {CREDENTIALS.map((credential) => (
               <li
-                key={credential}
-                className="flex items-start gap-2 rounded-lg border border-[color:var(--navy)]/10 bg-[color:var(--cream-deep)] px-4 py-3 text-sm text-[color:var(--navy)]/85"
+                key={credential.text}
+                className="flex items-center gap-3 rounded-xl border border-[color:var(--navy)]/10 bg-[color:var(--cream-deep)] px-4 py-3.5 text-sm text-[color:var(--navy)]/85"
               >
-                <span aria-hidden className="mt-0.5 text-[color:var(--copper)]">
-                  &bull;
-                </span>
-                {credential}
+                <span className="text-base" aria-hidden>{credential.icon}</span>
+                {credential.text}
               </li>
             ))}
           </ul>
