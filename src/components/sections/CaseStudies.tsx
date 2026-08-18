@@ -1,6 +1,6 @@
 import { CASE_STUDIES, ENGAGEMENT_STEPS } from "@/lib/content";
 
-function EngagementCards() {
+function CaseStudyCards() {
   return (
     <div className="grid gap-px border border-[color:var(--navy)]/8 bg-[color:var(--navy)]/8 sm:grid-cols-2 lg:grid-cols-3">
       {CASE_STUDIES.map((study) => (
@@ -95,7 +95,7 @@ export function CaseStudies() {
         </p>
       </div>
 
-      {hasCaseStudies ? <EngagementCards /> : <EngagementTimeline />}
+      {hasCaseStudies ? <CaseStudyCards /> : <EngagementTimeline />}
     </section>
   );
 }
