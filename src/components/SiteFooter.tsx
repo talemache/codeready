@@ -56,7 +56,7 @@ export function SiteFooter() {
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-2 border-t border-[color:var(--cream)]/10 pt-6 text-xs copy-invert-muted">
           <p>&copy; {year} Ryan Levels. Doing business as Northal LLC.</p>
-          <p>Kent, Ohio &middot; Remote-first</p>
+          <p>North Canton, Ohio &middot; Remote-first</p>
         </div>
       </div>
     </footer>
