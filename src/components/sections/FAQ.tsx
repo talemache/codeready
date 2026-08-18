@@ -8,23 +8,32 @@ import { FAQS } from "@/lib/content";
 
 export function FAQ() {
   return (
-    <section id="faq" className="mx-auto max-w-4xl px-5 py-20 sm:py-24">
-      <div className="max-w-2xl">
-        <span className="eyebrow">Questions</span>
-        <h2 className="mt-3 font-serif text-3xl sm:text-4xl">Frequently asked</h2>
+    <section id="faq" className="mx-auto max-w-6xl px-5 py-20 sm:py-28">
+      <div className="grid gap-3 lg:grid-cols-[1fr_2fr] lg:items-start border-b border-[color:var(--navy)]/10 pb-10 mb-12">
+        <div>
+          <span className="eyebrow">Questions</span>
+          <h2 className="mt-3 font-serif text-3xl sm:text-4xl leading-tight">Frequently asked</h2>
+        </div>
+        <p className="text-[color:var(--navy)]/68 leading-relaxed lg:max-w-xl lg:mt-1">
+          If your question isn't here,{" "}
+          <a href="#contact" className="text-[color:var(--copper-deep)] font-medium hover:underline">
+            ask it directly
+          </a>
+          . I scope every engagement after a short conversation anyway.
+        </p>
       </div>
 
-      <Accordion type="single" collapsible className="mt-10">
+      <Accordion type="single" collapsible className="">
         {FAQS.map((item, i) => (
           <AccordionItem
             key={item.question}
             value={`item-${i}`}
             className="border-[color:var(--navy)]/12"
           >
-            <AccordionTrigger className="font-serif text-lg text-[color:var(--navy)] no-underline hover:no-underline">
+            <AccordionTrigger className="font-serif text-lg text-[color:var(--navy)] no-underline hover:no-underline text-left">
               {item.question}
             </AccordionTrigger>
-            <AccordionContent className="text-[color:var(--navy)]/78 leading-relaxed">
+            <AccordionContent className="text-[color:var(--navy)]/72 leading-relaxed max-w-3xl">
               {item.answer}
             </AccordionContent>
           </AccordionItem>

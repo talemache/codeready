@@ -13,31 +13,31 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[color:var(--navy)]/10 bg-[color:var(--cream)]/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-[color:var(--navy)]/10 bg-[color:var(--cream)]/95 backdrop-blur">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 rounded-full bg-[color:var(--navy)] px-4 py-2 text-[color:var(--cream)]"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 bg-[color:var(--navy)] px-4 py-2 text-[color:var(--cream)]"
       >
         Skip to content
       </a>
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-5">
         <a href="#top" className="shrink-0">
           <Logo />
         </a>
 
-        <nav aria-label="Primary" className="hidden items-center gap-1 text-sm md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-0 text-sm md:flex">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="rounded-full px-3 py-2 text-[color:var(--navy)]/80 transition hover:bg-[color:var(--navy)]/5 hover:text-[color:var(--navy)]"
+              className="px-4 py-2 text-[color:var(--navy)]/65 font-medium transition hover:text-[color:var(--navy)]"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <a href="#contact" className="btn-primary hidden text-sm sm:inline-flex">
             Get in touch
           </a>
@@ -47,7 +47,7 @@ export function SiteHeader() {
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="grid h-11 w-11 place-items-center rounded-full text-[color:var(--navy)] hover:bg-[color:var(--navy)]/5 md:hidden"
+            className="grid h-11 w-11 place-items-center text-[color:var(--navy)] hover:bg-[color:var(--navy)]/5 md:hidden"
           >
             <svg
               viewBox="0 0 24 24"
