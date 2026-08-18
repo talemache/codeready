@@ -1,22 +1,38 @@
-import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
-
 const CREDENTIALS = [
-  "M.S. Business Analytics — Kent State University",
-  "B.S. Computer Science",
-  "B.S. Psychology",
-  "U.S. Navy veteran",
+  { icon: "🎓", text: "M.S. Business Analytics — Kent State University" },
+  { icon: "💻", text: "B.S. Computer Science" },
+  { icon: "🧠", text: "B.S. Psychology" },
+  { icon: "⚓", text: "U.S. Navy veteran" },
 ];
 
 export function About() {
   return (
     <section id="about" className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
       <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-        <PhotoPlaceholder
-          alt="Professional headshot of Ryan Levels — placeholder to be replaced with a real photograph"
-          brief="real professional headshot of Ryan, natural light, neutral background. Replace before launch."
-          shape="portrait"
-          className="rounded-2xl mx-auto max-w-xs lg:mx-0"
-        />
+        {/* Headshot placeholder — replace with real <img> when photo is available */}
+        <div className="relative mx-auto max-w-xs lg:mx-0">
+          <div className="aspect-[4/5] relative overflow-hidden rounded-2xl bg-[color:var(--cream-deep)]">
+            <div className="data-grid h-full w-full" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[color:var(--navy)]/10">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-10 w-10 text-[color:var(--navy)]/30" aria-hidden>
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <p className="mt-3 px-4 text-xs text-[color:var(--navy)]/40">
+                  Photo coming soon
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="absolute -bottom-4 -right-4 rounded-xl bg-[color:var(--navy)] p-4 shadow-xl">
+            <p className="font-serif text-2xl text-[color:var(--copper)]">M.S.</p>
+            <p className="mt-0.5 text-xs text-[color:var(--cream)]/70">Business Analytics</p>
+            <p className="text-xs text-[color:var(--cream)]/50">Kent State</p>
+          </div>
+        </div>
 
         <div>
           <span className="eyebrow">About</span>
@@ -44,13 +60,11 @@ export function About() {
           <ul className="mt-8 grid gap-3 sm:grid-cols-2">
             {CREDENTIALS.map((credential) => (
               <li
-                key={credential}
-                className="flex items-start gap-2 rounded-lg border border-[color:var(--navy)]/10 bg-[color:var(--cream-deep)] px-4 py-3 text-sm text-[color:var(--navy)]/85"
+                key={credential.text}
+                className="flex items-center gap-3 rounded-xl border border-[color:var(--navy)]/10 bg-[color:var(--cream-deep)] px-4 py-3.5 text-sm text-[color:var(--navy)]/85"
               >
-                <span aria-hidden className="mt-0.5 text-[color:var(--copper)]">
-                  &bull;
-                </span>
-                {credential}
+                <span className="text-base" aria-hidden>{credential.icon}</span>
+                {credential.text}
               </li>
             ))}
           </ul>
