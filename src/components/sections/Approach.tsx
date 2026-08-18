@@ -7,8 +7,8 @@ export function Approach() {
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 sm:py-24 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div className="relative overflow-hidden rounded-2xl shadow-[0_12px_40px_rgba(12,22,38,0.12)] order-2 lg:order-1">
           <img
-            src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=900&q=80&auto=format&fit=crop"
-            alt="A focused home workspace with an open laptop, notebook, and coffee in natural window light"
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&q=80&auto=format&fit=crop"
+            alt="Two people collaborating at a table with laptops and notes"
             className="aspect-[4/3] w-full object-cover"
             loading="lazy"
           />

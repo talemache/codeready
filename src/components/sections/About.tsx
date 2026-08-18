@@ -1,8 +1,43 @@
 const CREDENTIALS = [
-  { icon: "🎓", text: "M.S. Business Analytics — Kent State University" },
-  { icon: "💻", text: "B.S. Computer Science" },
-  { icon: "🧠", text: "B.S. Psychology" },
-  { icon: "⚓", text: "U.S. Navy veteran" },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4 shrink-0" aria-hidden>
+        <path d="M12 14l9-5-9-5-9 5 9 5z" strokeLinejoin="round" />
+        <path d="M12 14l6.16-3.422A12 12 0 0 1 20 15.5c0 3.314-3.582 6-8 6s-8-2.686-8-6a12 12 0 0 1 1.84-1.922L12 14z" strokeLinejoin="round" />
+      </svg>
+    ),
+    text: "M.S. Business Analytics — Kent State University",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4 shrink-0" aria-hidden>
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <path d="M8 21h8M12 17v4" strokeLinecap="round" />
+      </svg>
+    ),
+    text: "B.S. Computer Science",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4 shrink-0" aria-hidden>
+        <circle cx="12" cy="8" r="5" />
+        <path d="M12 13v3M9 16h6" strokeLinecap="round" />
+        <path d="M8 21c0-2.21 1.79-4 4-4s4 1.79 4 4" strokeLinecap="round" />
+      </svg>
+    ),
+    text: "B.S. Psychology",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4 shrink-0" aria-hidden>
+        <circle cx="12" cy="5" r="2" />
+        <path d="M12 7v4" strokeLinecap="round" />
+        <path d="M12 11H6a6 6 0 0 0 6 6 6 6 0 0 0 6-6h-6z" strokeLinejoin="round" />
+        <path d="M8 19v2M16 19v2M10 21h4" strokeLinecap="round" />
+      </svg>
+    ),
+    text: "U.S. Navy veteran",
+  },
 ];
 
 export function About() {
@@ -63,7 +98,7 @@ export function About() {
                 key={credential.text}
                 className="flex items-center gap-3 rounded-xl border border-[color:var(--navy)]/10 bg-[color:var(--cream-deep)] px-4 py-3.5 text-sm text-[color:var(--navy)]/85"
               >
-                <span className="text-base" aria-hidden>{credential.icon}</span>
+                <span className="text-[color:var(--copper-deep)]" aria-hidden>{credential.icon}</span>
                 {credential.text}
               </li>
             ))}
