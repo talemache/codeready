@@ -20,9 +20,9 @@ const CREDENTIALS = [
   {
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4 shrink-0" aria-hidden>
-        <path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9" strokeLinecap="round" />
-        <path d="M13 3h8v8" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M13 11 21 3" strokeLinecap="round" />
+        <circle cx="12" cy="8" r="5" />
+        <path d="M12 13v3M9 16h6" strokeLinecap="round" />
+        <path d="M8 21c0-2.21 1.79-4 4-4s4 1.79 4 4" strokeLinecap="round" />
       </svg>
     ),
     text: "B.S. Psychology",
@@ -30,8 +30,10 @@ const CREDENTIALS = [
   {
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4 shrink-0" aria-hidden>
-        <path d="M12 2L2 7l10 5 10-5-10-5z" strokeLinejoin="round" />
-        <path d="M2 17l10 5 10-5M2 12l10 5 10-5" strokeLinejoin="round" />
+        <circle cx="12" cy="5" r="2" />
+        <path d="M12 7v4" strokeLinecap="round" />
+        <path d="M12 11H6a6 6 0 0 0 6 6 6 6 0 0 0 6-6h-6z" strokeLinejoin="round" />
+        <path d="M8 19v2M16 19v2M10 21h4" strokeLinecap="round" />
       </svg>
     ),
     text: "U.S. Navy veteran",
