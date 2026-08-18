@@ -11,13 +11,21 @@ export function About() {
       <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
         {/* Headshot placeholder — replace with real <img> when photo is available */}
         <div className="relative mx-auto max-w-xs lg:mx-0">
-          <div className="aspect-[4/5] overflow-hidden rounded-2xl">
-            <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&auto=format&fit=crop&crop=faces"
-              alt="Professional headshot — placeholder until real photography is added"
-              className="h-full w-full object-cover"
-              loading="lazy"
-            />
+          <div className="aspect-[4/5] relative overflow-hidden rounded-2xl bg-[color:var(--cream-deep)]">
+            <div className="data-grid h-full w-full" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[color:var(--navy)]/10">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-10 w-10 text-[color:var(--navy)]/30" aria-hidden>
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <p className="mt-3 px-4 text-xs text-[color:var(--navy)]/40">
+                  Photo coming soon
+                </p>
+              </div>
+            </div>
           </div>
           <div className="absolute -bottom-4 -right-4 rounded-xl bg-[color:var(--navy)] p-4 shadow-xl">
             <p className="font-serif text-2xl text-[color:var(--copper)]">M.S.</p>

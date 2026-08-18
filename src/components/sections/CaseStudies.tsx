@@ -6,6 +6,8 @@ const OUTCOME_ICONS: Record<string, string> = {
   "intake-triage": "✓",
 };
 
+const DEFAULT_OUTCOME_ICON = "★";
+
 export function CaseStudies() {
   return (
     <section id="work" className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
@@ -24,7 +26,7 @@ export function CaseStudies() {
             {/* Outcome banner at top — the result that earns the click */}
             <div className="bg-[color:var(--navy)] px-6 py-5">
               <div className="flex items-start gap-3">
-                <span className="mt-0.5 text-xl" aria-hidden>{OUTCOME_ICONS[study.id]}</span>
+                <span className="mt-0.5 text-xl" aria-hidden>{OUTCOME_ICONS[study.id] ?? DEFAULT_OUTCOME_ICON}</span>
                 <p className="font-serif text-base leading-snug text-[color:var(--cream)]">
                   {study.outcome}
                 </p>
