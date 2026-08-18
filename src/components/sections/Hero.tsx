@@ -1,5 +1,3 @@
-import { LineChartMotif } from "@/components/DataMotif";
-
 const TRUST_ITEMS = [
   { label: "Power BI" },
   { label: "Tableau" },
@@ -63,21 +61,15 @@ export function Hero() {
           </dl>
         </div>
 
-        <div className="relative pt-6 pr-6">
+        <div className="relative">
           <div className="relative overflow-hidden rounded-2xl shadow-[0_20px_50px_rgba(12,22,38,0.18)]">
             <img
-              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80&auto=format&fit=crop"
-              alt="Laptop showing a data dashboard on a clean desk workspace"
+              src="https://images.unsplash.com/photo-1556157382-97eda2f9e2bf?w=900&q=80&auto=format&fit=crop"
+              alt="Professional working at a desk reviewing data on a laptop"
               className="aspect-[4/3] w-full object-cover"
               loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--navy)]/20 via-transparent to-transparent" />
-          </div>
-          <div className="absolute -top-2 -right-2 hidden w-56 rounded-xl bg-[color:var(--navy)] p-4 text-[color:var(--cream)] shadow-xl sm:block">
-            <LineChartMotif className="h-16 w-full text-[color:var(--cream)]" />
-            <p className="mt-2 text-xs text-[color:var(--cream)]/70">
-              Reporting time cut from two days to under an hour, per month.
-            </p>
           </div>
         </div>
       </div>

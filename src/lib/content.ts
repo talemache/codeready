@@ -48,37 +48,8 @@ export type CaseStudy = {
   outcome: string;
 };
 
-// Illustrative examples of the shape of this work. Replace with real,
-// named engagements as they're completed and cleared for public use.
-export const CASE_STUDIES: CaseStudy[] = [
-  {
-    id: "legal-aid-reporting",
-    org: "Regional legal aid nonprofit",
-    problem:
-      "Case managers were exporting LegalServer data into spreadsheets by hand each month to build funder reports — a two-day process prone to copy-paste errors.",
-    approach:
-      "Built a set of LegalServer custom reports feeding a Power BI dashboard, with automated refresh and role-based views for program directors and funders.",
-    outcome: "Reporting time dropped from roughly two days to under an hour per month.",
-  },
-  {
-    id: "evaluation-pipeline",
-    org: "Statewide victim services coalition",
-    problem:
-      "Grant-required outcome metrics lived across three disconnected intake systems, making year-over-year comparison nearly impossible.",
-    approach:
-      "Wrote a Python pipeline to normalize and merge the three sources into a single warehouse, then built a Tableau dashboard for board and grant reporting.",
-    outcome: "Consolidated three systems into one source of truth for annual grant reporting.",
-  },
-  {
-    id: "intake-triage",
-    org: "Small nonprofit legal clinic",
-    problem:
-      "Client intake was a manual bottleneck — staff read every submission before routing it to the right program.",
-    approach:
-      "Built a lightweight LLM-assisted triage step that pre-classifies intake by case type and urgency, with staff reviewing and confirming every routing decision.",
-    outcome: "Cut initial routing time while keeping a human decision on every case.",
-  },
-];
+// Named case studies are added here as engagements wrap and clients sign off on sharing them.
+export const CASE_STUDIES: CaseStudy[] = [];
 
 export type FaqItem = { question: string; answer: string };
 
