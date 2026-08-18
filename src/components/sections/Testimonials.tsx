@@ -1,3 +1,5 @@
+import { LineChartMotif } from "@/components/DataMotif";
+
 const DIFFERENTIATORS = [
   {
     heading: "Honest scoping",
@@ -15,35 +17,41 @@ const DIFFERENTIATORS = [
 
 export function Testimonials() {
   return (
-    <section className="bg-[color:var(--navy)]">
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-[color:var(--navy)]">
+      <div className="data-grid-dark pointer-events-none absolute inset-0 opacity-40" />
+      {/* The line motif bleeds off the panel edge as a quiet brand signature */}
+      <LineChartMotif className="pointer-events-none absolute -bottom-8 right-0 hidden h-56 w-[38rem] text-[color:var(--cream)] opacity-30 lg:block" />
+
+      <div className="relative mx-auto max-w-6xl px-5 py-20 sm:py-24">
         <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:items-start">
           <div>
-            <span className="eyebrow" style={{ color: "var(--copper)" }}>
-              Why work with me
-            </span>
-            <h2 className="mt-3 font-serif text-3xl text-[color:var(--cream)] sm:text-4xl leading-tight">
-              References available on request
+            <span className="eyebrow-invert">Why work with me</span>
+            <span className="section-rule mt-3" aria-hidden />
+            <h2 className="font-serif text-3xl leading-tight text-[color:var(--cream)] sm:text-4xl">
+              Scoped honestly, built to outlast me
             </h2>
-            <p className="mt-5 text-[color:var(--cream)]/60 leading-relaxed text-sm">
-              This practice is early-stage. Rather than placeholder quotes, I'd rather you speak
-              directly with past clients.
+            <p className="mt-5 text-sm leading-relaxed copy-invert">
+              Three commitments that shape every engagement — and the reason most of this work
+              arrives by referral.
             </p>
-            <a
-              href="#contact"
-              className="mt-7 inline-flex items-center gap-2 border border-[color:var(--cream)]/25 px-5 py-2.5 text-sm font-semibold text-[color:var(--cream)]/80 transition hover:border-[color:var(--cream)]/50 hover:text-[color:var(--cream)]"
-            >
+            <a href="#contact" className="btn-quiet mt-7">
               Ask for references
               <span aria-hidden>&rarr;</span>
             </a>
+            <p className="mt-4 text-xs leading-relaxed copy-invert-muted">
+              This practice is early-stage, so rather than placeholder quotes I&rsquo;d rather you
+              speak with past clients directly.
+            </p>
           </div>
 
-          <div className="grid gap-px bg-[color:var(--cream)]/10 border border-[color:var(--cream)]/10 sm:grid-cols-3">
+          <div className="grid gap-px border border-[color:var(--cream)]/10 bg-[color:var(--cream)]/10 sm:grid-cols-3">
             {DIFFERENTIATORS.map((item) => (
               <div key={item.heading} className="bg-[color:var(--navy)] p-7">
                 <div className="mb-4 h-px w-8 bg-[color:var(--copper)]" />
-                <h3 className="font-serif text-lg text-[color:var(--cream)] leading-snug">{item.heading}</h3>
-                <p className="mt-3 text-sm text-[color:var(--cream)]/55 leading-relaxed">{item.body}</p>
+                <h3 className="font-serif text-lg leading-snug text-[color:var(--cream)]">
+                  {item.heading}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed copy-invert">{item.body}</p>
               </div>
             ))}
           </div>

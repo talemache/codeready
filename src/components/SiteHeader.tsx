@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
 
 const NAV_LINKS = [
@@ -9,8 +9,39 @@ const NAV_LINKS = [
   { href: "#faq", label: "FAQ" },
 ];
 
+/**
+ * Tracks which anchored section is currently in view so the primary nav can
+ * mark it. Uses IntersectionObserver only — no scroll listeners, no motion.
+ */
+function useActiveSection() {
+  const [activeId, setActiveId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const sections = NAV_LINKS.map((link) => document.querySelector(link.href)).filter(
+      (element): element is Element => element !== null,
+    );
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+        if (visible) setActiveId(`#${visible.target.id}`);
+      },
+      { rootMargin: "-40% 0px -55% 0px" },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  return activeId;
+}
+
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const activeId = useActiveSection();
 
   return (
     <header className="sticky top-0 z-40 border-b border-[color:var(--navy)]/10 bg-[color:var(--cream)]/95 backdrop-blur">
@@ -30,7 +61,8 @@ export function SiteHeader() {
             <a
               key={link.href}
               href={link.href}
-              className="px-4 py-2 text-[color:var(--navy)]/65 font-medium transition hover:text-[color:var(--navy)]"
+              aria-current={activeId === link.href ? "true" : undefined}
+              className="nav-link text-sm"
             >
               {link.label}
             </a>
@@ -81,7 +113,8 @@ export function SiteHeader() {
                 <a
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="block rounded-lg px-2 py-3 text-[color:var(--navy)] hover:bg-[color:var(--navy)]/5"
+                  aria-current={activeId === link.href ? "true" : undefined}
+                  className="block rounded-lg px-2 py-3 text-[color:var(--navy)] aria-[current]:font-semibold aria-[current]:text-[color:var(--copper-deep)] hover:bg-[color:var(--navy)]/5"
                 >
                   {link.label}
                 </a>

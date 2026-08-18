@@ -2,8 +2,6 @@
 @source "../src";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -44,10 +42,18 @@
   --paper-deep: var(--cream-deep);
   --navy: #16233a;
   --navy-deep: #0c1626;
-  --charcoal: #2a2f36;
   --copper: #b8863d;
-  --copper-deep: #93692c;
-  --ink: #1c1f24;
+  /* Darkened from #93692c so copper text clears 4.5:1 on every cream surface. */
+  --copper-deep: #845c24;
+
+  /* Copy contrast scale — three steps per surface. Prefer these over ad-hoc
+     opacity modifiers so body text stays consistent across sections. */
+  --copy-strong: color-mix(in oklab, var(--navy) 88%, transparent);
+  --copy: color-mix(in oklab, var(--navy) 74%, transparent);
+  --copy-muted: color-mix(in oklab, var(--navy) 66%, transparent);
+  --copy-on-navy-strong: color-mix(in oklab, var(--cream) 90%, transparent);
+  --copy-on-navy: color-mix(in oklab, var(--cream) 74%, transparent);
+  --copy-on-navy-muted: color-mix(in oklab, var(--cream) 62%, transparent);
 
   --background: var(--cream);
   --foreground: var(--navy);
@@ -91,6 +97,31 @@
     font-family: var(--font-serif);
     font-weight: 500;
     letter-spacing: -0.01em;
+    /* Fraunces carries an optical-size axis; large display sizes want the
+       high end for sharper, higher-contrast letterforms. */
+    font-variation-settings: "opsz" 48;
+  }
+
+  h1 {
+    letter-spacing: -0.03em;
+    font-variation-settings: "opsz" 144;
+  }
+
+  h2 {
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 96;
+  }
+
+  h4,
+  h5 {
+    letter-spacing: -0.005em;
+    font-variation-settings: "opsz" 24;
+  }
+
+  /* The header is sticky, so anchor jumps must clear it. */
+  :target,
+  section[id] {
+    scroll-margin-top: 6rem;
   }
 
   a,
@@ -142,6 +173,30 @@
   background-size: 48px 48px;
 }
 
+@utility copy-strong {
+  color: var(--copy-strong);
+}
+
+@utility copy {
+  color: var(--copy);
+}
+
+@utility copy-muted {
+  color: var(--copy-muted);
+}
+
+@utility copy-invert-strong {
+  color: var(--copy-on-navy-strong);
+}
+
+@utility copy-invert {
+  color: var(--copy-on-navy);
+}
+
+@utility copy-invert-muted {
+  color: var(--copy-on-navy-muted);
+}
+
 @utility btn-primary {
   display: inline-flex;
   align-items: center;
@@ -154,9 +209,13 @@
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  transition: background 0.15s ease;
+  box-shadow: 0 1px 2px rgba(12, 22, 38, 0.12);
+  transition:
+    background 0.15s ease,
+    box-shadow 0.15s ease;
   &:hover {
     background: var(--navy-deep);
+    box-shadow: 0 3px 12px rgba(12, 22, 38, 0.22);
   }
 }
 
@@ -172,34 +231,36 @@
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  transition: background 0.15s ease;
+  box-shadow: 0 1px 2px rgba(12, 22, 38, 0.12);
+  transition:
+    background 0.15s ease,
+    box-shadow 0.15s ease;
   &:hover {
     background: var(--copper-deep);
     color: var(--cream);
+    box-shadow: 0 3px 12px rgba(147, 105, 44, 0.3);
   }
 }
 
-@utility btn-outline {
+@utility btn-quiet {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   border-radius: 4px;
-  border: 1.5px solid var(--navy);
-  color: var(--navy);
+  border: 1px solid color-mix(in oklab, var(--cream) 25%, transparent);
+  color: var(--copy-on-navy);
   padding: 0.7rem 1.75rem;
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  transition: background 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
   &:hover {
-    background: color-mix(in oklab, var(--navy) 6%, transparent);
+    border-color: color-mix(in oklab, var(--cream) 50%, transparent);
+    color: var(--cream);
   }
-}
-
-@utility panel-navy {
-  background: var(--navy);
-  color: var(--cream);
 }
 
 @utility card-editorial {
@@ -223,7 +284,7 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: color-mix(in oklab, var(--copper) 16%, var(--cream));
+  background: color-mix(in oklab, var(--copper) 12%, var(--cream));
   color: var(--copper-deep);
 }
 
@@ -234,6 +295,66 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--copper-deep);
+}
+
+/* Same eyebrow on the navy panels, where copper-deep is too dark to read. */
+@utility eyebrow-invert {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+
+/* Primary nav link with a copper underline marking the section in view. */
+@utility nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  color: var(--copy);
+  transition: color 0.15s ease;
+  &:hover {
+    color: var(--navy);
+  }
+  &[aria-current="true"] {
+    color: var(--navy);
+  }
+  &[aria-current="true"]::after {
+    content: "";
+    position: absolute;
+    inset-inline: 1rem;
+    bottom: 0.15rem;
+    height: 2px;
+    background: var(--copper);
+  }
+}
+
+/* Matches the Input/Textarea controls, with a custom chevron so the select
+   doesn't fall back to the native platform control. */
+@utility select-field {
+  appearance: none;
+  display: flex;
+  height: 2.75rem;
+  width: 100%;
+  border: 1px solid var(--input);
+  background-color: var(--card);
+  background-image: linear-gradient(45deg, transparent 50%, var(--copper-deep) 50%),
+    linear-gradient(135deg, var(--copper-deep) 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.15rem) calc(50% + 2px),
+    calc(100% - 0.8rem) calc(50% + 2px);
+  background-size:
+    6px 6px,
+    6px 6px;
+  background-repeat: no-repeat;
+  padding-inline: 0.75rem;
+  padding-inline-end: 2.25rem;
+  font-size: 0.875rem;
+  color: var(--navy);
+  box-shadow: 0 1px 2px rgba(12, 22, 38, 0.05);
 }
 
 /* Smooth page entrance — removed; static entry preferred */

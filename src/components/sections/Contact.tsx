@@ -50,19 +50,26 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="border-t border-[color:var(--navy)]/10 bg-[color:var(--cream-deep)]">
+    <section
+      id="contact"
+      className="border-t-2 border-[color:var(--copper)]/40 bg-[color:var(--cream-deep)]"
+    >
       <div className="mx-auto max-w-6xl px-5 py-20 sm:py-28">
         <div className="grid gap-16 lg:grid-cols-[1fr_1.6fr] lg:items-start">
           <div>
             <span className="eyebrow">Get in touch</span>
-            <h2 className="mt-3 font-serif text-3xl sm:text-4xl leading-tight">Start a conversation</h2>
-            <p className="mt-5 text-[color:var(--navy)]/72 leading-relaxed">
+            <span className="section-rule mt-3" aria-hidden />
+            <h2 className="font-serif text-3xl sm:text-4xl leading-tight">Start a conversation</h2>
+            <p className="mt-5 copy leading-relaxed">
               Tell me what you're working with and what's not working. I respond to every inquiry
               personally, usually within a couple of business days.
             </p>
-            <p className="mt-4 text-sm text-[color:var(--navy)]/55">
+            <p className="mt-4 text-sm copy-muted">
               Or email directly:{" "}
-              <a href={`mailto:${FALLBACK_EMAIL}`} className="text-[color:var(--copper-deep)] font-medium hover:underline">
+              <a
+                href={`mailto:${FALLBACK_EMAIL}`}
+                className="text-[color:var(--copper-deep)] font-medium hover:underline"
+              >
                 {FALLBACK_EMAIL}
               </a>
             </p>
@@ -99,7 +106,7 @@ export function Contact() {
                 id="interest"
                 name="interest"
                 defaultValue={SERVICES[0].id}
-                className="mt-1.5 flex h-11 w-full border border-input bg-[color:var(--card)] px-3 text-sm text-[color:var(--navy)] shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                className="select-field mt-1.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
               >
                 {SERVICES.map((s) => (
                   <option key={s.id} value={s.id}>
@@ -123,7 +130,7 @@ export function Contact() {
                 {status === "submitting" ? "Sending…" : "Send message"}
               </button>
               {status === "success" && (
-                <p role="status" className="text-sm text-[color:var(--navy)]/75">
+                <p role="status" className="text-sm copy">
                   Thanks — I'll be in touch soon.
                 </p>
               )}

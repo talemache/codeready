@@ -49,7 +49,43 @@ export type CaseStudy = {
 };
 
 // Named case studies are added here as engagements wrap and clients sign off on sharing them.
+// Until then the Selected work section renders the engagement timeline below.
 export const CASE_STUDIES: CaseStudy[] = [];
+
+export type EngagementStep = {
+  title: string;
+  description: string;
+  duration: string;
+};
+
+// The shape of a typical engagement, used as the Selected work section's
+// structure until named case studies are publishable.
+export const ENGAGEMENT_STEPS: EngagementStep[] = [
+  {
+    title: "Scoping call",
+    description:
+      "One conversation to pin down the question you're actually trying to answer and who needs the answer.",
+    duration: "30–45 min",
+  },
+  {
+    title: "Data audit",
+    description:
+      "I look at what your systems really hold — fields, gaps, and the places the data disagrees with itself.",
+    duration: "Week 1",
+  },
+  {
+    title: "Build",
+    description:
+      "The dashboard, report, or pipeline gets built and reviewed with you in progress, not revealed at the end.",
+    duration: "Weeks 2–4",
+  },
+  {
+    title: "Handoff",
+    description:
+      "Documentation and a walkthrough so your staff can run and explain it without me in the room.",
+    duration: "Final week",
+  },
+];
 
 export type FaqItem = { question: string; answer: string };
 
