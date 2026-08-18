@@ -43,16 +43,17 @@
   --navy: #16233a;
   --navy-deep: #0c1626;
   --copper: #b8863d;
-  --copper-deep: #93692c;
+  /* Darkened from #93692c so copper text clears 4.5:1 on every cream surface. */
+  --copper-deep: #845c24;
 
   /* Copy contrast scale — three steps per surface. Prefer these over ad-hoc
      opacity modifiers so body text stays consistent across sections. */
   --copy-strong: color-mix(in oklab, var(--navy) 88%, transparent);
   --copy: color-mix(in oklab, var(--navy) 74%, transparent);
-  --copy-muted: color-mix(in oklab, var(--navy) 58%, transparent);
+  --copy-muted: color-mix(in oklab, var(--navy) 66%, transparent);
   --copy-on-navy-strong: color-mix(in oklab, var(--cream) 90%, transparent);
   --copy-on-navy: color-mix(in oklab, var(--cream) 74%, transparent);
-  --copy-on-navy-muted: color-mix(in oklab, var(--cream) 58%, transparent);
+  --copy-on-navy-muted: color-mix(in oklab, var(--cream) 62%, transparent);
 
   --background: var(--cream);
   --foreground: var(--navy);
@@ -283,7 +284,7 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: color-mix(in oklab, var(--copper) 16%, var(--cream));
+  background: color-mix(in oklab, var(--copper) 12%, var(--cream));
   color: var(--copper-deep);
 }
 
