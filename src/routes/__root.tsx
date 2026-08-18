@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
-  Link,
   createRootRouteWithContext,
   useRouter,
   HeadContent,
@@ -12,20 +11,25 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
+const SITE_TITLE = "Ryan Levels — Data & AI Consulting";
+const SITE_DESCRIPTION =
+  "Data, AI, and software consulting for nonprofits and mission-driven organizations — LegalServer reporting, Power BI and Tableau dashboards, and practical AI-informed workflows.";
+
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[color:var(--paper)] px-5">
+    <div className="flex min-h-screen items-center justify-center bg-[color:var(--cream)] px-5">
       <div className="max-w-md text-center">
-        <p className="font-serif text-7xl text-[color:var(--forest)]">404</p>
-        <h1 className="mt-4 font-serif text-3xl text-[color:var(--forest)]">
-          This page took a wrong turn
+        <p className="font-serif text-7xl text-[color:var(--navy)]">404</p>
+        <h1 className="mt-4 font-serif text-3xl text-[color:var(--navy)]">
+          This page doesn't exist
         </h1>
-        <p className="mt-3 text-[color:var(--forest)]/70">
-          Nothing lives at this address. The tracks are still where you left them.
+        <p className="mt-3 text-[color:var(--navy)]/70">
+          Nothing lives at this address. Everything on this site is on the home page.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link to="/dashboard" className="btn-primary">Go to dashboard</Link>
-          <Link to="/" className="btn-outline">Back home</Link>
+          <a href="/" className="btn-primary">
+            Back home
+          </a>
         </div>
       </div>
     </div>
@@ -46,7 +50,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           This page didn't load
         </h1>
         <p className="mt-2 text-sm text-foreground/80">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Something went wrong. You can try refreshing or head back home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -75,30 +79,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Northal — Free, no-login learning paths" },
-      {
-        name: "description",
-        content:
-          "A free, no-login learning path for software engineering fundamentals with original lessons, quizzes, challenges, and local-only progress tracking.",
-      },
-      { name: "author", content: "Northal" },
-      { property: "og:title", content: "Northal — Free, no-login learning paths" },
-      {
-        property: "og:description",
-        content:
-          "A free, no-login learning path for software engineering fundamentals with original lessons, quizzes, challenges, and local-only progress tracking.",
-      },
+      { title: SITE_TITLE },
+      { name: "description", content: SITE_DESCRIPTION },
+      { name: "author", content: "Ryan Levels" },
+      { property: "og:title", content: SITE_TITLE },
+      { property: "og:description", content: SITE_DESCRIPTION },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Northal — Free, no-login learning paths" },
-      { name: "twitter:description", content: "A free, no-login learning path for software engineering fundamentals with original lessons, quizzes, challenges, and local-only progress tracking." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6fe005d6-9afc-4438-8840-1687220be6e0" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6fe005d6-9afc-4438-8840-1687220be6e0" },
+      { name: "twitter:title", content: SITE_TITLE },
+      { name: "twitter:description", content: SITE_DESCRIPTION },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-      { rel: "icon", href: "/favicon.ico", sizes: "any" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

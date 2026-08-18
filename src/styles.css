@@ -10,8 +10,6 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -37,69 +35,39 @@
 }
 
 :root {
-  --radius: 1rem;
+  --radius: 0.75rem;
 
-  /* CodeReady palette */
-  --paper: #faf6ef;
-  --paper-deep: #f2ebdd;
-  --cream-text: #f7f3e9;
-  --forest: #1e3a2c;
-  --forest-deep: #142a20;
-  --coral: #e8836b;
-  --periwinkle: #c7cdea;
-  --ink: #1c1b18;
+  /* Ryan Levels — editorial navy / cream / copper palette */
+  --cream: #f7f3ea;
+  --cream-deep: #ede5d3;
+  --paper: var(--cream);
+  --paper-deep: var(--cream-deep);
+  --navy: #16233a;
+  --navy-deep: #0c1626;
+  --charcoal: #2a2f36;
+  --copper: #b8863d;
+  --copper-deep: #93692c;
+  --ink: #1c1f24;
 
-  --background: var(--paper);
-  --foreground: var(--forest);
+  --background: var(--cream);
+  --foreground: var(--navy);
   --card: #ffffff;
-  --card-foreground: var(--forest);
+  --card-foreground: var(--navy);
   --popover: #ffffff;
-  --popover-foreground: var(--forest);
-  --primary: var(--forest);
-  --primary-foreground: var(--paper);
-  --secondary: var(--paper-deep);
-  --secondary-foreground: var(--forest);
-  --muted: var(--paper-deep);
-  --muted-foreground: color-mix(in oklab, var(--forest) 65%, transparent);
-  --accent: var(--coral);
-  --accent-foreground: var(--forest);
-  --destructive: #b3341f;
-  --destructive-foreground: var(--paper);
-  --border: color-mix(in oklab, var(--forest) 15%, transparent);
-  --input: color-mix(in oklab, var(--forest) 20%, transparent);
-  --ring: var(--forest);
-}
-
-/* Dark mode palette */
-.dark {
-  --paper: #1c2a22;
-  --paper-deep: #162019;
-  --cream-text: #ede8de;
-  --forest: #d0c9ba;
-  --forest-deep: #e8e2d5;
-  --coral: #e8836b;
-  --periwinkle: #8b92c9;
-  --ink: #ede8de;
-
-  --background: var(--paper);
-  --foreground: var(--forest);
-  --card: #243328;
-  --card-foreground: var(--forest);
-  --popover: #243328;
-  --popover-foreground: var(--forest);
-  --primary: var(--forest);
-  --primary-foreground: var(--paper);
-  --secondary: var(--paper-deep);
-  --secondary-foreground: var(--forest);
-  --muted: var(--paper-deep);
-  --muted-foreground: color-mix(in oklab, var(--forest) 75%, transparent);
-  --accent: var(--coral);
-  --accent-foreground: var(--paper);
-  --destructive: #e05c3e;
-  --destructive-foreground: var(--paper);
-  --border: color-mix(in oklab, var(--forest) 20%, transparent);
-  --input: color-mix(in oklab, var(--forest) 25%, transparent);
-  --ring: var(--coral);
+  --popover-foreground: var(--navy);
+  --primary: var(--navy);
+  --primary-foreground: var(--cream);
+  --secondary: var(--cream-deep);
+  --secondary-foreground: var(--navy);
+  --muted: var(--cream-deep);
+  --muted-foreground: color-mix(in oklab, var(--navy) 62%, transparent);
+  --accent: var(--copper);
+  --accent-foreground: var(--navy-deep);
+  --destructive: #a3341f;
+  --destructive-foreground: var(--cream);
+  --border: color-mix(in oklab, var(--navy) 14%, transparent);
+  --input: color-mix(in oklab, var(--navy) 20%, transparent);
+  --ring: var(--copper);
 }
 
 @layer base {
@@ -107,14 +75,19 @@
     border-color: var(--color-border);
   }
 
-  html, body {
-    background-color: var(--paper);
-    color: var(--forest);
+  html,
+  body {
+    background-color: var(--cream);
+    color: var(--navy);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "ss02";
+    font-feature-settings: "ss01";
   }
 
-  h1, h2, h3, h4, h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     font-family: var(--font-serif);
     font-weight: 500;
     letter-spacing: -0.01em;
@@ -133,18 +106,40 @@
   input:focus-visible,
   textarea:focus-visible,
   select:focus-visible {
-    outline: 3px solid color-mix(in oklab, var(--coral) 75%, white);
+    outline: 3px solid color-mix(in oklab, var(--copper) 70%, white);
     outline-offset: 2px;
   }
 }
 
-/* Subtle paper grain */
-.paper-grain {
+/* Faint analytical grid texture — a restrained data motif, never a literal dashboard */
+.data-grid {
   background-image:
-    radial-gradient(color-mix(in oklab, var(--forest) 6%, transparent) 1px, transparent 1px),
-    radial-gradient(color-mix(in oklab, var(--forest) 4%, transparent) 1px, transparent 1px);
-  background-size: 24px 24px, 16px 16px;
-  background-position: 0 0, 8px 8px;
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--navy) 6%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--navy) 6%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 48px 48px;
+}
+
+.data-grid-dark {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--cream) 8%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--cream) 8%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 48px 48px;
 }
 
 @utility btn-primary {
@@ -153,12 +148,39 @@
   justify-content: center;
   gap: 0.5rem;
   border-radius: 9999px;
-  background: var(--forest);
-  color: var(--cream-text);
-  padding: 0.75rem 1.5rem;
+  background: var(--navy);
+  color: var(--cream);
+  padding: 0.85rem 1.75rem;
   font-weight: 500;
-  transition: transform 0.15s ease, background 0.15s ease;
-  &:hover { background: var(--forest-deep); transform: translateY(-2px); box-shadow: 0 2px 12px rgba(28, 27, 24, 0.08); }
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+  &:hover {
+    background: var(--navy-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 18px rgba(12, 22, 38, 0.18);
+  }
+}
+
+@utility btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: var(--copper);
+  color: var(--navy-deep);
+  padding: 0.85rem 1.75rem;
+  font-weight: 600;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
+  &:hover {
+    background: var(--copper-deep);
+    color: var(--cream);
+    transform: translateY(-1px);
+  }
 }
 
 @utility btn-outline {
@@ -167,63 +189,98 @@
   justify-content: center;
   gap: 0.5rem;
   border-radius: 9999px;
-  border: 1.5px solid var(--forest);
-  color: var(--forest);
-  padding: 0.6rem 1.35rem;
+  border: 1.5px solid var(--navy);
+  color: var(--navy);
+  padding: 0.7rem 1.5rem;
   font-weight: 500;
   transition: background 0.15s ease;
-  &:hover { background: color-mix(in oklab, var(--forest) 8%, transparent); }
+  &:hover {
+    background: color-mix(in oklab, var(--navy) 6%, transparent);
+  }
 }
 
-@utility panel {
-  background: var(--forest);
-  color: var(--cream-text);
-  border-radius: 1.5rem;
-}
-
-@utility card-paper {
-  background: var(--card);
-  border: 1px solid color-mix(in oklab, var(--forest) 12%, transparent);
+@utility panel-navy {
+  background: var(--navy);
+  color: var(--cream);
   border-radius: 1.25rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 2px 12px rgba(28, 27, 24, 0.08);
-  &:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(28, 27, 24, 0.12); }
+}
+
+@utility card-editorial {
+  background: var(--card);
+  border: 1px solid color-mix(in oklab, var(--navy) 10%, transparent);
+  border-radius: 1rem;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px rgba(12, 22, 38, 0.06);
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(12, 22, 38, 0.1);
+  }
 }
 
 @utility tag {
   display: inline-flex;
   align-items: center;
   border-radius: 9999px;
-  padding: 0.15rem 0.6rem;
+  padding: 0.3rem 0.8rem;
   font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  background: color-mix(in oklab, var(--periwinkle) 55%, var(--paper));
-  color: var(--forest);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: color-mix(in oklab, var(--copper) 16%, var(--cream));
+  color: var(--copper-deep);
 }
 
-/* Hand-drawn squiggle underline for section headings */
-@utility heading-squiggle {
-  position: relative;
-  display: inline-block;
-  padding-bottom: 0.35rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5 Q 12 1, 25 4 T 50 4 T 75 4 T 99 3' fill='none' stroke='%23E8A595' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 100% 7px;
+@utility eyebrow {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--copper-deep);
 }
 
 /* Smooth page entrance */
 @keyframes page-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 main {
-  animation: page-in 0.28s ease-out both;
+  animation: page-in 0.3s ease-out both;
+}
+
+/* Scroll-triggered reveal for section content */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal {
+  animation: reveal-up 0.5s ease-out both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  main { animation: none; }
-  .card-paper:hover { transform: none; }
+  main {
+    animation: none;
+  }
+  .reveal {
+    animation: none;
+  }
+  .card-editorial:hover {
+    transform: none;
+  }
 }

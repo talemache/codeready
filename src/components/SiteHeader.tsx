@@ -1,119 +1,104 @@
-import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Logo } from "@/components/Logo";
-import { SearchBar } from "@/components/SearchBar";
-import { AuthModal } from "@/components/AuthModal";
-import { useDarkMode } from "@/hooks/use-dark-mode";
-import { useAudience } from "@/hooks/use-audience";
-import { useAuth } from "@/lib/auth";
 
-function SunIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <circle cx="12" cy="12" r="5"/>
-      <line x1="12" y1="1" x2="12" y2="3"/>
-      <line x1="12" y1="21" x2="12" y2="23"/>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-      <line x1="1" y1="12" x2="3" y2="12"/>
-      <line x1="21" y1="12" x2="23" y2="12"/>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-    </svg>
-  );
-}
-
-function MoonIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-    </svg>
-  );
-}
+const NAV_LINKS = [
+  { href: "#services", label: "Services" },
+  { href: "#approach", label: "Approach" },
+  { href: "#work", label: "Selected work" },
+  { href: "#about", label: "About" },
+  { href: "#faq", label: "FAQ" },
+];
 
 export function SiteHeader() {
-  const { dark, toggle } = useDarkMode();
-  const { audience, audienceLoaded, clearAudience } = useAudience();
-  const { user, loading: authLoading, signOut } = useAuth();
-  const [authOpen, setAuthOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <>
-    <header className="sticky top-0 z-40 border-b border-[color:var(--forest)]/10 bg-[color:var(--paper)]/85 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-[color:var(--navy)]/10 bg-[color:var(--cream)]/90 backdrop-blur">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 rounded-full bg-[color:var(--forest)] px-4 py-2 text-[color:var(--cream-text)]"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 rounded-full bg-[color:var(--navy)] px-4 py-2 text-[color:var(--cream)]"
       >
         Skip to content
       </a>
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-3 sm:py-4">
-        <Link to="/" className="flex items-center gap-2 group shrink-0">
-          <Logo size={32} />
-          <span className="font-serif text-xl text-[color:var(--forest)] group-hover:italic">Northal</span>
-        </Link>
-        <div className="flex items-center gap-1 sm:gap-2">
-          <SearchBar />
-          <nav aria-label="Primary" className="flex items-center gap-1 text-sm">
-            <Link
-              to="/dashboard"
-              className="rounded-full px-3 py-1.5 min-h-11 sm:min-h-0 inline-flex items-center text-[color:var(--forest)] hover:bg-[color:var(--forest)]/10"
-              activeProps={{ className: "rounded-full px-3 py-1.5 inline-flex items-center bg-[color:var(--forest)] text-[color:var(--paper)]" }}
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-4">
+        <a href="#top" className="shrink-0">
+          <Logo />
+        </a>
+
+        <nav aria-label="Primary" className="hidden items-center gap-1 text-sm md:flex">
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="rounded-full px-3 py-2 text-[color:var(--navy)]/80 transition hover:bg-[color:var(--navy)]/5 hover:text-[color:var(--navy)]"
             >
-              Dashboard
-            </Link>
-            <Link
-              to="/ide"
-              className="hidden sm:inline-flex items-center rounded-full px-3 py-1.5 text-[color:var(--forest)] hover:bg-[color:var(--forest)]/10"
-              activeProps={{ className: "rounded-full px-3 py-1.5 inline-flex items-center bg-[color:var(--forest)] text-[color:var(--paper)]" }}
-            >
-              IDE
-            </Link>
-            <Link
-              to="/about"
-              className="hidden sm:inline-flex items-center rounded-full px-3 py-1.5 text-[color:var(--forest)] hover:bg-[color:var(--forest)]/10"
-              activeProps={{ className: "rounded-full px-3 py-1.5 inline-flex items-center bg-[color:var(--forest)] text-[color:var(--paper)]" }}
-            >
-              About
-            </Link>
-            {audienceLoaded && audience && (
-              <button
-                onClick={clearAudience}
-                aria-label={`Switch learning path from ${audience === "teen" ? "Teen" : "College"}`}
-                className="hidden sm:inline-flex items-center rounded-full px-3 py-1.5 text-xs font-medium border border-[color:var(--forest)]/30 text-[color:var(--forest)]/80 hover:bg-[color:var(--forest)]/10 transition"
-              >
-                Path: {audience === "teen" ? "Teen" : "College"}
-              </button>
-            )}
-            {!authLoading && (
-              user ? (
-                <button
-                  onClick={() => void signOut()}
-                  className="hidden sm:inline-flex items-center rounded-full px-3 py-1.5 text-xs font-medium border border-[color:var(--forest)]/30 text-[color:var(--forest)]/80 hover:bg-[color:var(--forest)]/10 transition"
-                  title={user.email ?? "Signed in"}
-                >
-                  Sign out
-                </button>
-              ) : (
-                <button
-                  onClick={() => setAuthOpen(true)}
-                  className="hidden sm:inline-flex items-center rounded-full px-3 py-1.5 text-xs font-medium bg-[color:var(--forest)] text-[color:var(--paper)] hover:bg-[color:var(--forest)]/90 transition"
-                >
-                  Sign in
-                </button>
-              )
-            )}
-          </nav>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-2">
+          <a href="#contact" className="btn-primary hidden text-sm sm:inline-flex">
+            Get in touch
+          </a>
           <button
-            onClick={toggle}
-            aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-            className="grid h-9 w-9 place-items-center rounded-full text-[color:var(--forest)] hover:bg-[color:var(--forest)]/10 transition"
+            type="button"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            className="grid h-11 w-11 place-items-center rounded-full text-[color:var(--navy)] hover:bg-[color:var(--navy)]/5 md:hidden"
           >
-            {dark ? <SunIcon /> : <MoonIcon />}
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              aria-hidden
+            >
+              {menuOpen ? (
+                <path d="M6 6 L18 18 M18 6 L6 18" />
+              ) : (
+                <path d="M4 7h16 M4 12h16 M4 17h16" />
+              )}
+            </svg>
           </button>
         </div>
       </div>
+
+      {menuOpen && (
+        <nav
+          id="mobile-nav"
+          aria-label="Primary"
+          className="border-t border-[color:var(--navy)]/10 px-5 pb-5 pt-2 md:hidden"
+        >
+          <ul className="flex flex-col">
+            {NAV_LINKS.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="block rounded-lg px-2 py-3 text-[color:var(--navy)] hover:bg-[color:var(--navy)]/5"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+            <li className="mt-2">
+              <a
+                href="#contact"
+                onClick={() => setMenuOpen(false)}
+                className="btn-primary w-full text-sm"
+              >
+                Get in touch
+              </a>
+            </li>
+          </ul>
+        </nav>
+      )}
     </header>
-    <AuthModal open={authOpen} onOpenChange={setAuthOpen} />
-  </>
   );
 }

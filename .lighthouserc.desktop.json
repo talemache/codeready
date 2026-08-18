@@ -2,13 +2,7 @@
   "ci": {
     "collect": {
       "numberOfRuns": 1,
-      "url": [
-        "http://127.0.0.1:4173/",
-        "http://127.0.0.1:4173/dashboard",
-        "http://127.0.0.1:4173/track/programming-foundations",
-        "http://127.0.0.1:4173/track/programming-foundations/writing-clean-code",
-        "http://127.0.0.1:4173/about"
-      ],
+      "url": ["http://127.0.0.1:4173/"],
       "startServerCommand": "npm run dev -- --host 127.0.0.1 --port 4173",
       "startServerReadyPattern": "Local",
       "startServerReadyTimeout": 90000,
