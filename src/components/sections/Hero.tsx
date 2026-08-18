@@ -5,7 +5,7 @@ const TRUST_ITEMS = ["Power BI", "Tableau", "LegalServer", "Python", "SQL", "Pow
 const HERO_FACTS = [
   { label: "Focus", value: "Nonprofit & legal aid data" },
   { label: "Core tools", value: "Power BI, Tableau, SQL, Python, R" },
-  { label: "Based", value: "Kent, Ohio · remote" },
+  { label: "Based", value: "North Canton, Ohio · remote" },
 ];
 
 export function Hero() {
