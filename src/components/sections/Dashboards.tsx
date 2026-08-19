@@ -17,8 +17,8 @@ export function Dashboards() {
             color: "color-mix(in srgb, var(--color-text) 78%, transparent)",
           }}
         >
-          Not slideware. A working dashboard, the query behind it, and documentation your staff can
-          read on a Monday. Screens below come from real builds, scrubbed of client data.
+          A working dashboard, the query behind it, and documentation your staff can actually read —
+          not a slide deck. Screens below are from real work, with identifying details removed.
         </p>
       </div>
 

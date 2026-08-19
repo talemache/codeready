@@ -16,8 +16,8 @@ export function Engagements() {
           }}
         >
           Every quote is fixed before work begins, so you know the number and I know the scope.
-          Ranges below are typical; nonprofit and legal-aid budgets get an honest conversation, not
-          a surcharge.
+          Ranges below are typical — nonprofit and legal-aid budgets are common here, and pricing
+          reflects that.
         </p>
       </div>
 
@@ -61,8 +61,8 @@ export function Engagements() {
       ))}
 
       <p className="mt-7 text-[15.5px] leading-7">
-        <a href="#contact">Ask for a fixed quote</a> — I'll give you a number after one call, not a
-        discovery invoice.
+        <a href="#contact">Ask for a fixed quote</a> — I'll give you a number after one
+        conversation.
       </p>
     </section>
   );

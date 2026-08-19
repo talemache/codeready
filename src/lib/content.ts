@@ -42,7 +42,7 @@ export const SERVICES: Service[] = [
     num: "05",
     name: "Training your team",
     description:
-      "Half-day sessions that leave your staff able to read, question, and maintain their own reporting — and to use AI tools without handing them the wheel.",
+      "Half-day sessions that leave your staff able to read, maintain, and troubleshoot their own reporting — and to use AI tools with a clear line on where human review still belongs.",
     tools: "Workshops · documentation · office hours",
   },
 ];
@@ -55,29 +55,34 @@ export type CaseStudy = {
   result: string;
 };
 
-// Structurally correct, but the facts are placeholders — replace with real,
-// anonymized (or named, once cleared) outcomes before launch.
+// Real work, not composites — drawn from my current role at Community Legal
+// Aid and my prior software engineering career. Photos are still placeholders
+// pending real shots or screenshots.
 export const CASE_STUDIES: CaseStudy[] = [
   {
-    slotHint: "Photo: a legal-aid intake desk or case files in use — grounded, unstaged.",
-    sector: "Legal aid · 40 staff",
-    title: "Grant reporting that stopped eating a week",
-    body: "Monthly funder reports were assembled by hand from case-management exports, in four spreadsheets, by one person who was also running intake. I rebuilt the extraction as a single scheduled query and put the funder metrics on one page.",
-    result: "Reporting moved from several days of manual work to a review-and-send.",
+    slotHint:
+      "Photo: a caseworker's desk at a legal aid office — case files, a monitor, natural light. Grounded, unstaged.",
+    sector: "Community Legal Aid · Program evaluation",
+    title: "How Long Should This Case Take?",
+    body: "Attorney caseloads got evaluated on instinct, not data. I built a benchmarking study using Tukey's IQR method to flag outlier case durations by case type, then translated the statistics into a one-pager and study guide leadership could use without a stats background.",
+    result:
+      "Presented to executive leadership — now part of how attorney workload and staffing get evaluated.",
   },
   {
-    slotHint: "Photo: a small-business ops team at a screen mid-conversation.",
-    sector: "Professional services firm",
-    title: "One number everyone finally agreed on",
-    body: "Sales, delivery, and finance each had their own utilization figure and none of them matched. The work was less dashboard than arbitration: agreeing the definition, then building the one place it lives.",
-    result: "A single weekly view leadership now runs their Monday meeting from.",
+    slotHint: "Photo: a clean R Markdown or Quarto report open on a monitor, natural light.",
+    sector: "Community Legal Aid · Federal & funder reporting",
+    title: "Compliance reporting that runs itself",
+    body: "Reports to the Legal Services Corporation and grant funders were recurring manual work pulled from LegalServer exports. I rebuilt the extraction as API- and SQL-based queries in R and converted the recurring reports into reproducible R Markdown and Quarto deliverables.",
+    result:
+      "Every report now runs the same way whether or not I'm the one who presses go — accurate and audit-ready by default.",
   },
   {
-    slotHint: "Photo: printed program reports on a desk, natural light.",
-    sector: "Nonprofit coalition",
-    title: "AI used in exactly one place",
-    body: "They wanted an AI strategy. What they needed was to stop reading four hundred intake narratives by hand each quarter. I scoped one narrow summarization step, kept a human in the loop, and left the rest alone.",
-    result: "Quarterly narrative review cut to a review pass, with staff still signing off.",
+    slotHint: "Photo: a developer's desk — laptop open to a code editor, natural light, unstaged.",
+    sector: "Sanctuary Software Studio · Mobile & enterprise software",
+    title: "Nine clients, one set of engineering habits",
+    body: "Before data, I built full-stack business applications and mobile software for clients across finance, healthcare, and logistics — translating ambiguous requirements into working, tested, version-controlled software, including SQL Server database design for enterprise reporting.",
+    result:
+      "Systems integration and workflow automation that improved operational efficiency by roughly 30% across 9+ enterprise clients.",
   },
 ];
 
@@ -86,7 +91,7 @@ export type DashboardShot = { hint: string; caption: string };
 export const DASHBOARD_SHOTS: DashboardShot[] = [
   {
     hint: "Screenshot: an executive summary dashboard page, client data scrubbed.",
-    caption: "Executive summary — one page, no drilling required.",
+    caption: "Executive summary — everything a board needs on one page.",
   },
   {
     hint: "Screenshot: a grant-metrics report page with funder measures.",

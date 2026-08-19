@@ -19,9 +19,9 @@ export function Credentials() {
               color: "color-mix(in srgb, var(--color-text) 78%, transparent)",
             }}
           >
-            AI advice ages in months, so the certifications behind mine are recent and specific —
-            including Anthropic's AI fluency track written for nonprofits, and agent and Model
-            Context Protocol work from OpenAI and Anthropic.
+            The certifications behind this are recent and specific — Anthropic's AI fluency track
+            written for nonprofits, plus agent and Model Context Protocol work from OpenAI and
+            Anthropic.
           </p>
           <hr className="m-0 h-0 border-0 border-t border-[color:var(--color-text)]" />
           {CERTIFICATIONS.map((cert) => (
@@ -41,7 +41,7 @@ export function Credentials() {
             className="mb-5 mt-3.5 text-[15.5px] leading-7"
             style={{ color: "color-mix(in srgb, var(--color-text) 78%, transparent)" }}
           >
-            Not badges — the rooms where this work is actually argued about.
+            The organizations where I stay active, not just listed.
           </p>
           {MEMBERSHIPS.map((org) => (
             <p key={org.name} className="mb-3.5 text-[15.5px] leading-7">

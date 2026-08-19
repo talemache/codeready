@@ -30,10 +30,11 @@ export function About() {
             color: "color-mix(in srgb, var(--color-text) 82%, transparent)",
           }}
         >
-          I'm the Data &amp; Evaluation Manager at Community Legal Aid, where I create, collect,
-          analyze and share data with the people who have to act on it — boards, funders, program
-          directors. I also teach analytics at Kent State. This practice grew out of both:
-          organizations kept asking who built their reporting, and eventually I started saying yes.
+          I'm the Data &amp; Evaluation Manager at Community Legal Aid, where I lead data strategy,
+          reporting, and program evaluation for a 100-person legal aid organization — building the
+          analysis boards, funders, and program directors actually use. I also mentor other analysts
+          through the Data Visualization Society. This practice grew out of that work: people kept
+          asking who built the reporting, and eventually I started saying yes.
         </p>
         <p
           className="mt-3.5 text-[15.5px] leading-7"
@@ -44,12 +45,12 @@ export function About() {
             color: "color-mix(in srgb, var(--color-text) 82%, transparent)",
           }}
         >
-          Before data, I was a software engineer building front-end mobile apps in Swift and Kotlin
-          — which is why "can you also just fix the tool" is a fair question to ask me. My
-          background is a strange, useful mix: computer science, psychology, business analytics, and
-          a Navy enlistment where I first met systems that couldn't afford to be wrong. Most of my
-          work lives in the gap between the people who understand the data and the people who need
-          to use it, and I like it there.
+          Before data, I spent a few years as a software engineer building mobile and enterprise
+          applications for clients across finance, healthcare, and logistics — which is why "can you
+          also just fix the tool" is a fair question to ask me. I hold degrees in computer science,
+          psychology, and business analytics, and served four years of active duty in the U.S. Navy,
+          where I managed classified data and personnel records for a team of 50. Most of my work
+          sits between the people who understand the data and the people who need to act on it.
         </p>
 
         <div className="mt-7">

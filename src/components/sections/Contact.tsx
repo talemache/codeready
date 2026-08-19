@@ -154,7 +154,7 @@ export function Contact() {
               className="text-[13px]"
               style={{ color: "color-mix(in srgb, var(--color-text) 70%, transparent)" }}
             >
-              No newsletter, no CRM sequence. Just a reply from me.
+              No mailing list, no automated sequence.
             </span>
           </div>
           {status === "success" && (

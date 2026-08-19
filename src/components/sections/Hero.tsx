@@ -21,9 +21,9 @@ export function Hero() {
         }}
       >
         I'm Ryan — Data &amp; Evaluation Manager at Community Legal Aid by day, independent data and
-        software consultant the rest of the time. I build the reporting your board, your funders, or
-        your leadership team actually reads, and I bring AI into the workflow only where it
-        genuinely saves your staff an afternoon. Small teams, real deadlines, no platform agenda.
+        software consultant the rest of the time. I build reporting that boards, funders, and
+        leadership teams actually read, and I use AI only where it holds up under real use, not
+        because it's trending. Small teams, real deadlines, straight answers.
       </p>
       <div className="mt-7 flex flex-wrap items-center gap-[15px]">
         <a href="#contact" className="btn-primary min-h-10 px-[22px]">

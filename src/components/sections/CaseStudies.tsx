@@ -7,7 +7,7 @@ export function CaseStudies() {
       <span className="kicker">Selected work</span>
       <div className="grid grid-cols-[minmax(0,5fr)_minmax(0,7fr)] items-end gap-x-[clamp(24px,5vw,80px)] gap-y-7 max-[720px]:grid-cols-1">
         <h2 className="m-0 text-4xl leading-[42px] tracking-[-0.015em]">
-          Three engagements, told plainly
+          Three projects, told plainly
         </h2>
         <p
           className="m-0 text-[15.5px] leading-7"
@@ -18,9 +18,8 @@ export function CaseStudies() {
             color: "color-mix(in srgb, var(--color-text) 78%, transparent)",
           }}
         >
-          Client names appear once they've signed off; the rest stay anonymous but exact. Ask about
-          anything close to your situation and I'll point you at the nearest match rather than a
-          brochure.
+          Selected work from my current role and prior engineering career — the real work this
+          practice is built on.
         </p>
       </div>
 

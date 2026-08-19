@@ -80,8 +80,9 @@ npx wrangler deploy --config .output/server/wrangler.json
 - Set `VITE_CONTACT_FORM_ENDPOINT` to a real form backend.
 - Confirm the engagement pricing in `src/lib/content.ts` — currently modest,
   unconfirmed placeholders for a practice with no signed clients yet.
-- Swap in real, named case studies (`CASE_STUDIES` in `src/lib/content.ts`)
-  as engagements complete and clients sign off on sharing them.
+- `CASE_STUDIES` in `src/lib/content.ts` are real projects from Ryan's
+  current role and prior engineering career, not client work — add real
+  independent-client case studies here once the practice has some.
 - An "intro film" section and a "writing" section are part of the wider
   design system but aren't built here — there's no video or blog post yet.
   Add them once that content exists.
