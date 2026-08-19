@@ -2,12 +2,12 @@
 @source "../src";
 @import "tw-animate-css";
 
+@custom-variant dark (&:is(.dark *));
+
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -28,52 +28,83 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
-  --font-serif: "Fraunces", ui-serif, Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", ui-serif, Georgia, serif;
+  --font-sans: "Source Serif 4", ui-serif, Georgia, serif;
 }
 
 :root {
-  --radius: 0.75rem;
+  /* Broadsheet — newsprint palette. Paper ground, process-ink accents. */
+  --color-bg: #f3f2f2;
+  --color-surface: #eae9e9;
+  --color-text: #201e1d;
+  --color-accent: #0088b0;
+  --color-accent-2: #d6006c;
+  --color-accent-700: #006786;
+  --color-accent-600: #1186ac;
+  --color-divider: color-mix(in srgb, #201e1d 16%, transparent);
+  --color-process-yellow: #edbb00;
 
-  /* Ryan Levels — editorial navy / cream / copper palette */
-  --cream: #f7f3ea;
-  --cream-deep: #ede5d3;
-  --paper: var(--cream);
-  --paper-deep: var(--cream-deep);
-  --navy: #16233a;
-  --navy-deep: #0c1626;
-  --copper: #b8863d;
-  /* Darkened from #93692c so copper text clears 4.5:1 on every cream surface. */
-  --copper-deep: #845c24;
+  --color-neutral-100: #f8f4f4;
+  --color-neutral-200: #eae7e7;
+  --color-neutral-300: #d7d3d3;
+  --color-neutral-400: #bab6b6;
+  --color-neutral-500: #9b9797;
+  --color-neutral-600: #7d7979;
+  --color-neutral-700: #605d5d;
+  --color-neutral-800: #444141;
+  --color-neutral-900: #2d2b2b;
 
-  /* Copy contrast scale — three steps per surface. Prefer these over ad-hoc
-     opacity modifiers so body text stays consistent across sections. */
-  --copy-strong: color-mix(in oklab, var(--navy) 88%, transparent);
-  --copy: color-mix(in oklab, var(--navy) 74%, transparent);
-  --copy-muted: color-mix(in oklab, var(--navy) 66%, transparent);
-  --copy-on-navy-strong: color-mix(in oklab, var(--cream) 90%, transparent);
-  --copy-on-navy: color-mix(in oklab, var(--cream) 74%, transparent);
-  --copy-on-navy-muted: color-mix(in oklab, var(--cream) 62%, transparent);
+  --color-accent-100: #e9f8ff;
+  --color-accent-200: #cbeeff;
+  --color-accent-300: #99e0ff;
+  --color-accent-400: #62c5ee;
+  --color-accent-500: #38a6cf;
+  --color-accent-800: #004961;
+  --color-accent-900: #0a303e;
 
-  --background: var(--cream);
-  --foreground: var(--navy);
-  --card: #ffffff;
-  --card-foreground: var(--navy);
-  --popover: #ffffff;
-  --popover-foreground: var(--navy);
-  --primary: var(--navy);
-  --primary-foreground: var(--cream);
-  --secondary: var(--cream-deep);
-  --secondary-foreground: var(--navy);
-  --muted: var(--cream-deep);
-  --muted-foreground: color-mix(in oklab, var(--navy) 62%, transparent);
-  --accent: var(--copper);
-  --accent-foreground: var(--navy-deep);
+  --color-accent-2-100: #fff1f4;
+  --color-accent-2-200: #ffdee6;
+  --color-accent-2-300: #ffc0d0;
+  --color-accent-2-400: #ff90b1;
+  --color-accent-2-500: #ff458e;
+  --color-accent-2-600: #d82071;
+  --color-accent-2-700: #aa0b56;
+  --color-accent-2-800: #790e3d;
+  --color-accent-2-900: #4b1528;
+
+  --font-heading: "Source Serif 4", ui-serif, Georgia, serif;
+  --font-body: "Source Serif 4", ui-serif, Georgia, serif;
+
+  --space-1: 5px;
+  --space-2: 10px;
+  --space-3: 15px;
+  --space-4: 20px;
+  --space-6: 30px;
+  --space-8: 40px;
+
+  --radius-sm: 1px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+
+  --background: var(--color-bg);
+  --foreground: var(--color-text);
+  --card: var(--color-bg);
+  --card-foreground: var(--color-text);
+  --popover: var(--color-bg);
+  --popover-foreground: var(--color-text);
+  --primary: var(--color-accent);
+  --primary-foreground: var(--color-bg);
+  --secondary: var(--color-surface);
+  --secondary-foreground: var(--color-text);
+  --muted: var(--color-surface);
+  --muted-foreground: color-mix(in srgb, var(--color-text) 70%, transparent);
+  --accent: var(--color-accent);
+  --accent-foreground: var(--color-bg);
   --destructive: #a3341f;
-  --destructive-foreground: var(--cream);
-  --border: color-mix(in oklab, var(--navy) 14%, transparent);
-  --input: color-mix(in oklab, var(--navy) 20%, transparent);
-  --ring: var(--copper);
+  --destructive-foreground: var(--color-bg);
+  --border: var(--color-divider);
+  --input: var(--color-divider);
+  --ring: var(--color-accent);
 }
 
 @layer base {
@@ -81,12 +112,24 @@
     border-color: var(--color-border);
   }
 
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  section[id] {
+    scroll-margin-top: 80px;
+  }
+
   html,
   body {
-    background-color: var(--cream);
-    color: var(--navy);
-    font-family: var(--font-sans);
-    font-feature-settings: "ss01";
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    margin: 0;
+    font-size: 17px;
+    line-height: 28px;
   }
 
   h1,
@@ -94,34 +137,21 @@
   h3,
   h4,
   h5 {
-    font-family: var(--font-serif);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    /* Fraunces carries an optical-size axis; large display sizes want the
-       high end for sharper, higher-contrast letterforms. */
-    font-variation-settings: "opsz" 48;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.015em;
   }
 
-  h1 {
-    letter-spacing: -0.03em;
-    font-variation-settings: "opsz" 144;
+  /* accent-700, not the raw accent: the brand cyan is 3.65:1 on paper,
+     under the 4.5:1 floor for normal text — accent-700 clears 5.7:1. */
+  a {
+    color: var(--color-accent-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
-  h2 {
-    letter-spacing: -0.02em;
-    font-variation-settings: "opsz" 96;
-  }
-
-  h4,
-  h5 {
-    letter-spacing: -0.005em;
-    font-variation-settings: "opsz" 24;
-  }
-
-  /* The header is sticky, so anchor jumps must clear it. */
-  :target,
-  section[id] {
-    scroll-margin-top: 6rem;
+  a:hover {
+    color: var(--color-accent);
   }
 
   a,
@@ -129,250 +159,124 @@
   input,
   textarea,
   select {
-    min-height: 2.75rem;
+    min-height: 2.5rem;
   }
 
-  a:focus-visible,
-  button:focus-visible,
-  input:focus-visible,
-  textarea:focus-visible,
-  select:focus-visible {
-    outline: 3px solid color-mix(in oklab, var(--copper) 70%, white);
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
     outline-offset: 2px;
   }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 30%, transparent);
+  }
 }
 
-/* Faint analytical grid texture — a restrained data motif, never a literal dashboard */
-.data-grid {
-  background-image:
-    linear-gradient(
-      to right,
-      color-mix(in oklab, var(--navy) 6%, transparent) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      color-mix(in oklab, var(--navy) 6%, transparent) 1px,
-      transparent 1px
-    );
-  background-size: 48px 48px;
+/* Newsprint dot screen — the print treatment for all interface/situational imagery. */
+.halftone {
+  position: relative;
+  filter: grayscale(0.35) contrast(1.15);
+  overflow: hidden;
+}
+.halftone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.22) 30%, transparent 32%);
+  background-size: 3px 3px;
+  mix-blend-mode: multiply;
 }
 
-.data-grid-dark {
-  background-image:
-    linear-gradient(
-      to right,
-      color-mix(in oklab, var(--cream) 8%, transparent) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      color-mix(in oklab, var(--cream) 8%, transparent) 1px,
-      transparent 1px
-    );
-  background-size: 48px 48px;
+/* Four-color separation treatment — reserved for the one signature image
+   (the About headshot). figure.cmyk > .print > (placeholder or <img>).
+   The filter targets only a real <img> inside .print, never the empty
+   placeholder: applying a color-channel separation to rendered text (the
+   placeholder's caption) reads as a broken rainbow-fringed smear, not a
+   print effect — the filter should only ever touch a photograph. */
+.cmyk {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+.cmyk .print {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.cmyk .print > img {
+  filter: url(#sep-all);
+}
+.cmyk .print > img:hover,
+.cmyk .print > img:focus-visible {
+  filter: none;
 }
 
-@utility copy-strong {
-  color: var(--copy-strong);
+/* Section kicker — small uppercase label above a heading. */
+@utility kicker {
+  display: block;
+  font-size: 13px;
+  line-height: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+  margin-bottom: 14px;
 }
 
-@utility copy {
-  color: var(--copy);
-}
-
-@utility copy-muted {
-  color: var(--copy-muted);
-}
-
-@utility copy-invert-strong {
-  color: var(--copy-on-navy-strong);
-}
-
-@utility copy-invert {
-  color: var(--copy-on-navy);
-}
-
-@utility copy-invert-muted {
-  color: var(--copy-on-navy-muted);
-}
-
+/* accent-700 at rest, not the raw accent: near-white button text on raw
+   accent is 3.65:1, under the 4.5:1 floor. accent-700 clears 5.7:1. */
 @utility btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  border-radius: 4px;
-  background: var(--navy);
-  color: var(--cream);
-  padding: 0.85rem 2rem;
-  font-size: 0.875rem;
+  gap: 6px;
+  border-radius: var(--radius-md);
+  background: var(--color-accent-700);
+  color: var(--color-bg);
+  font-family: var(--font-heading);
   font-weight: 600;
-  letter-spacing: 0.02em;
-  box-shadow: 0 1px 2px rgba(12, 22, 38, 0.12);
-  transition:
-    background 0.15s ease,
-    box-shadow 0.15s ease;
+  font-size: 14px;
+  padding: var(--space-2) calc(var(--space-3) * 1.2);
+  text-decoration: none;
+  transition: background 0.15s ease;
   &:hover {
-    background: var(--navy-deep);
-    box-shadow: 0 3px 12px rgba(12, 22, 38, 0.22);
+    background: var(--color-accent-600);
+    color: var(--color-bg);
+  }
+  &:active {
+    background: var(--color-accent-800);
   }
 }
 
-@utility btn-accent {
+@utility btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  border-radius: 4px;
-  background: var(--copper);
-  color: var(--navy-deep);
-  padding: 0.85rem 2rem;
-  font-size: 0.875rem;
+  gap: 6px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-divider);
+  color: var(--color-text);
+  font-family: var(--font-heading);
   font-weight: 600;
-  letter-spacing: 0.02em;
-  box-shadow: 0 1px 2px rgba(12, 22, 38, 0.12);
-  transition:
-    background 0.15s ease,
-    box-shadow 0.15s ease;
+  font-size: 14px;
+  padding: var(--space-2) calc(var(--space-3) * 1.2);
+  text-decoration: none;
+  transition: background 0.15s ease;
   &:hover {
-    background: var(--copper-deep);
-    color: var(--cream);
-    box-shadow: 0 3px 12px rgba(147, 105, 44, 0.3);
+    background: color-mix(in srgb, var(--color-text) 7%, transparent);
+  }
+  &:active {
+    background: color-mix(in srgb, var(--color-text) 14%, transparent);
   }
 }
 
-@utility btn-quiet {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid color-mix(in oklab, var(--cream) 25%, transparent);
-  color: var(--copy-on-navy);
-  padding: 0.7rem 1.75rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  transition:
-    border-color 0.15s ease,
-    color 0.15s ease;
-  &:hover {
-    border-color: color-mix(in oklab, var(--cream) 50%, transparent);
-    color: var(--cream);
-  }
-}
-
-@utility card-editorial {
-  background: var(--card);
-  border: 1px solid color-mix(in oklab, var(--navy) 12%, transparent);
-  border-top: 2px solid var(--copper);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-  box-shadow: 0 1px 3px rgba(12, 22, 38, 0.05);
-  &:hover {
-    border-top-color: var(--copper-deep);
-    box-shadow: 0 4px 20px rgba(12, 22, 38, 0.09);
-  }
-}
-
-@utility tag {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 9999px;
-  padding: 0.3rem 0.8rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  background: color-mix(in oklab, var(--copper) 12%, var(--cream));
-  color: var(--copper-deep);
-}
-
-@utility eyebrow {
-  display: block;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--copper-deep);
-}
-
-/* Same eyebrow on the navy panels, where copper-deep is too dark to read. */
-@utility eyebrow-invert {
-  display: block;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--copper);
-}
-
-/* Primary nav link with a copper underline marking the section in view. */
-@utility nav-link {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  font-weight: 500;
-  color: var(--copy);
-  transition: color 0.15s ease;
-  &:hover {
-    color: var(--navy);
-  }
-  &[aria-current="true"] {
-    color: var(--navy);
-  }
-  &[aria-current="true"]::after {
-    content: "";
-    position: absolute;
-    inset-inline: 1rem;
-    bottom: 0.15rem;
-    height: 2px;
-    background: var(--copper);
-  }
-}
-
-/* Matches the Input/Textarea controls, with a custom chevron so the select
-   doesn't fall back to the native platform control. */
-@utility select-field {
-  appearance: none;
-  display: flex;
-  height: 2.75rem;
-  width: 100%;
-  border: 1px solid var(--input);
-  background-color: var(--card);
-  background-image: linear-gradient(45deg, transparent 50%, var(--copper-deep) 50%),
-    linear-gradient(135deg, var(--copper-deep) 50%, transparent 50%);
-  background-position:
-    calc(100% - 1.15rem) calc(50% + 2px),
-    calc(100% - 0.8rem) calc(50% + 2px);
-  background-size:
-    6px 6px,
-    6px 6px;
-  background-repeat: no-repeat;
-  padding-inline: 0.75rem;
-  padding-inline-end: 2.25rem;
-  font-size: 0.875rem;
-  color: var(--navy);
-  box-shadow: 0 1px 2px rgba(12, 22, 38, 0.05);
-}
-
-/* Smooth page entrance — removed; static entry preferred */
-
-/* Scroll-triggered reveal — removed; static display preferred */
-
-/* Section heading accent line */
-@utility section-rule {
-  display: block;
-  width: 2.5rem;
-  height: 2px;
-  background: var(--copper);
-  margin-bottom: 1rem;
-  border-radius: 9999px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .card-editorial:hover {
-    box-shadow: none;
-  }
+@utility dot-leader {
+  flex: 1;
+  min-width: 28px;
+  align-self: flex-end;
+  border-bottom: 1px dotted color-mix(in srgb, var(--color-text) 45%, transparent);
 }
