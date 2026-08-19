@@ -78,7 +78,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     slotHint: "Photo: a developer's desk — laptop open to a code editor, natural light, unstaged.",
-    sector: "Sanctuary Software Studio · Mobile & enterprise software",
+    sector: "Prior engineering work · Mobile & enterprise software",
     title: "Nine clients, one set of engineering habits",
     body: "Before data, I built full-stack business applications and mobile software for clients across finance, healthcare, and logistics — translating ambiguous requirements into working, tested, version-controlled software, including SQL Server database design for enterprise reporting.",
     result:

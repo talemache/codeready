@@ -1,6 +1,6 @@
 import { DotLeader } from "@/components/DotLeader";
 
-const DATELINE_ITEMS = ["Northal LLC", "North Canton, Ohio", "Remote-first, U.S. hours"];
+const DATELINE_ITEMS = ["Northal", "North Canton, Ohio", "Remote-first, U.S. hours"];
 
 export function Dateline() {
   return (
