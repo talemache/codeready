@@ -1,26 +1,25 @@
 type Props = {
-  /** What a real photo/screenshot here should show — used as the accessible alt text. */
+  /** Accessible description for the image. */
   alt: string;
+  src?: string;
   className?: string;
-  /** Omit when a parent element already owns the aspect ratio (e.g. figure.cmyk .print). */
+  /** Omit when a parent element already owns the aspect ratio. */
   aspect?: string;
 };
 
-/**
- * An empty drop slot for real photography — styled as the halftone frame's
- * resting surface (`--color-surface`, the token reserved for exactly this)
- * rather than a mocked-up gray box. Swap for a real <img alt={alt} .../>
- * once photography is sourced; the caption states the shot to source.
- */
-export function ImagePlaceholder({ alt, className, aspect }: Props) {
+export function ImagePlaceholder({ alt, src, className, aspect }: Props) {
   return (
     <div
-      role="img"
-      aria-label={alt}
-      className={`flex items-center justify-center bg-[color:var(--color-surface)] p-4 text-center ${className ?? ""}`}
+      className={`overflow-hidden bg-[color:var(--color-surface)] ${className ?? ""}`}
       style={aspect ? { aspectRatio: aspect } : undefined}
     >
-      <p className="m-0 text-[13px] leading-5 text-[color:var(--color-text)]/70">{alt}</p>
+      {src ? (
+        <img src={src} alt={alt} className="block h-full w-full object-cover" loading="lazy" />
+      ) : (
+        <div role="img" aria-label={alt} className="flex h-full items-center justify-center p-4 text-center">
+          <p className="m-0 text-[13px] leading-5 text-[color:var(--color-text)]/70">{alt}</p>
+        </div>
+      )}
     </div>
   );
 }

@@ -28,7 +28,7 @@ export function Dashboards() {
       >
         {DASHBOARD_SHOTS.map((shot) => (
           <figure key={shot.caption} className="m-0">
-            <ImagePlaceholder alt={shot.hint} className="halftone" aspect="16/10" />
+            <ImagePlaceholder src={shot.image} alt={shot.hint} className="halftone" aspect="16/10" />
             <figcaption
               className="mt-2 text-[13px] leading-6"
               style={{ color: "color-mix(in srgb, var(--color-text) 70%, transparent)" }}

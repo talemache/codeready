@@ -12,6 +12,7 @@ export function About() {
       <figure className="cmyk m-0">
         <div className="print" style={{ aspectRatio: "4/5" }}>
           <ImagePlaceholder
+            src="/images/ryan-levels.jpg"
             alt="Portrait of Ryan Levels — headshot placeholder, natural light, seated at his desk, unstaged, no studio backdrop"
             className="h-full w-full"
           />

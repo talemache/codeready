@@ -49,6 +49,7 @@ export const SERVICES: Service[] = [
 
 export type CaseStudy = {
   slotHint: string;
+  image: string;
   sector: string;
   title: string;
   body: string;
@@ -60,6 +61,7 @@ export type CaseStudy = {
 // pending real shots or screenshots.
 export const CASE_STUDIES: CaseStudy[] = [
   {
+    image: "/images/legal-aid-desk.jpg",
     slotHint:
       "Photo: a caseworker's desk at a legal aid office — case files, a monitor, natural light. Grounded, unstaged.",
     sector: "Community Legal Aid · Program evaluation",
@@ -69,6 +71,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Presented to executive leadership — now part of how attorney workload and staffing get evaluated.",
   },
   {
+    image: "/images/quarto-report-monitor.jpg",
     slotHint: "Photo: a clean R Markdown or Quarto report open on a monitor, natural light.",
     sector: "Community Legal Aid · Federal & funder reporting",
     title: "Compliance reporting that runs itself",
@@ -77,6 +80,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Every report now runs the same way whether or not I'm the one who presses go — accurate and audit-ready by default.",
   },
   {
+    image: "/images/developer-desk.jpg",
     slotHint: "Photo: a developer's desk — laptop open to a code editor, natural light, unstaged.",
     sector: "Sanctuary Software Studio · Mobile & enterprise software",
     title: "Nine clients, one set of engineering habits",
@@ -86,18 +90,21 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
 ];
 
-export type DashboardShot = { hint: string; caption: string };
+export type DashboardShot = { hint: string; image: string; caption: string };
 
 export const DASHBOARD_SHOTS: DashboardShot[] = [
   {
+    image: "/images/executive-summary.svg",
     hint: "Screenshot: an executive summary dashboard page, client data scrubbed.",
     caption: "Executive summary — everything a board needs on one page.",
   },
   {
+    image: "/images/grant-metrics.svg",
     hint: "Screenshot: a grant-metrics report page with funder measures.",
     caption: "Funder metrics, mapped to the actual grant language.",
   },
   {
+    image: "/images/data-pipeline.svg",
     hint: "Screenshot: pipeline or data-model documentation view.",
     caption: "The documented pipeline your staff inherit at handoff.",
   },

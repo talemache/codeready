@@ -30,7 +30,7 @@ export function CaseStudies() {
         {CASE_STUDIES.map((study) => (
           <article key={study.title}>
             <figure className="m-0 mb-5">
-              <ImagePlaceholder alt={study.slotHint} className="halftone" aspect="4/3" />
+              <ImagePlaceholder src={study.image} alt={study.slotHint} className="halftone" aspect="4/3" />
             </figure>
             <span
               className="mb-2 block text-[11px] uppercase tracking-[0.1em]"
