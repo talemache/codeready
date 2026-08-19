@@ -1,18 +1,18 @@
-type Props = { className?: string; mark?: "navy" | "cream" };
+type Props = { className?: string };
 
 /**
- * Typography-based wordmark — "Ryan Levels" set in the site's serif display
- * face with a copper full stop as the only mark. No icon.
+ * Typography-based wordmark — "Ryan Levels" in the site's single serif face
+ * with a magenta full stop as the only mark. No icon.
  */
-export function Logo({ className, mark = "navy" }: Props) {
-  const color = mark === "cream" ? "var(--cream)" : "var(--navy)";
+export function Logo({ className }: Props) {
   return (
-    <span className={className} style={{ color }} aria-label="Ryan Levels">
-      <span className="font-serif text-xl tracking-tight sm:text-2xl">
-        Ryan Levels
-        <span aria-hidden style={{ color: "var(--copper)" }}>
-          .
-        </span>
+    <span
+      className={`font-serif text-lg font-semibold no-underline ${className ?? ""}`}
+      style={{ color: "var(--color-text)" }}
+    >
+      Ryan&nbsp;Levels
+      <span aria-hidden style={{ color: "var(--color-accent-2)" }}>
+        .
       </span>
     </span>
   );

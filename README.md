@@ -2,17 +2,21 @@
 
 A single-page professional consulting site for Ryan Levels: data analytics, AI
 implementation, and software engineering consulting, with a focus on
-LegalServer and nonprofit/mission-driven organization reporting.
+nonprofit and mission-driven organization reporting.
 
 **Live at [northal.org](https://northal.org)** ("Northal LLC" is the business
 entity — it's referenced only in the footer, not as the site's brand.)
 
 ## What's here
 
-- A single anchor-linked page: hero, services, approach, selected work,
-  about, testimonials, FAQ, and a contact form
-- Editorial navy / cream / copper design system with serif display type
-  (Fraunces) over a clean sans body (Inter)
+- A single anchor-linked page: hero, dateline stats, selected work, services,
+  dashboards, engagement pricing, about, certifications & memberships, a pull
+  quote, and a contact form
+- A newsprint/broadsheet design system — paper ground, a single serif face
+  (Source Serif 4), cyan/magenta process-ink accents, no cards or boxes
+- A four-color separation ("CMYK plate") print treatment reserved for the
+  About headshot once a real photo replaces its placeholder; every other
+  image slot uses a halftone dot-screen treatment
 - A contact form structured to POST to a real backend (Formspree, a
   Cloudflare Worker, etc.) via `VITE_CONTACT_FORM_ENDPOINT`, with a
   functional `mailto:` fallback when that's unset
@@ -22,7 +26,7 @@ entity — it's referenced only in the footer, not as the site's brand.)
 ## Built with
 
 - TanStack Start (React + TypeScript, SSR)
-- Tailwind CSS with a custom navy / cream / copper design system
+- Tailwind CSS with a custom paper / ink / cyan / magenta design system
 - Deployed on Cloudflare Workers
 
 ## Local development
@@ -68,10 +72,16 @@ npx wrangler deploy --config .output/server/wrangler.json
 
 ## Before launch
 
-- Replace the photo placeholders (hero, approach, about headshot) with real,
-  licensed photography — grounded and unstaged, no stock handshake/skyline
-  imagery. Each placeholder in the code names exactly what to shoot.
+- Replace the seven photo/screenshot placeholders (hero, selected-work cases,
+  dashboards, about headshot) with real, licensed photography — grounded and
+  unstaged, no stock handshake/skyline imagery. Each placeholder in the code
+  names exactly what to shoot.
 - Confirm the contact inbox address in `SiteFooter.tsx` and `Contact.tsx`.
 - Set `VITE_CONTACT_FORM_ENDPOINT` to a real form backend.
-- Swap in real client testimonials and named case studies as they become
-  available.
+- Confirm the engagement pricing in `src/lib/content.ts` — currently modest,
+  unconfirmed placeholders for a practice with no signed clients yet.
+- Swap in real, named case studies (`CASE_STUDIES` in `src/lib/content.ts`)
+  as engagements complete and clients sign off on sharing them.
+- An "intro film" section and a "writing" section are part of the wider
+  design system but aren't built here — there's no video or blog post yet.
+  Add them once that content exists.

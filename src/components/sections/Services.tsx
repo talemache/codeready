@@ -2,26 +2,39 @@ import { SERVICES } from "@/lib/content";
 
 export function Services() {
   return (
-    <section id="services" className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
-      <div className="max-w-2xl">
-        <span className="eyebrow">What I do</span>
-        <h2 className="mt-3 font-serif text-3xl sm:text-4xl">
-          Four kinds of work, one way of doing it
-        </h2>
-        <p className="mt-4 text-[color:var(--navy)]/75">
-          Specific tools, specific outcomes. If it doesn't fit neatly into one of these, tell me
-          what you're stuck on — most engagements start as a conversation, not a package.
-        </p>
-      </div>
+    <section id="services" style={{ padding: "56px 0 84px" }}>
+      <span className="kicker">What I do</span>
+      <h2 className="m-0 text-4xl leading-[42px] tracking-[-0.015em]" style={{ maxWidth: "24ch" }}>
+        Five kinds of work, one way of doing them
+      </h2>
 
-      <div className="mt-12 grid gap-5 sm:grid-cols-2">
+      <div
+        className="mt-11 grid gap-x-[clamp(28px,4vw,64px)] gap-y-11"
+        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}
+      >
         {SERVICES.map((service) => (
-          <div key={service.id} className="card-editorial p-7">
-            <h3 className="font-serif text-xl">{service.name}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-[color:var(--navy)]/78">
+          <div key={service.num}>
+            <span
+              className="font-serif text-[17px] font-semibold"
+              style={{ color: "var(--color-accent-2)" }}
+            >
+              {service.num}
+            </span>
+            <h3 className="mt-2 text-2xl leading-7 tracking-[-0.01em]">{service.name}</h3>
+            <p
+              className="mt-3.5 text-[15.5px] leading-7"
+              style={{
+                textAlign: "justify",
+                hyphens: "auto",
+                color: "color-mix(in srgb, var(--color-text) 78%, transparent)",
+              }}
+            >
               {service.description}
             </p>
-            <p className="mt-4 text-xs font-medium uppercase tracking-wide text-[color:var(--copper-deep)]">
+            <p
+              className="mt-3.5 text-[13px] leading-6 tracking-[0.02em]"
+              style={{ color: "color-mix(in srgb, var(--color-text) 70%, transparent)" }}
+            >
               {service.tools}
             </p>
           </div>

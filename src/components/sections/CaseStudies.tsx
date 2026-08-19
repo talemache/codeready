@@ -1,41 +1,59 @@
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { CASE_STUDIES } from "@/lib/content";
 
 export function CaseStudies() {
   return (
-    <section id="work" className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
-      <div className="max-w-2xl">
-        <span className="eyebrow">Selected work</span>
-        <h2 className="mt-3 font-serif text-3xl sm:text-4xl">Representative engagements</h2>
-        <p className="mt-4 text-[color:var(--navy)]/75">
-          The kind of problems I get called in for, and how they usually resolve. Named case studies
-          are added here as engagements wrap and clients sign off on sharing them.
+    <section id="work" style={{ padding: "84px 0 56px" }}>
+      <span className="kicker">Selected work</span>
+      <div className="grid grid-cols-[minmax(0,5fr)_minmax(0,7fr)] items-end gap-x-[clamp(24px,5vw,80px)] gap-y-7 max-[720px]:grid-cols-1">
+        <h2 className="m-0 text-4xl leading-[42px] tracking-[-0.015em]">
+          Three engagements, told plainly
+        </h2>
+        <p
+          className="m-0 text-[15.5px] leading-7"
+          style={{
+            maxWidth: "52ch",
+            textAlign: "justify",
+            hyphens: "auto",
+            color: "color-mix(in srgb, var(--color-text) 78%, transparent)",
+          }}
+        >
+          Client names appear once they've signed off; the rest stay anonymous but exact. Ask about
+          anything close to your situation and I'll point you at the nearest match rather than a
+          brochure.
         </p>
       </div>
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-3">
+      <div
+        className="mt-14 grid gap-x-[clamp(28px,4vw,64px)] gap-y-14"
+        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}
+      >
         {CASE_STUDIES.map((study) => (
-          <article key={study.id} className="card-editorial flex flex-col p-7">
-            <span className="tag self-start">{study.org}</span>
-            <div className="mt-5 space-y-4 text-sm leading-relaxed text-[color:var(--navy)]/80">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--navy)]/50">
-                  Problem
-                </p>
-                <p className="mt-1">{study.problem}</p>
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--navy)]/50">
-                  Approach
-                </p>
-                <p className="mt-1">{study.approach}</p>
-              </div>
-            </div>
-            <div className="mt-5 rounded-lg bg-[color:var(--cream-deep)] p-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--copper-deep)]">
-                Outcome
-              </p>
-              <p className="mt-1 font-serif text-base text-[color:var(--navy)]">{study.outcome}</p>
-            </div>
+          <article key={study.title}>
+            <figure className="m-0 mb-5">
+              <ImagePlaceholder alt={study.slotHint} className="halftone" aspect="4/3" />
+            </figure>
+            <span
+              className="mb-2 block text-[11px] uppercase tracking-[0.1em]"
+              style={{ color: "var(--color-accent-700)" }}
+            >
+              {study.sector}
+            </span>
+            <h3 className="m-0 text-[22px] leading-7">{study.title}</h3>
+            <p
+              className="mt-3.5 text-[15.5px] leading-7"
+              style={{
+                textAlign: "justify",
+                hyphens: "auto",
+                color: "color-mix(in srgb, var(--color-text) 78%, transparent)",
+              }}
+            >
+              {study.body}
+            </p>
+            <p className="mt-3.5 text-[15.5px] leading-7">
+              <span className="font-serif font-semibold">Result — </span>
+              {study.result}
+            </p>
           </article>
         ))}
       </div>
