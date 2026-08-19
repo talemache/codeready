@@ -21,8 +21,8 @@ export const SERVICES: Service[] = [
     num: "02",
     name: "Systems of record",
     description:
-      "Custom reports, outcome tracking, and grant-metric extraction built on whatever system your operation actually runs on — LegalServer, a CRM, a case management platform, or something homegrown.",
-    tools: "SQL · Power BI · LegalServer & CRM report tools",
+      "Custom reports, outcome tracking, and grant-metric extraction built on whatever system your operation actually runs on — a CRM, a case management platform, or something homegrown.",
+    tools: "SQL · Power BI · CRM & case-management report tools",
   },
   {
     num: "03",
@@ -61,18 +61,18 @@ export type CaseStudy = {
 export const CASE_STUDIES: CaseStudy[] = [
   {
     slotHint:
-      "Photo: a caseworker's desk at a legal aid office — case files, a monitor, natural light. Grounded, unstaged.",
-    sector: "Community Legal Aid · Program evaluation",
+      "Photo: a caseworker's desk — case files, a monitor, natural light. Grounded, unstaged.",
+    sector: "Program evaluation",
     title: "How Long Should This Case Take?",
-    body: "Attorney caseloads got evaluated on instinct, not data. I built a benchmarking study using Tukey's IQR method to flag outlier case durations by case type, then translated the statistics into a one-pager and study guide leadership could use without a stats background.",
+    body: "A nonprofit's caseloads were being evaluated on instinct, not data. I built a benchmarking study using Tukey's IQR method to flag statistical outliers by case type, then translated the statistics into a one-pager and study guide leadership could use without a stats background.",
     result:
       "Presented to executive leadership — now part of how attorney workload and staffing get evaluated.",
   },
   {
     slotHint: "Photo: a clean R Markdown or Quarto report open on a monitor, natural light.",
-    sector: "Community Legal Aid · Federal & funder reporting",
+    sector: "Federal & funder reporting",
     title: "Compliance reporting that runs itself",
-    body: "Reports to the Legal Services Corporation and grant funders were recurring manual work pulled from LegalServer exports. I rebuilt the extraction as API- and SQL-based queries in R and converted the recurring reports into reproducible R Markdown and Quarto deliverables.",
+    body: "Reports to a federal funder and other grant funders were recurring manual work pulled from a case-management system's exports. I rebuilt the extraction as API- and SQL-based queries in R and converted the recurring reports into reproducible R Markdown and Quarto deliverables.",
     result:
       "Every report now runs the same way whether or not I'm the one who presses go — accurate and audit-ready by default.",
   },

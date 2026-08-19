@@ -16,8 +16,7 @@ export function Engagements() {
           }}
         >
           Every quote is fixed before work begins, so you know the number and I know the scope.
-          Ranges below are typical — nonprofit and legal-aid budgets are common here, and pricing
-          reflects that.
+          Ranges below are typical — nonprofit budgets are common here, and pricing reflects that.
         </p>
       </div>
 

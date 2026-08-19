@@ -13,7 +13,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 
 const SITE_TITLE = "Ryan Levels — Data & AI Consulting";
 const SITE_DESCRIPTION =
-  "Data, AI, and software consulting for nonprofits and mission-driven organizations — reporting systems, LegalServer and CRM data, and AI worked into the workflow only where it pays.";
+  "Data, AI, and software consulting for nonprofits and mission-driven organizations — reporting systems, case-management and CRM data, and AI worked into the workflow only where it pays.";
 
 // The Broadsheet system's four-plate separation filter — needed once, near
 // the app root, for the About headshot's .cmyk print treatment. A data-URI

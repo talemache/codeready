@@ -20,10 +20,10 @@ export function Hero() {
           color: "color-mix(in srgb, var(--color-text) 82%, transparent)",
         }}
       >
-        I'm Ryan — Data &amp; Evaluation Manager at Community Legal Aid by day, independent data and
-        software consultant the rest of the time. I build reporting that boards, funders, and
-        leadership teams actually read, and I use AI only where it holds up under real use, not
-        because it's trending. Small teams, real deadlines, straight answers.
+        I'm Ryan — a data and evaluation professional by day, independent data and software
+        consultant the rest of the time. I build reporting that boards, funders, and leadership
+        teams actually read, and I use AI only where it holds up under real use, not because it's
+        trending. Small teams, real deadlines, straight answers.
       </p>
       <div className="mt-7 flex flex-wrap items-center gap-[15px]">
         <a href="#contact" className="btn-primary min-h-10 px-[22px]">

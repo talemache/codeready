@@ -14,7 +14,7 @@ import { Contact } from "@/components/sections/Contact";
 
 const TITLE = "Ryan Levels — Data & AI Consulting";
 const DESCRIPTION =
-  "Data, AI, and software consulting for nonprofits and mission-driven organizations — reporting systems, LegalServer and CRM data, and AI worked into the workflow only where it pays.";
+  "Data, AI, and software consulting for nonprofits and mission-driven organizations — reporting systems, case-management and CRM data, and AI worked into the workflow only where it pays.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

@@ -30,11 +30,11 @@ export function About() {
             color: "color-mix(in srgb, var(--color-text) 82%, transparent)",
           }}
         >
-          I'm the Data &amp; Evaluation Manager at Community Legal Aid, where I lead data strategy,
-          reporting, and program evaluation for a 100-person legal aid organization — building the
-          analysis boards, funders, and program directors actually use. I also mentor other analysts
-          through the Data Visualization Society. This practice grew out of that work: people kept
-          asking who built the reporting, and eventually I started saying yes.
+          I'm the Data &amp; Evaluation Manager at a nonprofit organization, where I lead data
+          strategy, reporting, and program evaluation for a 100-person nonprofit organization —
+          building the analysis boards, funders, and program directors actually use. I also mentor
+          other analysts through the Data Visualization Society. This practice grew out of that
+          work: people kept asking who built the reporting, and eventually I started saying yes.
         </p>
         <p
           className="mt-3.5 text-[15.5px] leading-7"
