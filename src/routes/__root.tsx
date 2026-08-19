@@ -12,6 +12,9 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 const SITE_TITLE = "Ryan Levels — Data & AI Consulting";
+const SITE_URL = "https://northal.org";
+const SITE_IMAGE = `${SITE_URL}/og-image.png`;
+const SITE_IMAGE_ALT = "Ryan Levels — Data & AI Consulting. Reporting your funders trust.";
 const SITE_DESCRIPTION =
   "Data, AI, and software consulting for nonprofits and mission-driven organizations — reporting systems, LegalServer and CRM data, and AI worked into the workflow only where it pays.";
 
@@ -138,9 +141,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: SITE_TITLE },
       { property: "og:description", content: SITE_DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:image", content: SITE_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: SITE_IMAGE_ALT },
+      { name: "theme-color", content: "#16233a" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: SITE_TITLE },
       { name: "twitter:description", content: SITE_DESCRIPTION },
+      { name: "twitter:image", content: SITE_IMAGE },
+      { name: "twitter:image:alt", content: SITE_IMAGE_ALT },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
