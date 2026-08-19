@@ -13,8 +13,10 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 
 const SITE_TITLE = "Ryan Levels — Data & AI Consulting";
 const SITE_URL = "https://northal.org";
-const SITE_IMAGE = `${SITE_URL}/og-image.png`;
-const SITE_IMAGE_ALT = "Ryan Levels — Data & AI Consulting. Reporting your funders trust.";
+// public/og-image.png still carries the old navy/copper design and has
+// "LegalServer" baked into its text — do not reference it as og:image /
+// twitter:image until it's regenerated to match the current broadsheet
+// design and de-identified copy. See SITE_URL for the plain page link.
 const SITE_DESCRIPTION =
   "Data, AI, and software consulting for nonprofits and mission-driven organizations — reporting systems, case-management and CRM data, and AI worked into the workflow only where it pays.";
 
@@ -142,16 +144,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: SITE_DESCRIPTION },
       { property: "og:type", content: "website" },
       { property: "og:url", content: SITE_URL },
-      { property: "og:image", content: SITE_IMAGE },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: SITE_IMAGE_ALT },
-      { name: "theme-color", content: "#16233a" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: SITE_TITLE },
       { name: "twitter:description", content: SITE_DESCRIPTION },
-      { name: "twitter:image", content: SITE_IMAGE },
-      { name: "twitter:image:alt", content: SITE_IMAGE_ALT },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
